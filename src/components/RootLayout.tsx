@@ -1,5 +1,8 @@
 'use client'
 
+import { pageInformation, Routes } from '../constant/pages'
+
+
 import {
   createContext,
   useContext,
@@ -64,7 +67,7 @@ function Header({
     <Container>
       <div className="flex items-center justify-between">
         <Link
-          href="/"
+          href={`${pageInformation[Routes.Home]!.path}`}
           aria-label="Home"
           onMouseEnter={() => setLogoHovered(true)}
           onMouseLeave={() => setLogoHovered(false)}
@@ -81,7 +84,7 @@ function Header({
           />
         </Link>
         <div className="flex items-center gap-x-8">
-          <Button href="/contact" invert={invert}>
+          <Button href={`${pageInformation[Routes.Contact]!.path}`} invert={invert}>
             Contact us
           </Button>
           <button
@@ -143,13 +146,13 @@ function Navigation() {
   return (
     <nav className="mt-px font-display text-5xl font-medium tracking-tight text-white">
       <NavigationRow>
-        <NavigationItem href="/work">Our Work</NavigationItem>
-        <NavigationItem href="/about">About Us</NavigationItem>
+        <NavigationItem href={`${pageInformation[Routes.Work]!.path}`}>Our Work</NavigationItem>
+        <NavigationItem href={`${pageInformation[Routes.About]!.path}`}>About Us</NavigationItem>
       </NavigationRow>
-      <NavigationRow>
+      {/* <NavigationRow>
         <NavigationItem href="/process">Our Process</NavigationItem>
         <NavigationItem href="/blog">Blog</NavigationItem>
-      </NavigationRow>
+      </NavigationRow> */}
     </nav>
   )
 }

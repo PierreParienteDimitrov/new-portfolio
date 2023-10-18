@@ -17,7 +17,8 @@ import logoBnp from '@/images/clients/bnp/bnp-logo-light.svg'
 import logoBotw from '@/images/clients/bofw/bow-logo-light.svg'
 import logoSpectrum from '@/images/clients/spectrum/spectrum-logo-light.svg'
 import imageLaptop from '@/images/laptop.jpg'
-import { type CaseStudy, type MDXEntry, loadCaseStudies } from '@/lib/mdx'
+import { caseStudies } from '@/constant/caseStudy'
+import { ICaseStudy } from '@/types/ICaseStudy'
 
 const clients = [
   ['Spectrum', logoSpectrum],
@@ -61,7 +62,7 @@ function Clients() {
 function CaseStudies({
   caseStudies,
 }: {
-  caseStudies: Array<MDXEntry<CaseStudy>>
+  caseStudies: Array<ICaseStudy>
 }) {
   return (
     <>
@@ -83,20 +84,20 @@ function CaseStudies({
                 <h3>
                   <Link href={caseStudy.href}>
                     <span className="absolute inset-0 rounded-3xl" />
-                    <Image
-                      src={caseStudy.logo}
+                    {/* <Image
+                      src={caseStudy.src}
                       alt={caseStudy.client}
                       className="h-16 w-16"
                       unoptimized
-                    />
+                    /> */}
                   </Link>
                 </h3>
                 <p className="mt-6 flex gap-x-2 text-sm text-neutral-950">
                   <time
-                    dateTime={caseStudy.date.split('-')[0]}
+                    dateTime={caseStudy.year}
                     className="font-semibold"
                   >
-                    {caseStudy.date.split('-')[0]}
+                    {caseStudy.year}
                   </time>
                   <span className="text-neutral-300" aria-hidden="true">
                     /
@@ -174,8 +175,9 @@ export const metadata: Metadata = {
     'We are a development studio working at the intersection of design and technology.',
 }
 
-export default async function Home() {
-  let caseStudies = (await loadCaseStudies()).slice(0, 3)
+export default function Home() {
+
+  const introCaseStudies = caseStudies.slice(0, 3)
 
   return (
     <>
@@ -190,7 +192,7 @@ export default async function Home() {
 
       <Clients />
 
-      <CaseStudies caseStudies={caseStudies} />
+      <CaseStudies caseStudies={introCaseStudies} />
 
       {/* <Testimonial
         className="mt-24 sm:mt-32 lg:mt-40"
