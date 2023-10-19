@@ -70,7 +70,7 @@ function CaseStudies({
         title="My most recent achievements"
         className="mt-24 sm:mt-32 lg:mt-40"
       >
-        <p>As a Senior Product Designer and first employee at BlueCargo, a Y Combinator (YC) Series-A startup in the supply chain industry, I played a pivotal role in scaling the company's product, revenue and team.</p>
+        <p>As a Senior Product Designer and first employee at BlueCargo, a Y Combinator (YC) Series-A startup in the supply chain industry, I played a pivotal role in scaling the company&apos;s product, revenue and team.</p>
         <br></br>
         <p>I previously rebuilt Charter TV design systems and created Tempso, a classical music wrapper for Spotify and Apple Music.</p>
       </SectionIntro >
