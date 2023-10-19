@@ -16,7 +16,7 @@ import logoDelair from '@/images/clients/delair-labs/delair-logo-light.svg'
 import logoBnp from '@/images/clients/bnp/bnp-logo-light.svg'
 import logoBotw from '@/images/clients/bofw/bow-logo-light.svg'
 import logoSpectrum from '@/images/clients/spectrum/spectrum-logo-light.svg'
-import imageLaptop from '@/images/laptop.jpg'
+import imageFlow from '@/images/flows.jpg'
 import { caseStudies } from '@/constant/caseStudy'
 import { ICaseStudy } from '@/types/ICaseStudy'
 
@@ -67,17 +67,15 @@ function CaseStudies({
   return (
     <>
       <SectionIntro
-        title="Harnessing technology for a brighter future"
+        title="My most recent achievements"
         className="mt-24 sm:mt-32 lg:mt-40"
       >
-        <p>
-          We believe technology is the answer to the world’s greatest
-          challenges. It’s also the cause, so we find ourselves in bit of a
-          catch 22 situation.
-        </p>
-      </SectionIntro>
+        <p>As a Senior Product Designer and first employee at BlueCargo, a Y Combinator (YC) Series-A startup in the supply chain industry, I played a pivotal role in scaling the company's product, revenue and team.</p>
+        <br></br>
+        <p>I previously rebuilt Charter TV design systems and created Tempso, a classical music wrapper for Spotify and Apple Music.</p>
+      </SectionIntro >
       <Container className="mt-16">
-        <FadeInStagger className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <FadeInStagger className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           {caseStudies.map((caseStudy) => (
             <FadeIn key={caseStudy.href} className="flex">
               <article className="relative flex w-full flex-col rounded-3xl p-6 ring-1 ring-neutral-950/5 transition hover:bg-neutral-50 sm:p-8">
@@ -123,13 +121,12 @@ function Services() {
   return (
     <>
       <SectionIntro
-        eyebrow="Services"
-        title="We help you identify, explore and respond to new opportunities."
+        eyebrow="My process"
+        title="I am a full stack product designer with extensive experience in user experience and interface."
         className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>
-          As long as those opportunities involve giving us money to re-purpose
-          old projects — we can come up with an endless number of those.
+          My skills covers user research, user flows, wireframes, high-fidelity mockups, design systems and developer documentation.
         </p>
       </SectionIntro>
       <Container className="mt-16">
@@ -137,31 +134,27 @@ function Services() {
           <div className="flex justify-center lg:w-1/2 lg:justify-end lg:pr-12">
             <FadeIn className="w-[33.75rem] flex-none lg:w-[45rem]">
               <StylizedImage
-                src={imageLaptop}
+                src={imageFlow}
                 sizes="(min-width: 1024px) 41rem, 31rem"
                 className="justify-center lg:justify-end"
               />
             </FadeIn>
           </div>
           <List className="mt-16 lg:mt-0 lg:w-1/2 lg:min-w-[33rem] lg:pl-4">
-            <ListItem title="Web development">
-              We specialise in crafting beautiful, high quality marketing pages.
-              The rest of the website will be a shell that uses lorem ipsum
-              everywhere.
+            <ListItem title="User research">
+              As a product designer, my primary job is to empathize with the final user through research. I start by building a clear picture of the user’s desires, frustrations, goals and technology literacy through qualitative interviews, on-sites, and second-hand information when available.
             </ListItem>
-            <ListItem title="Application development">
-              We have a team of skilled developers who are experts in the latest
-              app frameworks, like Angular 1 and Google Web Toolkit.
+            <ListItem title="User flows and wireframes">
+              Through user flows & wireframes I test assumptions against real life and iterate closely with a few selected users to improve the experience and make sure to cover at least the essentials needs.
             </ListItem>
-            <ListItem title="E-commerce">
-              We are at the forefront of modern e-commerce development. Which
-              mainly means adding your logo to the Shopify store template we’ve
-              used for the past six years.
+            <ListItem title="Product roadmap">
+              With the relevant stakeholder, I help build product and feature roadmaps by order of importance for the business and the user.
             </ListItem>
-            <ListItem title="Custom content management">
-              At Studio we understand the importance of having a robust and
-              customised CMS. That’s why we run all of our client projects out
-              of a single, enormous Joomla instance.
+            <ListItem title="High-fidelity mockups and prototypes">
+              When the user experience is solidified, I build high-fidelity mockups & prototypes of the product for a last round of internal and external validation.
+            </ListItem>
+            <ListItem title="Design systems and documentation">
+              Once the high-fi are solidified, I build developer documentation to speed-up the engineering cycle, as long as build, maintain and expand the design system & component library.
             </ListItem>
           </List>
         </div>
@@ -177,7 +170,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
 
-  const introCaseStudies = caseStudies.slice(0, 3)
+  const introCaseStudies = caseStudies.slice(0, 4)
 
   return (
     <>
