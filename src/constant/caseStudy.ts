@@ -1,4 +1,9 @@
 import { pageInformation, Routes } from './pages'
+import tempsoUX from '@/images/ux-case-study-tempso.png'
+import containerManagement from '@/images/case-study-container-management.png'
+import checkoutFlow from '@/images/case-study-payment-plan.png'
+
+
 
 
 export const caseStudies = [
@@ -11,7 +16,7 @@ export const caseStudies = [
         description:
             'Designed a classical music streaming application fully integrated with Apple Music and Spotify.',
         href: pageInformation[Routes.Tempso]!.path,
-        src: '/ux-case-study-tempso.png',
+        src: tempsoUX,
         alt: 'Tempso UX Case Study',
         external: false,
         projectType: 'design',
@@ -33,7 +38,7 @@ export const caseStudies = [
         description:
             'Designed a dashboard for Supply Chain professionals, where they can follow the status of their containers at the ports of Los Angeles and Long Beach.',
         href: pageInformation[Routes.ContainerDashboard]!.path,
-        src: '/case-study-container-management.png',
+        src: containerManagement,
         alt: 'Container Tracking Case Study',
         external: false,
         projectType: 'design',
@@ -55,7 +60,7 @@ export const caseStudies = [
         description:
             'Designed a checkout flow for a Supply Chain software, where users have a choice between three plans, and can adjust their volume per plan.',
         href: pageInformation[Routes.CheckoutFlow]!.path,
-        src: '/case-study-payment-plan.png',
+        src: checkoutFlow,
         alt: 'Checkout Flow Case Study',
         external: false,
         projectType: 'design',

@@ -81,13 +81,14 @@ function CaseStudies({
               <article className="relative flex w-full flex-col rounded-3xl p-6 ring-1 ring-neutral-950/5 transition hover:bg-neutral-50 sm:p-8">
                 <h3>
                   <Link href={caseStudy.href}>
-                    <span className="absolute inset-0 rounded-3xl" />
-                    {/* <Image
+                    <Image
                       src={caseStudy.src}
                       alt={caseStudy.client}
-                      className="h-16 w-16"
+                      // className="h-16 w-16"
+                      width={600}
+                      height={100}
                       unoptimized
-                    /> */}
+                    />
                   </Link>
                 </h3>
                 <p className="mt-6 flex gap-x-2 text-sm text-neutral-950">
@@ -165,7 +166,7 @@ function Services() {
 
 export const metadata: Metadata = {
   description:
-    'We are a development studio working at the intersection of design and technology.',
+    'Pierre Pariente Dimitrov Portfolio',
 }
 
 export default function Home() {
