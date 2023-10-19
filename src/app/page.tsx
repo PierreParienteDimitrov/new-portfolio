@@ -32,29 +32,27 @@ const clients = [
 
 function Clients() {
   return (
-    <div className="mt-24 rounded-4xl bg-neutral-950 py-20 sm:mt-32 sm:py-32 lg:mt-56">
-      <Container>
-        <FadeIn className="flex items-center gap-x-8">
-          <h2 className="text-center font-display text-sm font-semibold tracking-wider text-white sm:text-left">
-            Over the last 10 years, I have worked with
-          </h2>
-          <div className="h-px flex-auto bg-neutral-800" />
-        </FadeIn>
-        <FadeInStagger faster>
-          <ul
-            role="list"
-            className="mt-10 grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-4"
-          >
-            {clients.map(([client, logo]) => (
-              <li key={client}>
-                <FadeIn>
-                  <Image src={logo} alt={client} unoptimized />
-                </FadeIn>
-              </li>
-            ))}
-          </ul>
-        </FadeInStagger>
-      </Container>
+    <div className="sm:mt-32 py-8">
+      <FadeIn className="flex items-center gap-x-8">
+        <h2 className="text-center font-display text-sm font-semibold tracking-wider text-white sm:text-left">
+          Over the last 10 years, I have worked with
+        </h2>
+        <div className="h-px flex-auto bg-neutral-800" />
+      </FadeIn>
+      <FadeInStagger faster>
+        <ul
+          role="list"
+          className="mt-10 grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-8"
+        >
+          {clients.map(([client, logo]) => (
+            <li key={client}>
+              <FadeIn>
+                <Image src={logo} alt={client} unoptimized />
+              </FadeIn>
+            </li>
+          ))}
+        </ul>
+      </FadeInStagger>
     </div>
   )
 }
@@ -183,8 +181,10 @@ export default function Home() {
             I am a product designer and for the last 7 years I have been helping startups and big corporations deliver better experience across iOS, Android, Web and TV.</p>
         </FadeIn>
       </Container>
+      <div className='rounded-lg bg-black mx-auto max-w-7xl px-6 lg:px-8 mt-24 sm:mt-32'>
+        <Clients />
+      </div>
 
-      <Clients />
 
       <CaseStudies caseStudies={introCaseStudies} />
 
