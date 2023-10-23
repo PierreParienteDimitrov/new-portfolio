@@ -141,7 +141,7 @@ const Plugin = () => {
                         <div className='mt-24'>
                             <Container className='flex items-center'>
                                 <SectionIntro smaller={false} title='Research'>
-                                    <p>While conducting usability reviews with users of BlueCargo's container tracking and fee dispute tools, it became evident that users frequently had to switch between platforms to complete their tasks.</p>
+                                    <p>While conducting usability reviews with users of BlueCargo`&apos;`s container tracking and fee dispute tools, it became evident that users frequently had to switch between platforms to complete their tasks.</p>
                                     <p className='text-base mt-16 mb-4 font-bold'>Web app task flow</p>
                                 </SectionIntro>
                             </Container>
