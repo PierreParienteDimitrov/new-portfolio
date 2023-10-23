@@ -1,8 +1,7 @@
 "use client"
+
 import { useEffect, useState } from 'react';
-
-
-import { GrayscaleTransitionImage } from './GrayscaleTransitionImage'
+import Image from 'next/image';
 
 import { ICarousel } from '@/types/ICarousel'
 
@@ -29,7 +28,7 @@ const Carousel: React.FC<{ carouselItems: ICarousel[] }> = (props) => {
         return () => clearTimeout(timer)
     }, [carouselIndex])
     return (
-        <div className="h-[300px] w-full md:h-[500px]">
+        <div className="h-full w-full md:h-[500px]">
             <div className="relative flex h-4/6 w-full items-center md:h-full">
                 {carouselItems.map((item, index: number) => {
                     return (
@@ -45,14 +44,8 @@ const Carousel: React.FC<{ carouselItems: ICarousel[] }> = (props) => {
                         >
 
 
-                            <GrayscaleTransitionImage
-                                src={item.src}
-                                quality={90}
-                                sizes="(min-width: 1216px) 76rem, 100vw"
-                                priority
-                                className="rounded-md"
-                            />
-                            {/* <Image
+
+                            <Image
                                 src={item.src}
                                 alt={item.alt}
                                 layout="fill"
@@ -60,7 +53,7 @@ const Carousel: React.FC<{ carouselItems: ICarousel[] }> = (props) => {
                                 objectPosition="center"
                                 priority
                                 className="rounded-md"
-                            /> */}
+                            />
                             {/* <h2 className="absolute bottom-4">{item?.title}</h2> */}
                         </div>
                     )
