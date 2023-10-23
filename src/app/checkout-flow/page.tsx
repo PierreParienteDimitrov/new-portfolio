@@ -1,4 +1,4 @@
-import { pageInformation, Routes } from '../../constant/pages'
+import { pageInformation, Routes } from '../../constant/allPages'
 import Head from 'next/head'
 import React from 'react'
 import { caseStudies } from '@/constant/caseStudy'

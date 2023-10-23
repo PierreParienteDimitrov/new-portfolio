@@ -1,4 +1,4 @@
-import { type ImageProps } from 'next/image'
+import { type ImageProps, type StaticImageData } from 'next/image'
 
 
 export interface ICaseStudy {

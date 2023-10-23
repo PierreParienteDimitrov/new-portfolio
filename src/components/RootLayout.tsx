@@ -1,6 +1,6 @@
 'use client'
 
-import { pageInformation, Routes } from '../constant/pages'
+import { pageInformation, Routes } from '../constant/allPages'
 
 
 import {

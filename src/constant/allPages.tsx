@@ -18,6 +18,8 @@ export enum Routes {
     LuxuryTravel = '/luxury-travel',
     UIShots = '/ui-shots',
     Work = '/work',
+    Plugin = '/bluecargo-plugin',
+
 }
 
 export const pageInformation: Record<string, IPage> = {
@@ -84,6 +86,11 @@ export const pageInformation: Record<string, IPage> = {
     [Routes.CheckoutFlow]: {
         title: 'Pierre Pariente Dimitrov - Checkout Flow',
         path: Routes.CheckoutFlow,
+        isPublic: false,
+    },
+    [Routes.Plugin]: {
+        title: 'Pierre Pariente Dimitrov - BlueCargo Plugin ',
+        path: Routes.Plugin,
         isPublic: false,
     },
 }
