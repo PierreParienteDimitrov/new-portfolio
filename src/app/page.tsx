@@ -21,20 +21,19 @@ import { caseStudies } from '@/constant/caseStudy'
 import { ICaseStudy } from '@/types/ICaseStudy'
 
 const clients = [
-  ['Spectrum', logoSpectrum],
-  ['Siemens', logoSiemens],
-  ['BNP Paribas', logoBnp],
-  ['Delair', logoDelair],
   ['BlueCargo', logoBluecargo],
+  ['Spectrum', logoSpectrum],
   ['Tempso', logoTempso],
-  ['Bank of the West', logoBotw],
+  ['Delair', logoDelair],
+  ['BNP Paribas', logoBnp],
+  ['Siemens', logoSiemens],
 ]
 
 function Clients() {
   return (
     <div className="sm:mt-32 py-8">
       <FadeIn className="flex items-center gap-x-8">
-        <h2 className="text-center font-display text-sm font-semibold tracking-wider text-white sm:text-left">
+        <h2 className="text-center font-display text-sm font-semibold tracking-wider text-neutral-950 sm:text-left">
           Over the last 10 years, I have worked with
         </h2>
         <div className="h-px flex-auto bg-neutral-800" />
@@ -42,10 +41,10 @@ function Clients() {
       <FadeInStagger faster>
         <ul
           role="list"
-          className="mt-10 grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-8"
+          className="mt-10 grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-3"
         >
           {clients.map(([client, logo]) => (
-            <li key={client}>
+            <li key={client} className='w-full h-24 flex justify-center items-center border border-gray-200 rounded-sm hover:bg-neutral-50 hover:cursor-pointer'>
               <FadeIn>
                 <Image src={logo} alt={client} unoptimized />
               </FadeIn>
@@ -181,7 +180,7 @@ export default function Home() {
             I am a product designer and for the last 10 years I have been helping startups and big corporations deliver better experience across iOS, Android, Web and TV.</p>
         </FadeIn>
       </Container>
-      <div className='rounded-lg bg-black mx-auto max-w-7xl px-6 lg:px-8 mt-24 sm:mt-32'>
+      <div className='mx-auto max-w-7xl px-6 lg:px-8 mt-24 sm:mt-32'>
         <Clients />
       </div>
 
