@@ -16,7 +16,7 @@ import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 import { motion, MotionConfig, useReducedMotion } from 'framer-motion'
 
-import { Button } from '@/components/Button'
+import { Button, TextLink } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { Footer } from '@/components/Footer'
 import { GridPattern } from '@/components/GridPattern'
@@ -71,8 +71,9 @@ function Header({
           aria-label="Home"
           onMouseEnter={() => setLogoHovered(true)}
           onMouseLeave={() => setLogoHovered(false)}
+
         >
-          <Logomark
+          {/* <Logomark
             className="h-8 sm:hidden"
             invert={invert}
             filled={logoHovered}
@@ -81,11 +82,13 @@ function Header({
             className="hidden h-8 sm:block"
             invert={invert}
             filled={logoHovered}
-          />
+          /> */}
+          <TextLink invert={invert} className='font-semibold hover:text-neutral-950'>Home</TextLink>
+
         </Link>
         <div className="flex items-center gap-x-8">
           <Button href={`${pageInformation[Routes.Contact]!.path}`} invert={invert}>
-            Contact us
+            Contact me
           </Button>
           <button
             ref={toggleRef}
@@ -146,8 +149,8 @@ function Navigation() {
   return (
     <nav className="mt-px font-display text-5xl font-medium tracking-tight text-white">
       <NavigationRow>
-        <NavigationItem href={`${pageInformation[Routes.Work]!.path}`}>Our Work</NavigationItem>
-        <NavigationItem href={`${pageInformation[Routes.About]!.path}`}>About Us</NavigationItem>
+        <NavigationItem href={`${pageInformation[Routes.Work]!.path}`}>My Work</NavigationItem>
+        <NavigationItem href={`${pageInformation[Routes.About]!.path}`}>About Me</NavigationItem>
       </NavigationRow>
       {/* <NavigationRow>
         <NavigationItem href="/process">Our Process</NavigationItem>
@@ -236,7 +239,7 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
                 <div className="grid grid-cols-1 gap-y-10 pb-16 pt-10 sm:grid-cols-2 sm:pt-16">
                   <div>
                     <h2 className="font-display text-base font-semibold text-white">
-                      Our offices
+                      Located in
                     </h2>
                     <Offices
                       invert
@@ -245,7 +248,7 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
                   </div>
                   <div className="sm:border-l sm:border-transparent sm:pl-16">
                     <h2 className="font-display text-base font-semibold text-white">
-                      Follow us
+                      Follow me
                     </h2>
                     <SocialMedia className="mt-6" invert />
                   </div>

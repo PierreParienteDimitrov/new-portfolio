@@ -4,9 +4,9 @@ import clsx from 'clsx'
 type ButtonProps = {
   invert?: boolean
 } & (
-  | React.ComponentPropsWithoutRef<typeof Link>
-  | (React.ComponentPropsWithoutRef<'button'> & { href?: undefined })
-)
+    | React.ComponentPropsWithoutRef<typeof Link>
+    | (React.ComponentPropsWithoutRef<'button'> & { href?: undefined })
+  )
 
 export function Button({
   invert = false,
@@ -29,6 +29,36 @@ export function Button({
       <button className={className} {...props}>
         {inner}
       </button>
+    )
+  }
+
+  return (
+    <Link className={className} {...props}>
+      {inner}
+    </Link>
+  )
+}
+
+export function TextLink({
+  invert = false,
+  className,
+  children,
+  ...props
+}: ButtonProps) {
+  className = clsx(
+    className, 'transition',
+    invert
+      ? 'text-neutral-50'
+      : 'text-neutral-700',
+  )
+
+  let inner = <span className="relative top-px">{children}</span>
+
+  if (typeof props.href === 'undefined') {
+    return (
+      <span className={className} {...props}>
+        {inner}
+      </span>
     )
   }
 
