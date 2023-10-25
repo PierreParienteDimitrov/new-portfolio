@@ -22,9 +22,6 @@ import { TagList, TagListItem } from '@/components/TagList'
 import { StatList, StatListItem } from '@/components/StatList'
 import { EnterPassword } from '@/components/EnterPassword'
 
-import { useQuery } from "@tanstack/react-query";
-
-import { Suspense } from "react";
 
 
 
@@ -78,9 +75,12 @@ const Stats = () => {
 const Plugin = () => {
 
     const [showForm, setShowForm] = useState(true)
+    const [loading, setLoading] = useState(false)
 
 
     useEffect(() => {
+        setLoading(true)
+
         fetch('/api/password', {
             method: 'GET',
             headers: {
@@ -88,7 +88,7 @@ const Plugin = () => {
             },
         }).then((response) => response.json())
             .then((data) => {
-                console.log(data)
+                setLoading(false)
                 if (!data.isValidated) {
                     setShowForm(false)
                 }
@@ -103,11 +103,15 @@ const Plugin = () => {
 
     const caseStudy: ICaseStudy = caseStudies.find((study) => study.key === 'bluecargo_plugin') as ICaseStudy;
 
+    if (loading) {
+        return (
+            <><Container>loading...</Container></>
+        )
+    }
+
 
     return (
-        <Suspense fallback={
-            <p style={{ textAlign: "center" }}>loading... on initial request</p>
-        }>
+        <>
             <Head>
                 <title>{pageInformation[Routes.Plugin]!.title}</title>
                 <meta
@@ -308,7 +312,7 @@ const Plugin = () => {
                 </article >
             }
 
-        </Suspense>
+        </>
     )
 }
 
