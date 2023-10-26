@@ -9,14 +9,14 @@ import checkoutFlow from '@/images/case-study-payment-plan.png'
 
 export const caseStudies = [
     {
-        key: 'bluecargo_dashboard',
+        key: 'shipments',
         client: 'BlueCargo',
         year: '2022',
         platform: 'desktop',
         title: 'Designing a Container Management Dashboard',
         description:
             'Designed a dashboard for Supply Chain professionals, where they can follow the status of their containers at the ports of Los Angeles and Long Beach.',
-        href: pageInformation[Routes.ContainerDashboard]!.path,
+        href: pageInformation[Routes.Shipments]!.path,
         src: containerManagement,
         alt: 'Container Tracking Case Study',
         external: false,

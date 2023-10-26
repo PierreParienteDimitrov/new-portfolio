@@ -86,7 +86,7 @@ const Plugin = () => {
     }, [showForm]);
 
 
-    const caseStudy: ICaseStudy = caseStudies.find((study) => study.key === 'bluecargo_plugin') as ICaseStudy;
+    const caseStudy: ICaseStudy = caseStudies.find((study) => study.key === 'shipments') as ICaseStudy;
 
     if (loading) {
         return (

@@ -14,6 +14,7 @@ export enum Routes {
     Tempso = '/tempso',
     TempsoUX = '/tempso-ux',
     ContainerDashboard = '/container-dashboard',
+    Shipments = '/shipments',
     CheckoutFlow = '/checkout-flow',
     LuxuryTravel = '/luxury-travel',
     UIShots = '/ui-shots',
@@ -91,6 +92,11 @@ export const pageInformation: Record<string, IPage> = {
     [Routes.Plugin]: {
         title: 'Pierre Pariente Dimitrov - BlueCargo Plugin ',
         path: Routes.Plugin,
+        isPublic: false,
+    },
+    [Routes.Shipments]: {
+        title: 'Pierre Pariente Dimitrov - BlueCargo Shipments ',
+        path: Routes.Shipments,
         isPublic: false,
     },
 }
