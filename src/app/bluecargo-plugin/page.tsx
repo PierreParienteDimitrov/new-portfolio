@@ -11,6 +11,7 @@ import { PageIntro } from '@/components/PageIntro'
 import { ICaseStudy } from '@/types/ICaseStudy'
 import PluginImg2 from '@/images/work/bluecargo-plugin/screen-2.png'
 import PluginImg3 from '@/images/work/bluecargo-plugin/screen-3.png'
+import PluginImg4 from '@/images/work/bluecargo-plugin/screen-4.png'
 import PluginImg7 from '@/images/work/bluecargo-plugin/screen-7.png'
 import PluginImg8 from '@/images/work/bluecargo-plugin/screen-8.png'
 import TaskFlow1 from '@/images/work/bluecargo-plugin/flow-chart-1.png'
@@ -280,6 +281,13 @@ const Plugin = () => {
                                 </Container>
 
                                 <Container>
+                                    <GrayscaleTransitionImage
+                                        src={PluginImg4}
+                                        quality={90}
+                                        sizes="(min-width: 1216px) 76rem, 100vw"
+                                        priority
+                                        className="rounded-md mb-24"
+                                    />
                                     <GrayscaleTransitionImage
                                         src={PluginImg7}
                                         quality={90}

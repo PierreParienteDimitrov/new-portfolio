@@ -75,37 +75,40 @@ function CaseStudies({
         <FadeInStagger className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           {caseStudies.map((caseStudy) => (
             <FadeIn key={caseStudy.href} className="flex">
-              <article className="relative flex w-full flex-col rounded-3xl p-6 ring-1 ring-neutral-950/5 transition hover:bg-neutral-50 sm:p-8">
+              <article className="relative flex w-full flex-col rounded-3xl ring-1 ring-neutral-950/5 transition hover:bg-neutral-50 overflow-hidden">
                 <h3>
                   <Link href={caseStudy.href}>
                     <Image
                       src={caseStudy.src}
                       alt={caseStudy.client}
                       // className="h-16 w-16"
-                      width={600}
-                      height={100}
+                      sizes="100vw"
                       unoptimized
                     />
                   </Link>
                 </h3>
-                <p className="mt-6 flex gap-x-2 text-sm text-neutral-950">
-                  <time
-                    dateTime={caseStudy.year}
-                    className="font-semibold"
-                  >
-                    {caseStudy.year}
-                  </time>
-                  <span className="text-neutral-300" aria-hidden="true">
-                    /
-                  </span>
-                  <span>Case study</span>
-                </p>
-                <p className="mt-6 font-display text-2xl font-semibold text-neutral-950">
-                  {caseStudy.title}
-                </p>
-                <p className="mt-4 text-base text-neutral-600">
-                  {caseStudy.description}
-                </p>
+
+                <div className='p-8'>
+
+                  <p className="mt-6 flex gap-x-2 text-sm text-neutral-950">
+                    <time
+                      dateTime={caseStudy.year}
+                      className="font-semibold"
+                    >
+                      {caseStudy.year}
+                    </time>
+                    <span className="text-neutral-300" aria-hidden="true">
+                      /
+                    </span>
+                    <span>Case study</span>
+                  </p>
+                  <p className="mt-6 font-display text-2xl font-semibold text-neutral-950">
+                    {caseStudy.title}
+                  </p>
+                  <p className="mt-4 text-base text-neutral-600">
+                    {caseStudy.description}
+                  </p>
+                </div>
               </article>
             </FadeIn>
           ))}
