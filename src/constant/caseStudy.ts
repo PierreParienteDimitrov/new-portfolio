@@ -3,6 +3,14 @@ import tempsoUX from '@/images/ux-case-study-tempso.png'
 import containerManagement from '@/images/case-study-container-management.png'
 import Plugin from '@/images/work/bluecargo-plugin/screen-5.png'
 import checkoutFlow from '@/images/case-study-payment-plan.png'
+import designSystemSpectrum from '@/images/case-study-spectrum.png'
+import kbwf from '@/images/case-study-KBWF.png'
+import uiChallenge from '@/images/case-study-UI-challenge.png'
+import tempsoLanding from '@/images/case-study-tempso-landing-page.png'
+
+
+
+
 
 
 
@@ -11,7 +19,7 @@ export const caseStudies = [
     {
         key: 'shipments',
         client: 'BlueCargo',
-        year: '2022',
+        year: '2024',
         platform: 'desktop',
         title: 'Designing a Container Management Dashboard',
         description:
@@ -82,8 +90,8 @@ export const caseStudies = [
         title: 'Rebuilding a design system for all platforms.',
         description:
             'Rebuilt the design system supporting all video platforms, invluding TV and Mobile.',
-        href: pageInformation[Routes.Tempso]!.path,
-        src: tempsoUX,
+        href: pageInformation[Routes.Spectrum]!.path,
+        src: designSystemSpectrum,
         alt: 'Spectrum TV Case Study',
         external: false,
         projectType: 'design',
@@ -126,7 +134,7 @@ export const caseStudies = [
         description:
             'Designed and build a website for a foundation emporing women to become entrepeneur.',
         href: 'https://www.knowbetterworldfoundation.org/',
-        src: '/case-study-kbwf.png',
+        src: kbwf,
         alt: 'Know Better World Foundation Website',
         external: true,
         projectType: 'design',
@@ -147,7 +155,7 @@ export const caseStudies = [
         title: '100 days of UI Challenge',
         description: 'Designed UI shots to explore different design universe.',
         href: pageInformation[Routes.UIShots]!.path,
-        src: '/case-study-ui-shots.png',
+        src: uiChallenge,
         alt: 'UI Shots',
         external: false,
         projectType: 'design',
@@ -160,28 +168,28 @@ export const caseStudies = [
         ],
         latest: false,
     },
-    {
-        key: 'portfolio_website',
-        client: 'Portfolio Website',
-        year: '2022',
-        platform: 'responsive web',
-        title: 'Designed and built my own portfolio website.',
-        description:
-            'Designed and built the front-end and back-end of my portfolio website using Next.js, React.js, Node.js, Tailwind CSS, Mongoose and MongodB.',
-        href: 'https://github.com/PierreParienteDimitrov/pierre-parientedimitrov',
-        src: '/software-portfolio.png',
-        alt: 'Portfolio Website',
-        external: true,
-        projectType: 'design',
-        metrics: [
-            '2020',
-            'user research, user experience, user interface',
-            'user interviews, wireframing, usability studies',
-            'native IOS & android',
-            'miro mindmapping, octopus sitemap, figma',
-        ],
-        latest: false,
-    },
+    // {
+    //     key: 'portfolio_website',
+    //     client: 'Portfolio Website',
+    //     year: '2022',
+    //     platform: 'responsive web',
+    //     title: 'Designed and built my own portfolio website.',
+    //     description:
+    //         'Designed and built the front-end and back-end of my portfolio website using Next.js, React.js, Node.js, Tailwind CSS, Mongoose and MongodB.',
+    //     href: 'https://github.com/PierreParienteDimitrov/pierre-parientedimitrov',
+    //     src: '/software-portfolio.png',
+    //     alt: 'Portfolio Website',
+    //     external: true,
+    //     projectType: 'design',
+    //     metrics: [
+    //         '2020',
+    //         'user research, user experience, user interface',
+    //         'user interviews, wireframing, usability studies',
+    //         'native IOS & android',
+    //         'miro mindmapping, octopus sitemap, figma',
+    //     ],
+    //     latest: false,
+    // },
     {
         key: 'tempso_website',
         client: 'Tempso Landing Page',
@@ -189,9 +197,9 @@ export const caseStudies = [
         platform: 'responsive web',
         title: 'Designed and built Tempso landing page.',
         description:
-            'Designed and built Tempso landing page using Next.js, React.js and Tailwind CSS.',
-        href: 'https://github.com/PierreParienteDimitrov/tempso.com',
-        src: '/case-study-tempso-landing-page.png',
+            'Designed and built Tempso landing page using Webflow.',
+        href: 'https://www.tempso.com/',
+        src: tempsoLanding,
         alt: 'Tempso Landing Page',
         external: true,
         projectType: 'software',

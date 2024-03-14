@@ -15,6 +15,8 @@ import logoSiemens from '@/images/clients/siemens/siemens-logo-light.svg'
 import logoDelair from '@/images/clients/delair-labs/delair-logo-light.svg'
 import logoBnp from '@/images/clients/bnp/bnp-logo-light.svg'
 import logoBotw from '@/images/clients/bofw/bow-logo-light.svg'
+import portrait from '@/images/pierrepariente.jpeg'
+
 import logoSpectrum from '@/images/clients/spectrum/spectrum-logo-light.svg'
 import imageFlow from '@/images/flows.jpg'
 import { caseStudies } from '@/constant/caseStudy'
@@ -175,12 +177,14 @@ export default function Home() {
 
   return (
     <>
-      <Container className="mt-24 sm:mt-32 md:mt-56">
+      <Container className="mt-10 sm:mt-32 md:mt-32 relative">
         <FadeIn className="max-w-3xl">
+          <Image src={portrait} width={200} alt="Pierre Pariente Dimitrov" unoptimized className='rounded-full mb-12' />
           <h1 className="font-display text-5xl font-medium tracking-tight text-neutral-950 [text-wrap:balance] sm:text-7xl">
             Hi, my name is Pierre Pariente Dimitrov.</h1>
           <p className="mt-6 text-xl text-neutral-600">
             I am a product designer and for the last 10 years I have been helping startups and big corporations deliver better experience across iOS, Android, Web and TV.</p>
+
         </FadeIn>
       </Container>
       <div className='mx-auto max-w-7xl px-6 lg:px-8 mt-24 sm:mt-32'>

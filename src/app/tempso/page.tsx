@@ -17,15 +17,15 @@ import { ICaseStudy } from '@/types/ICaseStudy'
 
 
 
-const Tempso = () => {
-    const tempsoCase: ICaseStudy = caseStudies.find((study) => study.key === 'tempso') as ICaseStudy;
+const CaseStudy = () => {
+    const caseStudy: ICaseStudy = caseStudies.find((study) => study.key === 'tempso') as ICaseStudy;
 
 
     return (
         <article className="mt-24 sm:mt-32 lg:mt-40">
             <header>
-                <PageIntro eyebrow="Case Study" title={tempsoCase.title} centered>
-                    <p>{tempsoCase.description}</p>
+                <PageIntro eyebrow="Case Study" title={caseStudy.title} centered>
+                    <p>{caseStudy.description}</p>
                 </PageIntro>
 
                 <FadeIn>
@@ -35,18 +35,18 @@ const Tempso = () => {
                                 <dl className="-mx-6 grid grid-cols-1 text-sm text-neutral-950 sm:mx-0 sm:grid-cols-3">
                                     <div className="border-t border-neutral-200 px-6 py-4 first:border-t-0 sm:border-l sm:border-t-0">
                                         <dt className="font-semibold">Client</dt>
-                                        <dd>{tempsoCase.client}</dd>
+                                        <dd>{caseStudy.client}</dd>
                                     </div>
                                     <div className="border-t border-neutral-200 px-6 py-4 first:border-t-0 sm:border-l sm:border-t-0">
                                         <dt className="font-semibold">Year</dt>
                                         <dd>
-                                            {tempsoCase.year}
+                                            {caseStudy.year}
                                         </dd>
                                     </div>
-                                    {/* <div className="border-t border-neutral-200 px-6 py-4 first:border-t-0 sm:border-l sm:border-t-0">
-                                        <dt className="font-semibold">Service</dt>
-                                        <dd>{caseStudy.service}</dd>
-                                    </div> */}
+                                    <div className="border-t border-neutral-200 px-6 py-4 first:border-t-0 sm:border-l sm:border-t-0">
+                                        <dt className="font-semibold">Platform</dt>
+                                        <dd>{caseStudy.platform}</dd>
+                                    </div>
                                 </dl>
                             </div>
                         </Container>
@@ -65,6 +65,9 @@ const Tempso = () => {
                     </div>
                 </FadeIn>
             </header>
+            <FadeIn>
+                <div className='flex justify-center w-full py-16'><h1 className='text-[32px]'>Full case study coming soon</h1></div>
+            </FadeIn>
 
             {/* <Container className="mt-24 sm:mt-32 lg:mt-40">
                 <FadeIn>
@@ -75,7 +78,6 @@ const Tempso = () => {
     )
 }
 
-export default Tempso
-
+export default CaseStudy
 
 

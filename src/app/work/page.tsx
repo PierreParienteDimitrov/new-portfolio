@@ -40,24 +40,20 @@ function CaseStudies({
                             <Border className="grid grid-cols-3 gap-x-8 gap-y-8 pt-16">
                                 <div className="col-span-full sm:flex sm:items-center sm:justify-between sm:gap-x-8 lg:col-span-1 lg:block">
                                     <div className="sm:flex sm:items-center sm:gap-x-6 lg:block">
-                                        {/* <Image
-                                            src={caseStudy.logo}
+                                        <Image
+                                            src={caseStudy.src}
+                                            width={300}
+                                            height={100}
                                             alt=""
-                                            className="h-16 w-16 flex-none"
                                             unoptimized
-                                        /> */}
+                                        />
                                         <h3 className="mt-6 text-sm font-semibold text-neutral-950 sm:mt-0 lg:mt-8">
                                             {caseStudy.client}
                                         </h3>
                                     </div>
                                     <div className="mt-1 flex gap-x-4 sm:mt-0 lg:block">
-                                        <p className="text-sm tracking-tight text-neutral-950 after:ml-4 after:font-semibold after:text-neutral-300 after:content-['/'] lg:mt-2 lg:after:hidden">
-                                            {caseStudy.title}
-                                        </p>
                                         <p className="text-sm text-neutral-950 lg:mt-2">
-                                            <time dateTime={caseStudy.year}>
-                                                {formatDate(caseStudy.year)}
-                                            </time>
+                                            {caseStudy.year}
                                         </p>
                                     </div>
                                 </div>
@@ -136,15 +132,13 @@ export default async function Work() {
     return (
         <>
             <PageIntro
-                eyebrow="Our work"
-                title="Proven solutions for real-world problems."
+                eyebrow="My work"
+                title="Creative, swift problem-solver with profound empathy for users' needs."
             >
                 <p>
-                    We believe in efficiency and maximizing our resources to provide the
-                    best value to our clients. The primary way we do that is by re-using
-                    the same five projects we’ve been developing for the past decade.
+                    As a lead product designer with expertise in front-end engineering, I bring a unique blend of technical and creative skills. Most recently, I have built and maintained a complex, cross-platform and cross-team component library for all video platforms at Spectrum. At BlueCargo (YC, series A startup), as a lead product designer, I conduct user research, create user flows, wireframes, prototypes, high-fidelity mockups, and engineering documentation, as well as build and manage the team roadmap and mentor junior designers. Additionally, I am a co-founder and product designer at Tempso, a classical music app for Spotify and Apple Music.
                 </p>
-            </PageIntro>
+            </PageIntro >
 
             <CaseStudies caseStudies={caseStudies} />
 

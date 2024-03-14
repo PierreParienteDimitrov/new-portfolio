@@ -13,6 +13,7 @@ export enum Routes {
     ThankYou = '/thank-you',
     Tempso = '/tempso',
     TempsoUX = '/tempso-ux',
+    Spectrum = '/spectrum-design-system',
     ContainerDashboard = '/container-dashboard',
     Shipments = '/shipments',
     CheckoutFlow = '/checkout-flow',
@@ -97,6 +98,11 @@ export const pageInformation: Record<string, IPage> = {
     [Routes.Shipments]: {
         title: 'Pierre Pariente Dimitrov - BlueCargo Shipments ',
         path: Routes.Shipments,
+        isPublic: false,
+    },
+    [Routes.Spectrum]: {
+        title: 'Pierre Pariente Dimitrov - Spectrum TV Design System ',
+        path: Routes.Spectrum,
         isPublic: false,
     },
 }

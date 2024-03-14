@@ -87,7 +87,7 @@ function Header({
 
         </Link>
         <div className="flex items-center gap-x-8">
-          <Button href={`${pageInformation[Routes.Contact]!.path}`} invert={invert}>
+          <Button href='https://www.linkedin.com/in/pierre-pariente-97835742/' target='blank' invert={invert}>
             Contact me
           </Button>
           <button
@@ -150,7 +150,7 @@ function Navigation() {
     <nav className="mt-px font-display text-5xl font-medium tracking-tight text-white">
       <NavigationRow>
         <NavigationItem href={`${pageInformation[Routes.Work]!.path}`}>My Work</NavigationItem>
-        <NavigationItem href={`${pageInformation[Routes.About]!.path}`}>About Me</NavigationItem>
+        {/* <NavigationItem href={`${pageInformation[Routes.About]!.path}`}>About Me</NavigationItem> */}
       </NavigationRow>
       {/* <NavigationRow>
         <NavigationItem href="/process">Our Process</NavigationItem>
@@ -274,7 +274,7 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
             interactive
           />
 
-          <main className="w-full flex-auto">{children}</main>
+          <main className="w-full flex-auto mb-32">{children}</main>
 
           {/* <Footer /> */}
         </motion.div>
