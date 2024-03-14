@@ -18,7 +18,7 @@ import { motion, MotionConfig, useReducedMotion } from 'framer-motion'
 
 import { Button, TextLink } from '@/components/Button'
 import { Container } from '@/components/Container'
-import { Footer } from '@/components/Footer'
+// import { Footer } from '@/components/Footer'
 import { GridPattern } from '@/components/GridPattern'
 import { Logo, Logomark } from '@/components/Logo'
 import { Offices } from '@/components/Offices'
@@ -276,7 +276,7 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
 
           <main className="w-full flex-auto">{children}</main>
 
-          <Footer />
+          {/* <Footer /> */}
         </motion.div>
       </motion.div>
     </MotionConfig>
