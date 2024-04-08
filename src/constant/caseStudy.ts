@@ -18,28 +18,6 @@ import tempsoLanding from '@/images/case-study-tempso-landing-page.png'
 
 export const caseStudies = [
     {
-        key: 'tempso',
-        client: 'Tempso',
-        year: '2019',
-        platform: 'native (IOS & ANDROID)',
-        title: 'Designing a Classical Music Streaming App',
-        description:
-            'Designed a classical music streaming application fully integrated with Apple Music and Spotify.',
-        href: pageInformation[Routes.Tempso]!.path,
-        src: tempsoUX,
-        alt: 'Tempso UX Case Study',
-        external: false,
-        projectType: 'design',
-        metrics: [
-            '2020',
-            'user research, user experience, user interface',
-            'user interviews, wireframing, usability studies',
-            'native IOS & android',
-            'miro mindmapping, octopus sitemap, figma',
-        ],
-        latest: true,
-    },
-    {
         key: 'shipments',
         client: 'BlueCargo',
         year: '2024',
@@ -62,6 +40,27 @@ export const caseStudies = [
         latest: true,
     },
     {
+        key: 'spectrum',
+        client: 'Spectrum TV (Charter Communications)',
+        year: '2022-2023',
+        platform: 'TV, mobile, desktop',
+        title: 'Rebuilding a design system for all platforms.',
+        description:
+            'Rebuilt the design system supporting all video platforms, invluding TV and Mobile.',
+        href: pageInformation[Routes.Spectrum]!.path,
+        src: designSystemSpectrum,
+        alt: 'Spectrum TV Case Study',
+        external: false,
+        projectType: 'design',
+        metrics: [
+            '2022-2023',
+            'user interface',
+            'component library',
+            'design system',
+        ],
+        latest: true,
+    },
+    {
         key: 'portfolio_website',
         client: 'Portfolio Website',
         year: '2024',
@@ -79,6 +78,29 @@ export const caseStudies = [
         ],
         latest: true,
     },
+    {
+        key: 'tempso',
+        client: 'Tempso',
+        year: '2022',
+        platform: 'native (IOS & ANDROID)',
+        title: 'Designing a Classical Music Streaming App',
+        description:
+            'Designed a classical music streaming application fully integrated with Apple Music and Spotify.',
+        href: pageInformation[Routes.Tempso]!.path,
+        src: tempsoUX,
+        alt: 'Tempso UX Case Study',
+        external: false,
+        projectType: 'design',
+        metrics: [
+            '2020',
+            'user research, user experience, user interface',
+            'user interviews, wireframing, usability studies',
+            'native IOS & android',
+            'miro mindmapping, octopus sitemap, figma',
+        ],
+        latest: true,
+    },
+
     {
         key: 'bluecargo_payment',
         client: 'BlueCargo',
@@ -124,27 +146,7 @@ export const caseStudies = [
         latest: true,
     },
 
-    {
-        key: 'spectrum',
-        client: 'Spectrum TV (Charter Communications)',
-        year: '2022-2023',
-        platform: 'TV, mobile, desktop',
-        title: 'Rebuilding a design system for all platforms.',
-        description:
-            'Rebuilt the design system supporting all video platforms, invluding TV and Mobile.',
-        href: pageInformation[Routes.Spectrum]!.path,
-        src: designSystemSpectrum,
-        alt: 'Spectrum TV Case Study',
-        external: false,
-        projectType: 'design',
-        metrics: [
-            '2022-2023',
-            'user interface',
-            'component library',
-            'design system',
-        ],
-        latest: true,
-    },
+
 
     {
         key: 'kbwf',
