@@ -22,9 +22,9 @@ export const caseStudies = [
         client: 'BlueCargo',
         year: '2024',
         platform: 'desktop',
-        title: 'Designing a Container Management Dashboard',
+        title: 'Container Management Lifecycle',
         description:
-            'Designed a dashboard for Supply Chain professionals, where they can follow the status of their containers at the ports of Los Angeles and Long Beach.',
+            'Designed a container management lifecycle solution for Supply Chain professionals.',
         href: pageInformation[Routes.Shipments]!.path,
         src: containerManagement,
         alt: 'Container Tracking Case Study',
@@ -44,7 +44,7 @@ export const caseStudies = [
         client: 'Spectrum TV (Charter Communications)',
         year: '2022-2023',
         platform: 'TV, mobile, desktop',
-        title: 'Rebuilding a design system for all platforms.',
+        title: 'Design Systems For TV Platforms',
         description:
             'Rebuilt the design system supporting all video platforms, invluding TV and Mobile.',
         href: pageInformation[Routes.Spectrum]!.path,
@@ -65,7 +65,7 @@ export const caseStudies = [
         client: 'Portfolio Website',
         year: '2024',
         platform: 'responsive web',
-        title: 'Designed and built my own portfolio website.',
+        title: 'Design And Development Of Portfolio Website',
         description:
             'Designed and built the front-end and back-end of my portfolio website using Next.js, React.js, Node.js, Tailwind CSS, Vercel.',
         href: 'https://github.com/PierreParienteDimitrov/new-portfolio',
@@ -83,7 +83,7 @@ export const caseStudies = [
         client: 'Tempso',
         year: '2022',
         platform: 'native (IOS & ANDROID)',
-        title: 'Designing a Classical Music Streaming App',
+        title: 'Classical Music Wrapper App For Spotify and Apple Music',
         description:
             'Designed a classical music streaming application fully integrated with Apple Music and Spotify.',
         href: pageInformation[Routes.Tempso]!.path,
