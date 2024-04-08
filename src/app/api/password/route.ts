@@ -3,7 +3,6 @@ import { cookies } from 'next/headers'
 const setPassword = process.env.PASSWORD;
 
 
-
 export async function POST(req: Request) {
 
     const { password } = await req.json()
