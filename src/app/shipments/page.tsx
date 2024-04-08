@@ -23,6 +23,9 @@ import { TagList, TagListItem } from '@/components/TagList'
 import { StatList, StatListItem } from '@/components/StatList'
 import { EnterPassword } from '@/components/EnterPassword'
 
+
+
+
 const Role = () => {
     return (
 
@@ -57,7 +60,11 @@ const Stats = () => {
 }
 
 
-const Plugin = () => {
+
+const Shipment = () => {
+
+    const caseStudy: ICaseStudy = caseStudies.find((study) => study.key === 'shipments') as ICaseStudy;
+
 
     const [showForm, setShowForm] = useState(true)
     const [loading, setLoading] = useState(false)
@@ -86,7 +93,6 @@ const Plugin = () => {
     }, [showForm]);
 
 
-    const caseStudy: ICaseStudy = caseStudies.find((study) => study.key === 'shipments') as ICaseStudy;
 
     if (loading) {
         return (
@@ -322,7 +328,7 @@ const Plugin = () => {
 // }
 
 
-export default Plugin
+export default Shipment
 
 
 

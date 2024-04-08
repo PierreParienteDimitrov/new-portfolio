@@ -59,6 +59,9 @@ const Stats = () => {
 
 const Plugin = () => {
 
+    const caseStudy: ICaseStudy = caseStudies.find((study) => study.key === 'bluecargo_plugin') as ICaseStudy;
+
+
     const [showForm, setShowForm] = useState(true)
     const [loading, setLoading] = useState(false)
 
@@ -86,7 +89,6 @@ const Plugin = () => {
     }, [showForm]);
 
 
-    const caseStudy: ICaseStudy = caseStudies.find((study) => study.key === 'bluecargo_plugin') as ICaseStudy;
 
     if (loading) {
         return (

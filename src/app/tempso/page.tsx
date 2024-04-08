@@ -85,6 +85,9 @@ const Stats = () => {
 
 const Tempso = () => {
 
+    const caseStudy: ICaseStudy = caseStudies.find((study) => study.key === 'tempso') as ICaseStudy;
+
+
     const [showForm, setShowForm] = useState(true)
     const [loading, setLoading] = useState(false)
 
@@ -112,7 +115,6 @@ const Tempso = () => {
     }, [showForm]);
 
 
-    const caseStudy: ICaseStudy = caseStudies.find((study) => study.key === 'tempso') as ICaseStudy;
 
     if (loading) {
         return (
