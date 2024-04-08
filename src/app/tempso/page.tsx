@@ -5,8 +5,6 @@ import { pageInformation, Routes } from '../../constant/allPages'
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
 import { caseStudies } from '@/constant/caseStudy'
-
-
 import { ContactSection } from '@/components/ContactSection'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
@@ -20,7 +18,36 @@ import { SectionIntro } from '@/components/SectionIntro'
 import { StatList, StatListItem } from '@/components/StatList'
 import { TagList, TagListItem } from '@/components/TagList'
 import DataArchitecture from '@/images/work/tempso/data-architecture.png'
+import Tempso1 from '@/images/work/tempso/tempso-1.png'
+import Tempso2 from '@/images/work/tempso/tempso-2.png'
+import Tempso3 from '@/images/work/tempso/tempso-3.png'
+import Tempso4 from '@/images/work/tempso/tempso-4.png'
+import { ICarousel } from '@/types/ICarousel'
+import Carousel from '@/components/Carousel'
 
+
+const TEMPSO: ICarousel[] = [
+    {
+        title: 'tempso1',
+        src: Tempso1,
+        alt: 'alt1',
+    },
+    {
+        title: 'tempso2',
+        src: Tempso2,
+        alt: 'alt1',
+    },
+    {
+        title: 'tempso3',
+        src: Tempso3,
+        alt: 'alt3',
+    },
+    {
+        title: 'tempso4',
+        src: Tempso4,
+        alt: 'alt4',
+    },
+]
 
 
 const Role = () => {
@@ -31,7 +58,7 @@ const Role = () => {
                 My Role
             </h3>
             <TagList className="mt-4">
-                <TagListItem>User researcg</TagListItem>
+                <TagListItem>User research</TagListItem>
                 <TagListItem>Data architecture</TagListItem>
                 <TagListItem>Wireframes</TagListItem>
                 <TagListItem>UI design</TagListItem>
@@ -141,15 +168,9 @@ const Tempso = () => {
                                         </div>
                                     </dl>
                                 </div>
-                                <div className="border-y border-neutral-200 bg-neutral-100">
-                                    <div className="mx-auto max-w-[76rem] bg-neutral-200">
-                                        <GrayscaleTransitionImage
-                                            src={caseStudy.src}
-                                            quality={90}
-                                            sizes="(min-width: 1216px) 76rem, 100vw"
-                                            priority
-                                            className="rounded-md"
-                                        />
+                                <div className="border-y border-neutral-200">
+                                    <div className="mx-auto max-w-[76rem">
+                                        <Carousel carouselItems={TEMPSO} />
                                     </div>
                                 </div>
                             </Container>
