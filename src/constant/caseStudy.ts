@@ -12,10 +12,6 @@ import tempsoLanding from '@/images/case-study-tempso-landing-page.png'
 
 
 
-
-
-
-
 export const caseStudies = [
     {
         key: 'shipments',
