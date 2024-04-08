@@ -2,6 +2,7 @@ import { pageInformation, Routes } from './allPages'
 import tempsoUX from '@/images/ux-case-study-tempso.png'
 import containerManagement from '@/images/case-study-container-management.png'
 import Plugin from '@/images/work/bluecargo-plugin/screen-5.png'
+import Portfolio from '@/images/software-portfolio.png'
 import checkoutFlow from '@/images/case-study-payment-plan.png'
 import designSystemSpectrum from '@/images/case-study-spectrum.png'
 import kbwf from '@/images/case-study-KBWF.png'
@@ -16,6 +17,28 @@ import tempsoLanding from '@/images/case-study-tempso-landing-page.png'
 
 
 export const caseStudies = [
+    {
+        key: 'tempso',
+        client: 'Tempso',
+        year: '2019',
+        platform: 'native (IOS & ANDROID)',
+        title: 'Designing a Classical Music Streaming App',
+        description:
+            'Designed a classical music streaming application fully integrated with Apple Music and Spotify.',
+        href: pageInformation[Routes.Tempso]!.path,
+        src: tempsoUX,
+        alt: 'Tempso UX Case Study',
+        external: false,
+        projectType: 'design',
+        metrics: [
+            '2020',
+            'user research, user experience, user interface',
+            'user interviews, wireframing, usability studies',
+            'native IOS & android',
+            'miro mindmapping, octopus sitemap, figma',
+        ],
+        latest: true,
+    },
     {
         key: 'shipments',
         client: 'BlueCargo',
@@ -39,24 +62,20 @@ export const caseStudies = [
         latest: true,
     },
     {
-        key: 'bluecargo_plugin',
-        client: 'BlueCargo',
-        year: '2023',
-        platform: 'Outlook plugin',
-        title: 'Designing a plugin to process and dispute per diem invoices in Outlook',
+        key: 'portfolio_website',
+        client: 'Portfolio Website',
+        year: '2024',
+        platform: 'responsive web',
+        title: 'Designed and built my own portfolio website.',
         description:
-            'I created an Outlook plugin that brings key BlueCargo features directly to users\' email software, reducing the need to switch between platforms.',
-        href: pageInformation[Routes.Plugin]!.path,
-        src: Plugin,
-        alt: 'Per diem dispute Outlook plugin case study',
-        external: false,
+            'Designed and built the front-end and back-end of my portfolio website using Next.js, React.js, Node.js, Tailwind CSS, Vercel.',
+        href: 'https://github.com/PierreParienteDimitrov/new-portfolio',
+        src: Portfolio,
+        alt: 'Portfolio Website',
+        external: true,
         projectType: 'design',
         metrics: [
-            '2020',
-            'user research, user experience, user interface',
-            'user interviews, wireframing, usability studies',
-            'native IOS & android',
-            'miro mindmapping, octopus sitemap, figma',
+            '2024',
         ],
         latest: true,
     },
@@ -83,6 +102,29 @@ export const caseStudies = [
         latest: true,
     },
     {
+        key: 'bluecargo_plugin',
+        client: 'BlueCargo',
+        year: '2023',
+        platform: 'Outlook plugin',
+        title: 'Designing a plugin to process and dispute per diem invoices in Outlook',
+        description:
+            'I created an Outlook plugin that brings key BlueCargo features directly to users\' email software, reducing the need to switch between platforms.',
+        href: pageInformation[Routes.Plugin]!.path,
+        src: Plugin,
+        alt: 'Per diem dispute Outlook plugin case study',
+        external: false,
+        projectType: 'design',
+        metrics: [
+            '2020',
+            'user research, user experience, user interface',
+            'user interviews, wireframing, usability studies',
+            'native IOS & android',
+            'miro mindmapping, octopus sitemap, figma',
+        ],
+        latest: true,
+    },
+
+    {
         key: 'spectrum',
         client: 'Spectrum TV (Charter Communications)',
         year: '2022-2023',
@@ -103,28 +145,7 @@ export const caseStudies = [
         ],
         latest: true,
     },
-    {
-        key: 'tempso',
-        client: 'Tempso',
-        year: '2019',
-        platform: 'native (IOS & ANDROID)',
-        title: 'Designing a Classical Music Streaming App',
-        description:
-            'Designed a classical music streaming application fully integrated with Apple Music and Spotify.',
-        href: pageInformation[Routes.Tempso]!.path,
-        src: tempsoUX,
-        alt: 'Tempso UX Case Study',
-        external: false,
-        projectType: 'design',
-        metrics: [
-            '2020',
-            'user research, user experience, user interface',
-            'user interviews, wireframing, usability studies',
-            'native IOS & android',
-            'miro mindmapping, octopus sitemap, figma',
-        ],
-        latest: true,
-    },
+
     {
         key: 'kbwf',
         client: 'Know Better World Foundation',
@@ -168,28 +189,7 @@ export const caseStudies = [
         ],
         latest: false,
     },
-    // {
-    //     key: 'portfolio_website',
-    //     client: 'Portfolio Website',
-    //     year: '2022',
-    //     platform: 'responsive web',
-    //     title: 'Designed and built my own portfolio website.',
-    //     description:
-    //         'Designed and built the front-end and back-end of my portfolio website using Next.js, React.js, Node.js, Tailwind CSS, Mongoose and MongodB.',
-    //     href: 'https://github.com/PierreParienteDimitrov/pierre-parientedimitrov',
-    //     src: '/software-portfolio.png',
-    //     alt: 'Portfolio Website',
-    //     external: true,
-    //     projectType: 'design',
-    //     metrics: [
-    //         '2020',
-    //         'user research, user experience, user interface',
-    //         'user interviews, wireframing, usability studies',
-    //         'native IOS & android',
-    //         'miro mindmapping, octopus sitemap, figma',
-    //     ],
-    //     latest: false,
-    // },
+
     {
         key: 'tempso_website',
         client: 'Tempso Landing Page',
