@@ -125,7 +125,7 @@ function Services() {
     <>
       <SectionIntro
         eyebrow="My process"
-        title="I am a full stack product designer with extensive experience in user experience and interface."
+        title="I am a full stack product designer & engineer with extensive experience in user experience and interface."
         className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>
