@@ -292,9 +292,7 @@ const Tempso = () => {
                                 </SectionIntro>
                                 <SectionIntro smaller={false} title='User Journey'>
                                     <SectionIntro smaller={true} title='User Journey #1: Compare Recordings'>
-                                        <p className='mb-16'>In order to answer Cecilia's needs, I created a first flow chart that detailed all the required steps that a user must take to compare recordings of the same composition.
-                                            This flow chart showed that users would have to undertake a lot of different steps in order to be able to compare recordings. User Research showed, however, that this feature was appreciated equally by all Personas. In addition, it seemed like a differentiator for Tempso.
-                                            This is why I decided to have a "Compare" tab, in the bottom navigation. This tab is refreshed with the current composition that the user is listening to. This helps any user compare recordings easily and "hammers" Tempso's value proposition; but also demonstrates the uniqueness of classical music.
+                                        <p className='mb-16'>In order to answer Cecilia’s needs, I created a first flow chart that detailed all the required steps that a user must take to compare recordings of the same composition. This flow chart showed that users would have to undertake a lot of different steps in order to be able to compare recordings. User Research showed, however, that this feature was appreciated equally by all Personas. In addition, it seemed like a differentiator for Tempso. This is why I decided to have a "Compare" tab, in the bottom navigation. This tab is refreshed with the current composition that the user is listening to. This helps any user compare recordings easily and "hammers" Tempso’s value proposition; but also demonstrates the uniqueness of classical music.
 
                                         </p>
                                         <GrayscaleTransitionImage
@@ -307,8 +305,7 @@ const Tempso = () => {
 
                                     </SectionIntro>
                                     <SectionIntro smaller={true} title='User Journey #2: Explore Recordings'>
-                                        <p className='mb-16'>In order to answer Nathalie's needs, I created a user journey that allowed users like her to explore new recordings.
-                                            This is why I created the concept of automated radios which are refreshed every day with new recordings. Those radios select recordings through a set of filters like a timeframe (daily discovery), a genre, a composer or performer.
+                                        <p className='mb-16'>In order to answer Nathalie’s needs, I created a user journey that allowed users like her to explore new recordings. This is why I created the concept of automated radios which are refreshed every day with new recordings. Those radios select recordings through a set of filters like a timeframe (daily discovery), a genre, a composer or performer.
                                         </p>
                                         <GrayscaleTransitionImage
                                             src={FlowChartExplore}
@@ -320,8 +317,7 @@ const Tempso = () => {
 
                                     </SectionIntro>
                                     <SectionIntro smaller={true} title='User Journey #3: Discover Recordings'>
-                                        <p className='mb-16'>In order to answer Benjamin's needs, I created a user journey that allowed users like him to discover music.
-                                            Those users needed more guidance than automated radios. This is why I created the concept of manually-curated playlists. Those thematic playlist showcase a selection of famous classical music recordings that are a good start for a new listener.
+                                        <p className='mb-16'>In order to answer Benjamin’s needs, I created a user journey that allowed users like him to discover music. Those users needed more guidance than automated radios. This is why I created the concept of manually-curated playlists. Those thematic playlist showcase a selection of famous classical music recordings that are a good start for a new listener.
                                         </p>
                                         <GrayscaleTransitionImage
                                             src={FlowChartDiscover}
