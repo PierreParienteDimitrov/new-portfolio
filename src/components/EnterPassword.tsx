@@ -51,7 +51,7 @@ export function EnterPassword() {
                         <Container>
                             <form className='flex flex-col items-center w-full'>
                                 <div className="w-full px-64 isolate mt-6 -space-y-px rounded-2xl bg-white/50">
-                                    <TextInput label="Password" name="password" autoComplete="password" value={inputValue} onChange={(e) => setInputValue(e.target.value)}
+                                    <TextInput type='password' label="Password" name="password" autoComplete="password" value={inputValue} onChange={(e) => setInputValue(e.target.value)}
                                         placeholder="Enter text" />
                                 </div>
                                 {showAlert && <h6 className='text-red-600'>Wrong password</h6>}
