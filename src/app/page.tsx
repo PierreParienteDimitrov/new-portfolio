@@ -145,19 +145,24 @@ function Services() {
           </div>
           <List className="mt-16 lg:mt-0 lg:w-1/2 lg:min-w-[33rem] lg:pl-4">
             <ListItem title="User research">
-              As a product designer, my primary job is to empathize with the final user through research. I start by building a clear picture of the user’s desires, frustrations, goals and technology literacy through qualitative interviews, on-sites, and second-hand information when available.
-            </ListItem>
+              As a product designer, I prioritize understanding users by conducting qualitative interviews, immersive on-sites, and analyzing available data to uncover their needs, frustrations, and digital fluency.</ListItem>
             <ListItem title="User flows and wireframes">
               Through user flows & wireframes I test assumptions against real life and iterate closely with a few selected users to improve the experience and make sure to cover at least the essentials needs.
             </ListItem>
             <ListItem title="Product roadmap">
-              With the relevant stakeholder, I help build product and feature roadmaps by order of importance for the business and the user.
+              I refine user experiences by testing assumptions with user flows and wireframes, iterating closely with select users to ensure essential needs are met.
             </ListItem>
             <ListItem title="High-fidelity mockups and prototypes">
               When the user experience is solidified, I build high-fidelity mockups & prototypes of the product for a last round of internal and external validation.
             </ListItem>
             <ListItem title="Design systems and documentation">
-              Once the high-fi are solidified, I build developer documentation to speed-up the engineering cycle, as long as build, maintain and expand the design system & component library.
+              Once the user experience is refined, I create high-fidelity mockups and prototypes for final validation, both internally and with external stakeholders.
+            </ListItem>
+            <ListItem title="Design systems and documentation">
+              After finalizing the high-fidelity designs, I develop comprehensive documentation to accelerate the engineering process and continuously build, maintain, and enhance the design system and component library.
+            </ListItem>
+            <ListItem title="Development">
+              My engineering skills in HTML, CSS, JavaScript/TypeScript, and libraries like React, along with frameworks such as Next.js, Express.js, and Tailwind.css, enable me to build live prototypes and MVPs to test product assumptions with end users.
             </ListItem>
           </List>
         </div>
