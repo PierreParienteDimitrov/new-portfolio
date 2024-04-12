@@ -2,11 +2,9 @@ import clsx from 'clsx'
 
 function Office({
   name,
-  children,
   invert = false,
 }: {
   name: string
-  children: React.ReactNode
   invert?: boolean
 }) {
   return (
@@ -20,7 +18,6 @@ function Office({
         {name}
       </strong>
       <br />
-      {children}
     </address>
   )
 }
@@ -32,15 +29,15 @@ export function Offices({
   return (
     <ul role="list" {...props}>
       <li>
-        <Office name="New York" invert={invert} children={undefined}>
+        <Office name="New York" invert={invert}>
         </Office>
       </li>
       <li>
-        <Office name="Los Angeles" invert={invert} children={undefined}>
+        <Office name="Los Angeles" invert={invert}>
         </Office>
       </li>
       <li>
-        <Office name="Paris" invert={invert} children={undefined}>
+        <Office name="Paris" invert={invert}>
         </Office>
       </li>
     </ul>
