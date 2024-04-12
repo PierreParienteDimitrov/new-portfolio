@@ -2,19 +2,15 @@ import clsx from 'clsx'
 
 function Office({
   name,
-  invert = false,
 }: {
   name: string
-  invert?: boolean
 }) {
   return (
     <address
-      className={clsx(
-        'text-sm not-italic',
-        invert ? 'text-neutral-300' : 'text-neutral-600',
-      )}
+      className='text-white'
+
     >
-      <strong className={invert ? 'text-white' : 'text-neutral-950'}>
+      <strong className='text-white'>
         {name}
       </strong>
       <br />
@@ -23,21 +19,20 @@ function Office({
 }
 
 export function Offices({
-  invert = false,
   ...props
-}: React.ComponentPropsWithoutRef<'ul'> & { invert?: boolean }) {
+}: React.ComponentPropsWithoutRef<'ul'>) {
   return (
     <ul role="list" {...props}>
       <li>
-        <Office name="New York" invert={invert}>
+        <Office name="New York">
         </Office>
       </li>
       <li>
-        <Office name="Los Angeles" invert={invert}>
+        <Office name="Los Angeles">
         </Office>
       </li>
       <li>
-        <Office name="Paris" invert={invert}>
+        <Office name="Paris">
         </Office>
       </li>
     </ul>
