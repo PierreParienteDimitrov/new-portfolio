@@ -24,16 +24,13 @@ export function Offices({
   return (
     <ul role="list" {...props}>
       <li>
-        <Office name="New York">
-        </Office>
+        <Office name="New York" />
       </li>
       <li>
-        <Office name="Los Angeles">
-        </Office>
+        <Office name="Los Angeles" />
       </li>
       <li>
-        <Office name="Paris">
-        </Office>
+        <Office name="Paris" />
       </li>
     </ul>
   )

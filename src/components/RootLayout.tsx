@@ -242,7 +242,6 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
                       Located in
                     </h2>
                     <Offices
-                      invert
                       className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-2"
                     />
                   </div>
