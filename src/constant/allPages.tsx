@@ -14,14 +14,13 @@ export enum Routes {
     Tempso = '/tempso',
     TempsoUX = '/tempso-ux',
     Spectrum = '/spectrum-design-system',
-    ContainerDashboard = '/container-dashboard',
-    Shipments = '/shipments',
+    ContainerManagement = '/container-management-lifecycle',
+    OutlookPlugin = '/outlook-plugin',
     CheckoutFlow = '/checkout-flow',
     LuxuryTravel = '/luxury-travel',
     UIShots = '/ui-shots',
     Work = '/work',
-    Plugin = '/bluecargo-plugin',
-
+    Shipments = "Shipments"
 }
 
 export const pageInformation: Record<string, IPage> = {
@@ -65,9 +64,9 @@ export const pageInformation: Record<string, IPage> = {
         path: Routes.TempsoUX,
         isPublic: true,
     },
-    [Routes.ContainerDashboard]: {
-        title: 'Pierre Pariente Dimitrov - Container Tracking',
-        path: Routes.ContainerDashboard,
+    [Routes.ContainerManagement]: {
+        title: 'Pierre Pariente Dimitrov - Container Management Lifecycle',
+        path: Routes.ContainerManagement,
         isPublic: false,
     },
     [Routes.LuxuryTravel]: {
@@ -90,14 +89,9 @@ export const pageInformation: Record<string, IPage> = {
         path: Routes.CheckoutFlow,
         isPublic: false,
     },
-    [Routes.Plugin]: {
-        title: 'Pierre Pariente Dimitrov - BlueCargo Plugin ',
-        path: Routes.Plugin,
-        isPublic: false,
-    },
-    [Routes.Shipments]: {
+    [Routes.OutlookPlugin]: {
         title: 'Pierre Pariente Dimitrov - BlueCargo Shipments ',
-        path: Routes.Shipments,
+        path: Routes.OutlookPlugin,
         isPublic: false,
     },
     [Routes.Spectrum]: {

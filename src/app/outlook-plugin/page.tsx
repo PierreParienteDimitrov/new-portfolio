@@ -1,5 +1,6 @@
 "use client"
 
+
 import { pageInformation, Routes } from '../../constant/allPages'
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
@@ -104,7 +105,7 @@ const Shipment = () => {
     return (
         <>
             <Head>
-                <title>{pageInformation[Routes.Plugin]!.title}</title>
+                <title>{pageInformation[Routes.OutlookPlugin]!.title}</title>
                 <meta
                     property="og:url"
                     content="https://www.pierreparientedimitrov.com/"

@@ -1,7 +1,7 @@
 import { pageInformation, Routes } from './allPages'
 import tempsoUX from '@/images/ux-case-study-tempso.png'
 import containerManagement from '@/images/case-study-container-management.png'
-import Plugin from '@/images/work/bluecargo-plugin/screen-5.png'
+import OutlookPlugin from '@/images/work/bluecargo-plugin/screen-5.png'
 import Portfolio from '@/images/software-portfolio.png'
 import checkoutFlow from '@/images/case-study-payment-plan.png'
 import designSystemSpectrum from '@/images/case-study-spectrum.png'
@@ -18,10 +18,10 @@ export const caseStudies = [
         client: 'BlueCargo',
         year: '2024',
         platform: 'desktop',
-        title: 'Container Management Lifecycle',
+        title: 'BlueCargo - Container Management Lifecycle',
         description:
             'Designed a container management lifecycle solution for Supply Chain professionals.',
-        href: pageInformation[Routes.Shipments]!.path,
+        href: pageInformation[Routes.ContainerManagement]!.path,
         src: containerManagement,
         alt: 'Container Tracking Case Study',
         external: false,
@@ -127,8 +127,8 @@ export const caseStudies = [
         title: 'Designing a plugin to process and dispute per diem invoices in Outlook',
         description:
             'I created an Outlook plugin that brings key BlueCargo features directly to users\' email software, reducing the need to switch between platforms.',
-        href: pageInformation[Routes.Plugin]!.path,
-        src: Plugin,
+        href: pageInformation[Routes.OutlookPlugin]!.path,
+        src: OutlookPlugin,
         alt: 'Per diem dispute Outlook plugin case study',
         external: false,
         projectType: 'design',
