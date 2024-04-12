@@ -254,7 +254,7 @@ const Shipment = () => {
                                         <ul>
                                             <li>
                                                 <h4 className={itemsTitleClass}>Context Study</h4>
-                                                <p>While drayage carriers could track their containers' status by accessing terminal websites, brokers, freight forwarders, and BCOs have faced difficulties in receiving timely and accurate updates on container journey. </p>
+                                                <p>While drayage carriers could track their containers’ status by accessing terminal websites, brokers, freight forwarders, and BCOs have faced difficulties in receiving timely and accurate updates on container journey. </p>
                                                 <br />
                                                 <p>Even with terminal access, container tracking remains challenging and labor-intensive. The 2020 supply chain disruptions caused by the pandemic exacerbated these issues, turning the task of obtaining accurate and timely container updates into a near-nightmare. Supply chain operators were forced to manually track hundreds of containers daily across numerous terminal websites. Additionally, congestion and operational inefficiencies led to significant delays in pickups and returns, resulting in record-high detention and demurrage fees.</p>
                                             </li>

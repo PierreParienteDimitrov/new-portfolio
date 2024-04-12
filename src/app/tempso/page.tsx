@@ -143,7 +143,7 @@ const Tempso = () => {
     return (
         <>
             <Head>
-                <title>{pageInformation[Routes.Plugin]!.title}</title>
+                <title>{pageInformation[Routes.Tempso]!.title}</title>
                 <meta
                     property="og:url"
                     content="https://www.pierreparientedimitrov.com/"
