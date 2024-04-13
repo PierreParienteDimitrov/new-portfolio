@@ -20,7 +20,8 @@ export enum Routes {
     LuxuryTravel = '/luxury-travel',
     UIShots = '/ui-shots',
     Work = '/work',
-    Shipments = "Shipments"
+    ProductMarketing = '/product-marketing'
+
 }
 
 export const pageInformation: Record<string, IPage> = {
@@ -98,5 +99,10 @@ export const pageInformation: Record<string, IPage> = {
         title: 'Pierre Pariente Dimitrov - Spectrum TV Design System ',
         path: Routes.Spectrum,
         isPublic: false,
+    },
+    [Routes.ProductMarketing]: {
+        title: 'Pierre Pariente Dimitrov - BlueCargo Product Marketing Assets',
+        path: Routes.ProductMarketing,
+        isPublic: true,
     },
 }

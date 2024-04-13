@@ -178,7 +178,8 @@ export const metadata: Metadata = {
 
 export default function Home() {
 
-  const introCaseStudies = caseStudies.slice(0, 4)
+  const introCaseStudies = caseStudies.filter(caseStudy => caseStudy.latest)
+
 
   return (
     <>
