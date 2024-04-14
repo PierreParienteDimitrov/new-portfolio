@@ -381,7 +381,7 @@ const Shipment = () => {
                                         <h4 className={itemsTitleClass}>Feature narrative</h4>
                                         <p>Create a Container Management Lifecycle experience that enables users to track, record, and take actions on shipments based on exceptions. The key elements of the user journey include:</p>
                                         <ul>
-                                            <li className='my-4'><span className='font-bold'>1. Manual or Automated Upload -</span> Users can initiate data collection and tracking by uploading the container's bill of lading either manually or automatically.</li>
+                                            <li className='my-4'><span className='font-bold'>1. Manual or Automated Upload -</span> Users can initiate data collection and tracking by uploading the container’s bill of lading either manually or automatically.</li>
                                             <li className='mb-4'><span className='font-bold'>2. Container Status Tracking -</span>This feature allows users to monitor all their shipments from a single, unified view.</li>
                                             <li className='mb-4'><span className='font-bold'>3. Customized Views -</span>Users can tailor views based on their operational priorities to focus on what matters most.</li>
                                             <li className='mb-4'><span className='font-bold'>4. Workflow Center -</span>This facilitates the creation of alerts and automations for a selected subset of containers, accelerating the resolution of issues.</li>
