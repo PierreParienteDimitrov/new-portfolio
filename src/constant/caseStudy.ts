@@ -20,7 +20,7 @@ export const caseStudies = [
         client: 'BlueCargo',
         year: '2024',
         platform: 'desktop',
-        title: 'BlueCargo - Container Management Lifecycle',
+        title: 'Container Management Lifecycle',
         description:
             'Designed a container management lifecycle solution for Supply Chain professionals.',
         href: pageInformation[Routes.ContainerManagement]!.path,
@@ -42,7 +42,7 @@ export const caseStudies = [
         client: 'Spectrum TV (Charter Communications)',
         year: '2022-2023',
         platform: 'TV, mobile, desktop',
-        title: 'Spectrum TV - Design Systems For TV Platforms',
+        title: 'Design Systems For TV Platforms',
         description:
             'Rebuilt the design system supporting all video platforms, invluding TV and Mobile.',
         href: pageInformation[Routes.Spectrum]!.path,
@@ -81,7 +81,7 @@ export const caseStudies = [
         client: 'Tempso',
         year: '2022',
         platform: 'native (IOS & ANDROID)',
-        title: 'Tempso - Classical Music Wrapper App For Spotify and Apple Music',
+        title: 'Classical Music Wrapper App For Spotify and Apple Music',
         description:
             'Designed a classical music streaming application fully integrated with Apple Music and Spotify.',
         href: pageInformation[Routes.Tempso]!.path,
@@ -103,7 +103,7 @@ export const caseStudies = [
         client: 'BlueCargo',
         year: '2024',
         platform: 'Web & Print',
-        title: 'BlueCargo - Product Marketing assets',
+        title: 'Product Marketing assets',
         description:
             'Created product marketing assets for the sales & CS teams',
         href: pageInformation[Routes.ProductMarketing]!.path,

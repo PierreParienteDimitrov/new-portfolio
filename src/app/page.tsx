@@ -33,11 +33,11 @@ const clients = [
 
 function Clients() {
   return (
-    <div className="sm:mt-32 py-8">
+    <div className="py-8">
       <FadeIn className="flex items-center gap-x-8">
-        <h2 className="text-center font-display text-sm font-semibold tracking-wider text-neutral-950 sm:text-left">
+        <h5 className="uppercase text-center font-display font-semibold text-neutral-950">
           Over the last 10 years, I have worked with
-        </h2>
+        </h5>
         <div className="h-px flex-auto bg-neutral-800" />
       </FadeIn>
       <FadeInStagger faster>
@@ -67,11 +67,11 @@ function CaseStudies({
     <>
       <SectionIntro
         title="My most recent achievements"
-        className="mt-24 sm:mt-32 lg:mt-40"
+        className="mt-24 sm:mt-32 lg:mt-40 font-light"
       >
-        <p>As a Senior Product Designer and first employee at BlueCargo, a Y Combinator (YC) Series-A startup in the supply chain industry, I played a pivotal role in scaling the company&apos;s product, revenue and team.</p>
+        <h4>As a Senior Product Designer and first employee at BlueCargo, a Y Combinator (YC) Series-A startup in the supply chain industry, I played a pivotal role in scaling the company&apos;s product, revenue and team.</h4>
         <br></br>
-        <p>I previously rebuilt Charter TV design systems and created Tempso, a classical music wrapper for Spotify and Apple Music.</p>
+        <h4>I previously rebuilt Charter TV design systems and created Tempso, a classical music wrapper for Spotify and Apple Music.</h4>
       </SectionIntro >
       <Container className="mt-16">
         <FadeInStagger className="grid grid-cols-1 gap-8 lg:grid-cols-2">
@@ -92,22 +92,22 @@ function CaseStudies({
 
                 <div className='p-8'>
 
-                  <p className="mt-6 flex gap-x-2 text-sm text-neutral-950">
+                  <p className="flex gap-x-2 text-neutral-600 font-medium">
                     <time
-                      dateTime={caseStudy.year}
-                      className="font-semibold"
-                    >
+                      dateTime={caseStudy.year}                    >
                       {caseStudy.year}
                     </time>
                     <span className="text-neutral-300" aria-hidden="true">
                       /
                     </span>
-                    <span>Case study</span>
+                    <span>{caseStudy.client}
+                    </span>
+
                   </p>
-                  <p className="mt-6 font-display text-2xl font-semibold text-neutral-950">
+                  <h3 className="mt-4 font-display font-medium text-neutral-950">
                     {caseStudy.title}
-                  </p>
-                  <p className="mt-4 text-base text-neutral-600">
+                  </h3>
+                  <p className="mt-1 text-neutral-600 font-light">
                     {caseStudy.description}
                   </p>
                 </div>
@@ -128,9 +128,9 @@ function Services() {
         title="I am a full stack product designer & engineer with extensive experience in user experience and interface."
         className="mt-24 sm:mt-32 lg:mt-40"
       >
-        <p>
+        <h4>
           My skills covers user research, user flows, wireframes, high-fidelity mockups, design systems and developer documentation.
-        </p>
+        </h4>
       </SectionIntro>
       <Container className="mt-16">
         <div className="lg:flex lg:items-center lg:justify-end">
@@ -149,14 +149,11 @@ function Services() {
             <ListItem title="User flows and wireframes">
               Through user flows & wireframes I test assumptions against real life and iterate closely with a few selected users to improve the experience and make sure to cover at least the essentials needs.
             </ListItem>
-            <ListItem title="Product roadmap">
+            {/* <ListItem title="Product roadmap">
               I refine user experiences by testing assumptions with user flows and wireframes, iterating closely with select users to ensure essential needs are met.
-            </ListItem>
+            </ListItem> */}
             <ListItem title="High-fidelity mockups and prototypes">
               When the user experience is solidified, I build high-fidelity mockups & prototypes of the product for a last round of internal and external validation.
-            </ListItem>
-            <ListItem title="Design systems and documentation">
-              Once the user experience is refined, I create high-fidelity mockups and prototypes for final validation, both internally and with external stakeholders.
             </ListItem>
             <ListItem title="Design systems and documentation">
               After finalizing the high-fidelity designs, I develop comprehensive documentation to accelerate the engineering process and continuously build, maintain, and enhance the design system and component library.
@@ -186,14 +183,13 @@ export default function Home() {
       <Container className="mt-10 sm:mt-32 md:mt-32 relative">
         <FadeIn className="max-w-3xl">
           <Image src={portrait} width={200} alt="Pierre Pariente Dimitrov" unoptimized className='rounded-full mb-12' />
-          <h1 className="font-display text-5xl font-medium tracking-tight text-neutral-950 [text-wrap:balance] sm:text-7xl">
+          <h1 className="font-display font-medium tracking-tight text-neutral-950">
             Hi, my name is Pierre Pariente Dimitrov.</h1>
-          <p className="mt-6 text-xl text-neutral-600">
-            I am a product designer and software engineer. For the last 10 years I have been helping startups and big corporations deliver better experience across iOS, Android, Web and TV.</p>
-
+          <h3 className="mt-6 text-neutral-600 font-light">
+            I am a product designer and software engineer. For the last 10 years I have been helping startups and big corporations deliver better experience across iOS, Android, Web and TV.</h3>
         </FadeIn>
       </Container>
-      <div className='mx-auto max-w-7xl px-6 lg:px-8 mt-24 sm:mt-32'>
+      <div className='mx-auto max-w-7xl px-6 lg:px-8 mt-16 sm:mt-16'>
         <Clients />
       </div>
 

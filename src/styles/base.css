@@ -8,3 +8,38 @@
   font-stretch: 75% 125%;
   src: url('../fonts/Archivo-VariableFont_wdth,wght.ttf') format('ttf');
 }
+
+h1 {
+  font-size: 4rem;
+  line-height: normal;
+}
+
+h2 {
+  font-size: 2rem;
+  line-height: normal;
+}
+
+h3 {
+  font-size: 1.5rem;
+  line-height: 2.6rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  line-height: 2rem;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.6rem;
+}
+
+h5 {
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+h6 {
+  font-size: 0.625rem;
+  line-height: normal;
+}
