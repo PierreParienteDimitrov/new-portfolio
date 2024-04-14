@@ -19,8 +19,13 @@ import Icon6 from '@/images/work/shipments/icon-06.svg'
 import Icon7 from '@/images/work/shipments/icon-07.svg'
 import Icon8 from '@/images/work/shipments/icon-08.svg'
 import FlowChart from '@/images/work/shipments/flow-chart.svg'
-
-
+import Upload from '@/images/work/shipments/uploading.png'
+import Tags from '@/images/work/shipments/Tags.png'
+import Filter from '@/images/work/shipments/filters.png'
+import FilterComponent from '@/images/work/shipments/filters-component.png'
+import Workflow from '@/images/work/shipments/workflow.png'
+import WorkflowActions from '@/images/work/shipments/workflow-action.png'
+import DataFilters from '@/images/work/shipments/data-filters.png'
 import { SectionIntro } from '@/components/SectionIntro'
 import { TagList, TagListItem } from '@/components/TagList'
 import { StatList, StatListItem } from '@/components/StatList'
@@ -123,6 +128,30 @@ const flow = [{
     title: '4. Automation Templates Based on Personas',
     description: 'Templates are crafted to cater to the distinct needs of different user personas, streamlining workflows and enhancing productivity by automating routine tasks based on user role and function.'
 },]
+
+const dataIngestion = [{
+    label: 'Container upload',
+    img: Upload,
+}, {
+    label: 'Container tagging component states',
+    img: Tags,
+}]
+
+const dataVisualization = [{
+    label: 'Filter panel open',
+    img: Filter,
+}, {
+    label: 'Filter selection component states',
+    img: FilterComponent,
+}]
+
+const workflow = [{
+    label: 'Workflow selection',
+    img: Workflow,
+}, {
+    label: 'Workflow & actions configuration',
+    img: WorkflowActions,
+}]
 
 
 
@@ -356,6 +385,23 @@ const Shipment = () => {
                                         </List>
                                     </SectionIntro>
                                 </Container>
+                                {/* Data architecture */}
+                                <Container className='flex items-center mt-24'>
+                                    <SectionIntro smaller={false} title=''>
+                                        <p className={itemsTitleClass}>Data architecture</p>
+                                        <p>I designed the data architecture for the container watchlist table, utilizing the data collected by the product. I organized the filters by category and defined the search parameters for each one to enhance usability and efficiency.
+                                        </p>
+                                    </SectionIntro>
+                                </Container>
+                                <div className='px-4 md:px-16 py-16'>
+                                    <GrayscaleTransitionImage
+                                        src={DataFilters}
+                                        quality={90}
+                                        sizes="(min-width: 1216px) 76rem, 100vw"
+                                        priority
+                                        className="rounded-md"
+                                    />
+                                </div>
                             </div>
 
                             {/* Analysis */}
@@ -478,6 +524,111 @@ const Shipment = () => {
                                     </SectionIntro>
                                 </Container>
                             </div>
+
+
+                            {/* Design */}
+                            <div className='mt-24'>
+                                {/* Data ingestion */}
+                                <Container className='flex items-center'>
+                                    <SectionIntro smaller={false} title='Design'>
+                                        <p className={itemsTitleClass}>Data ingestion</p>
+                                        <p>
+                                            The data ingestion screens enable users to manually upload one or multiple files and monitor the status of these uploads. Additionally, I have designed a comprehensive experience that allows users to tag containers with additional metadata at the point of upload, tailoring the experience to meet specific business needs of each customer.
+                                        </p>
+                                        <br /><br />
+                                    </SectionIntro>
+                                </Container>
+                                <Container>
+                                    <div className='flex justify-center flex-col px-4 md:px-16 py-4'>
+
+                                        {dataIngestion.map((item, index) => {
+                                            return (
+                                                <div>
+                                                    <p className='text-center my-4 text-neutral-700 font-medium'>
+                                                        {item.label}
+                                                    </p>
+                                                    <article className="relative flex w-full flex-col rounded-3xl ring-1 ring-neutral-300 transition hover:bg-neutral-50 overflow-hidden mb-8" key={index}>
+                                                        <GrayscaleTransitionImage
+                                                            src={item.img}
+                                                            quality={90}
+                                                            sizes="(min-width: 1216px) 76rem, 100vw"
+                                                            priority
+                                                            className="rounded-md"
+                                                        />
+                                                    </article>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </Container>
+
+                                {/* Data vizualisation */}
+                                <Container className='flex items-center'>
+                                    <SectionIntro smaller={false} title=''>
+                                        <p className={itemsTitleClass}>Data visualization</p>
+                                        <p>
+                                            The data visualization screens provide users with a comprehensive view of all their tracked shipments. A set of pre-built template views is available to allow customers to quickly begin utilizing the product. Additionally, customers have the option to create custom views that align with their internal processes, enhancing usability and relevance.
+                                        </p>
+                                        <br /><br />
+                                    </SectionIntro>
+                                </Container>
+                                <Container>
+                                    <div className='flex justify-center flex-col px-4 md:px-16 py-4'>
+                                        {dataVisualization.map((item, index) => {
+                                            return (
+                                                <div>
+                                                    <p className='text-center my-4 text-neutral-700 font-medium'>
+                                                        {item.label}
+                                                    </p>
+                                                    <article className="relative flex w-full flex-col rounded-3xl ring-1 ring-neutral-300 transition hover:bg-neutral-50 overflow-hidden mb-8" key={index}>
+                                                        <GrayscaleTransitionImage
+                                                            src={item.img}
+                                                            quality={90}
+                                                            sizes="(min-width: 1216px) 76rem, 100vw"
+                                                            priority
+                                                            className="rounded-md"
+                                                        />
+                                                    </article>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </Container>
+
+                                {/* Actions */}
+                                <Container className='flex items-center'>
+                                    <SectionIntro smaller={false} title=''>
+                                        <p className={itemsTitleClass}>Actions</p>
+                                        <p>
+                                            The workflow actions screens enable users to utilize one of the available filtered views or create a new set of filters to define actions based on their selections. For example, a BCO can automate a last free day extension request to the terminal by selecting a specific set of filters and setting up an email automation to send daily notifications to the terminal clerk. This feature reduces manual tasks and decreases the total cost per shipment through an efficient fee mitigation process.</p>
+                                        <br /><br />
+                                    </SectionIntro>
+                                </Container>
+                                <Container>
+                                    <div className='flex justify-center flex-col px-4 md:px-16 py-4'>
+                                        {workflow.map((item, index) => {
+                                            return (
+                                                <div>
+                                                    <p className='text-center my-4 text-neutral-700 font-medium'>
+                                                        {item.label}
+                                                    </p>
+                                                    <article className="relative flex w-full flex-col rounded-3xl ring-1 ring-neutral-300 transition hover:bg-neutral-50 overflow-hidden mb-8" key={index}>
+                                                        <GrayscaleTransitionImage
+                                                            src={item.img}
+                                                            quality={90}
+                                                            sizes="(min-width: 1216px) 76rem, 100vw"
+                                                            priority
+                                                            className="rounded-md"
+                                                        />
+                                                    </article>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </Container>
+
+
+                            </div>
                         </FadeIn>
                     </header >
                 </article >
@@ -486,8 +637,6 @@ const Shipment = () => {
         </>
     )
 }
-
-
 
 export default Shipment
 
