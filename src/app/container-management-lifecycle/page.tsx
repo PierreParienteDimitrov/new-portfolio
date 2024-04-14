@@ -10,15 +10,11 @@ import { FadeIn } from '@/components/FadeIn'
 import { GrayscaleTransitionImage } from '@/components/GrayscaleTransitionImage'
 import { PageIntro } from '@/components/PageIntro'
 import { ICaseStudy } from '@/types/ICaseStudy'
-import PluginImg2 from '@/images/work/bluecargo-plugin/screen-2.png'
-import PluginImg3 from '@/images/work/bluecargo-plugin/screen-3.png'
-import PluginImg4 from '@/images/work/bluecargo-plugin/screen-4.png'
-import PluginImg7 from '@/images/work/bluecargo-plugin/screen-7.png'
-import PluginImg8 from '@/images/work/bluecargo-plugin/screen-8.png'
-import TaskFlow1 from '@/images/work/bluecargo-plugin/flow-chart-1.png'
-import TaskFlow2 from '@/images/work/bluecargo-plugin/flow-chart-2.png'
-import TaskFlow3 from '@/images/work/bluecargo-plugin/flow-chart-3.png'
-
+import Icon1 from '@/images/work/shipments/icon-01.png'
+import Icon2 from '@/images/work/shipments/icon-02.png'
+import Icon3 from '@/images/work/shipments/icon-03.png'
+import Icon4 from '@/images/work/shipments/icon-04.png'
+import Icon5 from '@/images/work/shipments/icon-05.png'
 import { SectionIntro } from '@/components/SectionIntro'
 import { TagList, TagListItem } from '@/components/TagList'
 import { StatList, StatListItem } from '@/components/StatList'
@@ -51,6 +47,36 @@ const process = [{
     items: ['Iterations', 'Detail fixing / copywriting', 'Asset & documentation for eng'],
     gradient: 'from-indigo-50 to-sky-100'
 }]
+
+const useCases = [{
+    quote: 'I need to track my incoming loads to effectively adjust my capacity.',
+    img: Icon1
+}, {
+    quote: 'I want to prioritize my containers with issues.',
+    img: Icon2
+}, {
+    quote: 'I need to alert the relevant teams before issues arise.',
+    img: Icon3
+}, {
+    quote: 'I need to document my container journey to support my requests for last free day extensions and to assist with fee audits and mitigation.',
+    img: Icon4
+}, {
+    quote: 'I need to know past, current, and projected future detention and demurrage fees.',
+    img: Icon5
+},]
+
+const designPrinciples = [{
+    title: 'Intuitive',
+    description: 'The experience should be intuitive. Every interaction should feel natural, and all information should be presented with maximum clarity, conciseness, and simplicity.'
+}, {
+    title: 'Flexible',
+    description: 'The experience should offer customer customization, enabling each client to tailor the product to their specific operations and needs.'
+}, {
+    title: 'Reliable',
+    description: 'Supply chain efficiency depends on accurate and timely data updates. The product should accurately represent the complexity of the data while maintaining transparency about the data refresh rate.'
+},]
+
+
 
 const itemsTitleClass = 'font-medium mt-16 mb-4 text-[24px]'
 
@@ -246,7 +272,7 @@ const Shipment = () => {
                                 </div>
                             </div>
 
-                            {/* Approach & Deliverables */}
+                            {/* Research */}
                             <div className='mt-24'>
                                 <Container className='flex items-center'>
                                     <SectionIntro smaller={false} title='Research'>
@@ -284,6 +310,92 @@ const Shipment = () => {
                                             </li>
                                         </ul>
 
+                                    </SectionIntro>
+                                </Container>
+                            </div>
+
+                            {/* Analysis */}
+                            <div className='mt-24'>
+                                <Container className='flex items-center'>
+                                    <SectionIntro smaller={false} title='Analysis'>
+                                        <h4 className={itemsTitleClass}>Problem statement</h4>
+                                        <p>BlueCargo lacked a container management lifecycle product that meets the visibility, customization, and operational needs of most supply chain professionals.</p>
+                                        <h4 className={itemsTitleClass}>Use cases</h4>
+                                    </SectionIntro>
+                                </Container>
+                                <div className='flex flex-wrap justify-between items-top md:flex-row flex-col px-4 md:px-16 py-16'>
+                                    {useCases.map((item, index) => {
+                                        return (
+                                            <div key={index} className='card w-full md:w-1/6 mb-4 md:mb-0 flex flex-col items-center p-4'>
+                                                <div className='w-[64px] h-[64px]'>
+                                                    <GrayscaleTransitionImage
+                                                        src={item.img}
+                                                        quality={90}
+                                                        sizes="(width: 32px) 4rem"
+                                                        priority
+                                                        className="rounded-md"
+                                                    />
+                                                </div>
+                                                <div className={`w-full py-2 rounded-md text-xs text-neutral-500 w-ful text-center`}>{item.quote}</div>
+
+                                            </div>
+                                        );
+                                    })}
+
+
+                                </div>
+
+                                <Container className='flex items-center'>
+                                    <SectionIntro smaller={false} title=''>
+                                        <h4 className={itemsTitleClass}>Executive Summary</h4>
+                                        <p>The BlueCargo Container Management Lifecycle will deliver reliable, adaptable, and actionable insights into shipments, enhancing the operational efficiency of supply chain actors.</p>
+                                    </SectionIntro>
+                                </Container>
+                            </div>
+
+                            {/* Ideation */}
+                            <div className='mt-24'>
+
+                                {/* Design principles */}
+                                <Container className='flex items-center'>
+                                    <SectionIntro smaller={false} title='Ideation' className='text-center'>
+                                        <h4 className={itemsTitleClass}>Design principles</h4>
+                                    </SectionIntro>
+                                </Container>
+                                <div className='flex flex-wrap justify-between items-top md:flex-row flex-col px-4 md:px-16 py-16'>
+                                    {designPrinciples.map((item, index) => {
+                                        return (
+                                            <div key={index} className='card w-full md:w-1/3 mb-4 md:mb-0 flex flex-col items-center p-4'>
+                                                <div className={`w-full py-2 rounded-md text-sm text-neutral-950 font-semibold w-ful text-center`}>{item.title}</div>
+                                                <div className={`w-full py-2 rounded-md text-xs text-neutral-500 w-ful text-center`}>{item.description}</div>
+                                            </div>
+                                        );
+                                    })}
+
+
+                                </div>
+
+                                {/* Feature narrative */}
+                                <Container className='flex items-center'>
+                                    <SectionIntro smaller={false} title=''>
+                                        <h4 className={itemsTitleClass}>Feature narrative</h4>
+                                        <p>Create a Container Management Lifecycle experience that enables users to track, record, and take actions on shipments based on exceptions. The key elements of the user journey include:</p>
+                                        <ul>
+                                            <li className='my-4'><span className='font-bold'>1. Manual or Automated Upload -</span> Users can initiate data collection and tracking by uploading the container's bill of lading either manually or automatically.</li>
+                                            <li className='mb-4'><span className='font-bold'>2. Container Status Tracking -</span>This feature allows users to monitor all their shipments from a single, unified view.</li>
+                                            <li className='mb-4'><span className='font-bold'>3. Customized Views -</span>Users can tailor views based on their operational priorities to focus on what matters most.</li>
+                                            <li className='mb-4'><span className='font-bold'>4. Workflow Center -</span>This facilitates the creation of alerts and automations for a selected subset of containers, accelerating the resolution of issues.</li>
+                                            <li className='mb-4'><span className='font-bold'>5. Customizable Centralized Dashboard -</span>This dashboard aggregates data and serves as the primary interface for the product, enabling users to quickly assess key metrics and take action.</li>
+                                        </ul>
+
+                                        <h4 className={itemsTitleClass}>Journey map UX flow</h4>
+                                        <p>Based on the feature narrative, I constructed the user experience flow, considering the following:</p>
+                                        <ul>
+                                            <li className='my-4'><span className='font-bold'>1. Data Integration Modality -</span> This includes options for either manual or automated Bill of Lading (BOL) ingestion, allowing for flexible data entry tailored to different operational needs.</li>
+                                            <li className='mb-4'><span className='font-bold'>2. Container Tagging -</span>Customers can attach metadata to their containers, enabling efficient sorting and retrieval of specific information according to their requirements.</li>
+                                            <li className='mb-4'><span className='font-bold'>3. Handling Edge Cases -</span>The system is designed to manage edge cases, such as duplicates in BOL entries and uploads in invalid formats, ensuring data integrity and usability.</li>
+                                            <li className='mb-4'><span className='font-bold'>4. Automation Templates Based on Personas -</span>Templates are crafted to cater to the distinct needs of different user personas, streamlining workflows and enhancing productivity by automating routine tasks based on user role and function.</li>
+                                        </ul>
                                     </SectionIntro>
                                 </Container>
                             </div>
