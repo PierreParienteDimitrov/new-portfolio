@@ -8,6 +8,8 @@ import designSystemSpectrum from '@/images/case-study-spectrum.png'
 import kbwf from '@/images/case-study-KBWF.png'
 import uiChallenge from '@/images/case-study-UI-challenge.png'
 import tempsoLanding from '@/images/case-study-tempso-landing-page.png'
+import ProductMarketing from '@/images/case-study-product-marketing.png'
+
 
 
 
@@ -40,7 +42,7 @@ export const caseStudies = [
         client: 'Spectrum TV (Charter Communications)',
         year: '2022-2023',
         platform: 'TV, mobile, desktop',
-        title: 'Design Systems For TV Platforms',
+        title: 'Spectrum TV - Design Systems For TV Platforms',
         description:
             'Rebuilt the design system supporting all video platforms, invluding TV and Mobile.',
         href: pageInformation[Routes.Spectrum]!.path,
@@ -79,7 +81,7 @@ export const caseStudies = [
         client: 'Tempso',
         year: '2022',
         platform: 'native (IOS & ANDROID)',
-        title: 'Classical Music Wrapper App For Spotify and Apple Music',
+        title: 'Tempso - Classical Music Wrapper App For Spotify and Apple Music',
         description:
             'Designed a classical music streaming application fully integrated with Apple Music and Spotify.',
         href: pageInformation[Routes.Tempso]!.path,
@@ -93,6 +95,28 @@ export const caseStudies = [
             'user interviews, wireframing, usability studies',
             'native IOS & android',
             'miro mindmapping, octopus sitemap, figma',
+        ],
+        latest: true,
+    },
+    {
+        key: 'marketing',
+        client: 'BlueCargo',
+        year: '2024',
+        platform: 'Web & Print',
+        title: 'BlueCargo - Product Marketing assets',
+        description:
+            'Created product marketing assets for the sales & CS teams',
+        href: pageInformation[Routes.ProductMarketing]!.path,
+        src: ProductMarketing,
+        alt: 'Product Marketing',
+        external: false,
+        projectType: 'product design',
+        metrics: [
+            '2024',
+            'Flyers',
+            'Sales decks',
+            'Ads',
+            'Tradeshow assets',
         ],
         latest: true,
     },
