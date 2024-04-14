@@ -17,11 +17,10 @@ import { TagList, TagListItem } from '@/components/TagList'
 import { StatList, StatListItem } from '@/components/StatList'
 import { EnterPassword } from '@/components/EnterPassword'
 import { List, ListItem } from '@/components/List'
-import { process, useCases, designPrinciples, featureNarrative, flow, dataIngestion, dataVisualization, workflow } from '@/constant/containerManagement'
+import { process, useCases, designPrinciples, featureNarrative, flow, dataIngestion, dataVisualization, workflow, dashboard } from '@/constant/containerManagement'
+import { ContactSection } from '@/components/ContactSection'
 
 const itemsTitleClass = 'font-bold my-4'
-
-
 
 const Role = () => {
     return (
@@ -55,8 +54,6 @@ const Stats = () => {
         </div>
     )
 }
-
-
 
 const Shipment = () => {
 
@@ -388,7 +385,6 @@ const Shipment = () => {
                                 </Container>
                             </div>
 
-
                             {/* Design */}
                             <div className='mt-24'>
                                 {/* Data ingestion */}
@@ -490,10 +486,56 @@ const Shipment = () => {
                                     </div>
                                 </Container>
 
-
+                                {/* Dashboard */}
+                                <Container className='flex items-center'>
+                                    <SectionIntro smaller={false} title=''>
+                                        <p className={itemsTitleClass}>Dashboard</p>
+                                        <p>
+                                            The dashboard screen acts as the primary entry point to the product. It succinctly presents the most crucial aggregated data to the customer, enabling them to prioritize tasks and gain a high-level understanding of their operations.
+                                        </p>
+                                        <br /><br />
+                                    </SectionIntro>
+                                </Container>
+                                <Container>
+                                    <div className='flex justify-center flex-col px-4 md:px-16 py-4'>
+                                        {dashboard.map((item, index) => {
+                                            return (
+                                                <div key={index}>
+                                                    <p className='text-center my-4 text-neutral-700 font-medium'>
+                                                        {item.label}
+                                                    </p>
+                                                    <article className="relative flex w-full flex-col rounded-3xl ring-1 ring-neutral-300 transition hover:bg-neutral-50 overflow-hidden mb-8" >
+                                                        <GrayscaleTransitionImage
+                                                            src={item.img}
+                                                            quality={90}
+                                                            sizes="(min-width: 1216px) 76rem, 100vw"
+                                                            priority
+                                                            className="rounded-md"
+                                                        />
+                                                    </article>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </Container>
                             </div>
+
+                            {/* Conclusion */}
+                            <div className='mt-24'>
+                                <Container className='flex items-center'>
+                                    <SectionIntro smaller={true} title='Conclusion'>
+                                        <p>Over the past three years, the BlueCargo container lifecycle management platform has emerged as a new industry standard for drayage carriers and beneficial cargo owners (BCOs). The product enhances efficiency for supply chain teams by enabling them to manage shipments by exceptions, focusing on containers that may cause delays or incur fees. This targeted approach has saved the industry millions in detention and demurrage fees.
+                                        </p>
+                                        <br />
+                                        <h2 className='mt-32'>Thank you for reading!</h2>
+                                    </SectionIntro>
+                                </Container>
+                            </div>
+
+
                         </FadeIn>
                     </header >
+                    <ContactSection />
                 </article >
             }
 

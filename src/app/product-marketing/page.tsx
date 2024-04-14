@@ -16,6 +16,7 @@ import { SectionIntro } from '@/components/SectionIntro'
 import { TagList, TagListItem } from '@/components/TagList'
 import { StatList, StatListItem } from '@/components/StatList'
 import { EnterPassword } from '@/components/EnterPassword'
+import { ContactSection } from '@/components/ContactSection'
 
 
 
@@ -248,6 +249,8 @@ const ProductMarketing = () => {
                         </div> */}
                     </FadeIn>
                 </header>
+                <ContactSection />
+
             </article >
 
 

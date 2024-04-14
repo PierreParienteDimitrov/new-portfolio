@@ -4,6 +4,7 @@ import Filter from '@/images/work/shipments/filters.png'
 import FilterComponent from '@/images/work/shipments/filters-component.png'
 import Workflow from '@/images/work/shipments/workflow.png'
 import WorkflowActions from '@/images/work/shipments/workflow-action.png'
+import Dashboard from '@/images/work/shipments/dashboard.png'
 import Icon1 from '@/images/work/shipments/icon-01.svg'
 import Icon2 from '@/images/work/shipments/icon-02.svg'
 import Icon3 from '@/images/work/shipments/icon-03.svg'
@@ -133,3 +134,8 @@ export const workflow = [{
     label: 'Workflow & actions configuration',
     img: WorkflowActions,
 }]
+
+export const dashboard = [{
+    label: 'Home dashboard',
+    img: Dashboard,
+},]

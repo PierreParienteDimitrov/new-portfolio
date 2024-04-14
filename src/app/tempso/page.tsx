@@ -326,7 +326,6 @@ const Tempso = () => {
                                             priority
                                             className="rounded-md"
                                         />
-
                                     </SectionIntro>
                                 </SectionIntro>
                                 <SectionIntro smaller={false} title='Wireframes'>
@@ -355,9 +354,9 @@ const Tempso = () => {
                             </Container>
                         </div>
                     </FadeIn>
+                    <ContactSection />
                 </article >
             }
-
         </>
     )
 }
