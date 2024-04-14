@@ -368,9 +368,9 @@ const Shipment = () => {
                                         <br />
                                         <p className={itemsTitleClass}>Use cases</p>
                                         <List className="mt-16 lg:mt-0 lg:min-w-[33rem]">
-                                            {useCases.map((item) => {
+                                            {useCases.map((item, index) => {
                                                 return (
-                                                    <ListItem>
+                                                    <ListItem key={index}>
                                                         <div className='flex space-x-8 w-full items-center'>
                                                             <div className='w-[80px]'>
                                                                 <GrayscaleTransitionImage
@@ -381,7 +381,7 @@ const Shipment = () => {
                                                             </div>
                                                             <div className='w-full'>
                                                                 <p className='italic'>
-                                                                    "{item.quote}"
+                                                                    ’{item.quote}’
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -446,7 +446,7 @@ const Shipment = () => {
                                         <List className="my-16 lg:min-w-[33rem]">
                                             {featureNarrative.map((item, index) => {
                                                 return (
-                                                    <ListItem title={item.title}>
+                                                    <ListItem title={item.title} key={index}>
                                                         {item.description}
                                                     </ListItem>
 
@@ -458,9 +458,9 @@ const Shipment = () => {
                                         <p className={itemsTitleClass}>Journey map UX flow</p>
                                         <p>Based on the feature narrative, I constructed the user experience flow, considering the following:</p>
                                         <List className="my-16 lg:min-w-[33rem]">
-                                            {flow.map((item) => {
+                                            {flow.map((item, index) => {
                                                 return (
-                                                    <ListItem title={item.title}>
+                                                    <ListItem title={item.title} key={index}>
                                                         {item.description}
                                                     </ListItem>
 
