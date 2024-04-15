@@ -141,7 +141,7 @@ export const caseStudies = [
             'desktop',
             'flow charts, figma',
         ],
-        latest: true,
+        latest: false,
     },
     {
         key: 'bluecargo_plugin',
@@ -163,7 +163,7 @@ export const caseStudies = [
             'native IOS & android',
             'miro mindmapping, octopus sitemap, figma',
         ],
-        latest: true,
+        latest: false,
     },
 
 
