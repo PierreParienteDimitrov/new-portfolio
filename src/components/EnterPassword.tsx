@@ -50,7 +50,7 @@ export function EnterPassword() {
                     <FadeIn className="lg:order-last">
                         <Container>
                             <form className='flex flex-col items-center w-full'>
-                                <div className="w-full px-64 isolate mt-6 -space-y-px rounded-2xl bg-white/50">
+                                <div className="w-full md:px-64 px-4 isolate mt-6 -space-y-px rounded-2xl bg-white/50">
                                     <TextInput type='password' label="Password" name="password" autoComplete="password" value={inputValue} onChange={(e) => setInputValue(e.target.value)}
                                         placeholder="Enter text" />
                                 </div>
