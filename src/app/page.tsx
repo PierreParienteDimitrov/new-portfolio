@@ -1,7 +1,7 @@
 import { type Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-
+import Head from 'next/head'
 import { ContactSection } from '@/components/ContactSection'
 import { Container } from '@/components/Container'
 import { FadeIn, FadeInStagger } from '@/components/FadeIn'
@@ -180,6 +180,19 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <meta
+          property="og:url"
+          content="https://www.pierreparientedimitrov.com/"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="website-preview" />
+        <meta
+          property="og:description"
+          content="Pierre Pariente Dimitrov Portfolio - UX/UI designer & Software Engineer"
+        />
+        <meta property="og:image" content="/website-preview.png" />
+      </Head>
       <Container className="mt-10 sm:mt-32 md:mt-32 relative">
         <FadeIn className="max-w-3xl">
           <Image src={portrait} width={200} alt="Pierre Pariente Dimitrov" unoptimized className='rounded-full mb-12' />
