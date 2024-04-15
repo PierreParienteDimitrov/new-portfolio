@@ -29,16 +29,13 @@ export function EnterPassword() {
             .then((data) => {
                 if (!data.isValidated) {
                     setShowAlert(true)
+                } else {
+                    location.reload()
                 }
-                location.reload()
             })
             .catch((error) => {
                 console.error(error);
             });
-
-
-
-        // if (!alert) return setShowAlert(true)
     };
 
     return (
@@ -49,13 +46,12 @@ export function EnterPassword() {
                     </PageIntro>
                     <FadeIn className="lg:order-last">
                         <Container>
-                            <form className='flex flex-col items-center w-full'>
+                            <form className='flex flex-col items-center w-full' onSubmit={handleButtonClick}>
                                 <div className="w-full md:px-64 px-4 isolate mt-6 -space-y-px rounded-2xl bg-white/50">
-                                    <TextInput type='password' label="Password" name="password" autoComplete="password" value={inputValue} onChange={(e) => setInputValue(e.target.value)}
-                                        placeholder="Enter text" />
+                                    <TextInput type='password' label="Password" name="password" autoComplete="password" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="Enter password" />
                                 </div>
                                 {showAlert && <h6 className='text-red-600'>Wrong password</h6>}
-                                <button type="button" className="mt-10 text-xl px-16 py-4 inline-flex rounded-full font-semibold transition bg-neutral-950 text-white hover:bg-neutral-800" onClick={handleButtonClick}>
+                                <button type="submit" className="mt-10 text-xl px-16 py-4 inline-flex rounded-full font-semibold transition bg-neutral-950 text-white hover:bg-neutral-800" onClick={handleButtonClick}>
                                     Submit
                                 </button>
                             </form>
