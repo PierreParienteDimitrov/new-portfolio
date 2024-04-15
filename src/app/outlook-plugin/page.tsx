@@ -23,6 +23,7 @@ import { SectionIntro } from '@/components/SectionIntro'
 import { TagList, TagListItem } from '@/components/TagList'
 import { StatList, StatListItem } from '@/components/StatList'
 import { EnterPassword } from '@/components/EnterPassword'
+import { Loading } from '@/components/Loading'
 
 
 
@@ -97,7 +98,7 @@ const Shipment = () => {
 
     if (loading) {
         return (
-            <><Container>loading...</Container></>
+            <Loading />
         )
     }
 

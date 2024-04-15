@@ -24,6 +24,7 @@ import Wireframes from '@/images/work/tempso/tempso_wireframes.png'
 import { process, painPoints, userJourney, wireframes, homepage, playlist, performers } from '@/constant/tempso'
 import Link from 'next/link'
 import { List, ListItem } from '@/components/List'
+import { Loading } from '@/components/Loading'
 
 
 
@@ -101,7 +102,7 @@ const Tempso = () => {
 
     if (loading) {
         return (
-            <><Container>loading...</Container></>
+            <Loading />
         )
     }
 

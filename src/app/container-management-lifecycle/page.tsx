@@ -19,6 +19,7 @@ import { EnterPassword } from '@/components/EnterPassword'
 import { List, ListItem } from '@/components/List'
 import { process, useCases, designPrinciples, featureNarrative, flow, dataIngestion, dataVisualization, workflow, dashboard } from '@/constant/containerManagement'
 import { ContactSection } from '@/components/ContactSection'
+import { Loading } from '@/components/Loading'
 
 const itemsTitleClass = 'font-bold my-4'
 
@@ -90,7 +91,7 @@ const Shipment = () => {
 
     if (loading) {
         return (
-            <><Container>loading...</Container></>
+            <Loading />
         )
     }
 
