@@ -352,7 +352,7 @@ const Tempso = () => {
                                 <SectionIntro smaller={false} title='Design'>
                                     <p className={itemsTitleClass}>Homepage</p>
                                     <p>
-                                        Tempso's homepage acts as the gateway to the rest of the application, designed to guide users swiftly towards making music selections. It offers sections for guided discovery, like curated playlists and tours, to explore classical music, as well as automated radios and personalized recommendations based on user preferences. This structure helps users quickly choose how they want to engage with music.
+                                        Tempso’s homepage acts as the gateway to the rest of the application, designed to guide users swiftly towards making music selections. It offers sections for guided discovery, like curated playlists and tours, to explore classical music, as well as automated radios and personalized recommendations based on user preferences. This structure helps users quickly choose how they want to engage with music.
                                     </p>
                                     <br /><br />
                                 </SectionIntro>
@@ -418,7 +418,7 @@ const Tempso = () => {
                                 <SectionIntro smaller={false} title=''>
                                     <p className={itemsTitleClass}>Performers</p>
                                     <p>
-                                        The artist pages, dedicated to both composers and performers, allow users to delve deeply into their discographies. Users can explore these pages by recordings, albums, labels, compositions, genres, and more, providing a comprehensive view of each artist's contributions.
+                                        The artist pages, dedicated to both composers and performers, allow users to delve deeply into their discographies. Users can explore these pages by recordings, albums, labels, compositions, genres, and more, providing a comprehensive view of each artist’s contributions.
                                     </p>
                                     <br /><br />
                                 </SectionIntro>
