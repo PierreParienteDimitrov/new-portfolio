@@ -209,14 +209,17 @@ export default function Home() {
 
       <CaseStudies caseStudies={introCaseStudies} />
 
-      {/* <Testimonial
+      <Testimonial
         className="mt-24 sm:mt-32 lg:mt-40"
-        client={{ name: 'Phobia', logo: logoPhobiaDark }}
+        client={{ name: 'Tempso User Feedback', logo: logoTempso }}
       >
-        The team at Studio went above and beyond with our onboarding, even
-        finding a way to access the user’s microphone without triggering one of
-        those annoying permission dialogs.
-      </Testimonial> */}
+        <h2>
+          Tempso is a very useful app with an excellent UI. A must have if you have Spotify and you like classical music. Thanks for making this.
+        </h2>
+        <br />
+
+        <h4>December 25, 2023 | Google Play</h4>
+      </Testimonial>
 
       <Services />
 
