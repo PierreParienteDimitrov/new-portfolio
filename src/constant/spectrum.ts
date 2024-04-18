@@ -3,6 +3,10 @@ import TextStyles from '@/images/work/spectrum/text-styles.png'
 import Atoms from '@/images/work/spectrum/atoms.png'
 import Molecules from '@/images/work/spectrum/molecules.png'
 import Breakdown from '@/images/work/spectrum/breakdown.png'
+import Showcards from '@/images/work/spectrum/showcards.png'
+import Swimlanes from '@/images/work/spectrum/swimlanes.png'
+import Home from '@/images/work/spectrum/home.png'
+
 
 
 
@@ -68,6 +72,15 @@ export const design = [{
 }, {
     label: 'Example of organism breakdown & properties',
     img: Breakdown,
+}, {
+    label: 'Showcard components',
+    img: Showcards,
+}, {
+    label: 'Swimlane sizes',
+    img: Swimlanes,
+}, {
+    label: 'Example of page template',
+    img: Home,
 }]
 
 
