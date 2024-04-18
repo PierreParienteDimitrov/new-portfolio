@@ -66,7 +66,7 @@ export const caseStudies = [
         platform: 'TV, mobile, desktop',
         title: 'Design Systems For TV Platforms',
         description:
-            'Rebuilt the design system supporting all video platforms, invluding TV and Mobile.',
+            'Rebuilt the design system supporting all video platforms, including TV, Web and Mobile.',
         href: pageInformation[Routes.Spectrum]!.path,
         src: designSystemSpectrum,
         alt: 'Spectrum TV Case Study',

@@ -13,7 +13,7 @@ import Swimlanes from '@/images/work/tempso/swimlanes-components.png'
 
 export const process = [{
     title: 'Research',
-    items: ['Pain points', 'Perosnas'],
+    items: ['Pain points', 'Personas'],
     gradient: 'from-indigo-50 to-sky-100'
 }, {
     title: 'Ideation',
