@@ -23,6 +23,111 @@ import imageLeslieAlexander from '@/images/team/leslie-alexander.jpg'
 import imageMichaelFoster from '@/images/team/michael-foster.jpg'
 import imageWhitneyFrancis from '@/images/team/whitney-francis.jpg'
 import { loadArticles } from '@/lib/mdx'
+import { skills, employment, education, interests } from '@/constant/resume'
+import { List, ListItem } from '@/components/List'
+
+
+
+const Skills = () => {
+  return (
+    <div>
+      <PageIntro title="Skills">
+      </PageIntro>
+      <Container>
+        <List className='mt-16'>
+          {skills.map((el, index) => {
+            return (
+              <ListItem title={el.category} key={index}>
+                <p>{el.description}</p>
+              </ListItem>
+            )
+          })}
+        </List>
+      </Container>
+
+    </div>
+  )
+}
+
+
+const Employment = () => {
+  return (
+    <div>
+      <PageIntro title="Employment">
+      </PageIntro>
+      <Container>
+        <List className='mt-16'>
+          {employment.map((el, index) => {
+            return (
+              <ListItem key={index}>
+                <h5 className='uppercase leading-3 font-semibold text-blue-800 pb-4'>{el.header}</h5>
+                <h3 className='font-bold pb-4'>{el.title}</h3>
+                {el.description.map((el, index) => {
+                  return (
+                    <div key={index} className='py-4'>
+                      <p className='font-semibold'>{el.title}</p>
+                      <p className='font-light'>{el.job}</p>
+                    </div>
+                  )
+                })}
+              </ListItem>
+            )
+          })}
+        </List>
+      </Container>
+
+    </div >
+  )
+}
+
+
+const Education = () => {
+  return (
+    <div>
+      <PageIntro title="Education">
+      </PageIntro>
+      <Container>
+        <List className='mt-16'>
+          {education.map((el, index) => {
+            return (
+              <ListItem key={index}>
+                <h5 className='uppercase leading-3 font-semibold text-blue-800 pb-4'>{el.header}</h5>
+                <h3 className='font-bold pb-4'>{el.title}</h3>
+                <p className='font-light'>{el.description}</p>
+              </ListItem>
+            )
+          })}
+        </List>
+      </Container>
+
+    </div >
+  )
+}
+
+const Interests = () => {
+  return (
+    <div>
+      <PageIntro title="Education">
+      </PageIntro>
+      <Container>
+        <List className='mt-16'>
+          {interests.map((el, index) => {
+            return (
+              <ListItem key={index}>
+                <h5 className='uppercase leading-3 font-semibold text-blue-800 pb-4'>{el.header}</h5>
+                <p className='font-light'>{el.description}</p>
+              </ListItem>
+            )
+          })}
+        </List>
+      </Container>
+
+    </div >
+  )
+}
+
+
+
 
 function Culture() {
   return (
@@ -179,9 +284,9 @@ function Team() {
 }
 
 export const metadata: Metadata = {
-  title: 'About Us',
+  title: 'About Me',
   description:
-    'We believe that our strength lies in our collaborative approach, which puts our clients at the center of everything we do.',
+    'Resume',
 }
 
 export default async function About() {
@@ -189,44 +294,36 @@ export default async function About() {
 
   return (
     <>
-      <PageIntro eyebrow="About us" title="Our strength is collaboration">
+      <PageIntro eyebrow="About me" title="I am a seasoned Product Designer with a strong background in front-end engineering. ">
         <p>
-          We believe that our strength lies in our collaborative approach, which
-          puts our clients at the center of everything we do.
+          As the third employee and Senior Product Designer at BlueCargo (YC S18, Series A), I spearheaded the design and launch of critical products for supply chain professionals, significantly boosting company revenue and facilitating growth from 3 to 40 team members.
         </p>
-        <div className="mt-10 max-w-2xl space-y-6 text-base">
-          <p>
-            Studio was started by three friends who noticed that developer
-            studios were charging clients double what an in-house team would
-            cost. Since the beginning, we have been committed to doing things
-            differently by charging triple instead.
-          </p>
-          <p>
-            At Studio, we’re more than just colleagues — we’re a family. This
-            means we pay very little and expect people to work late. We want our
-            employees to bring their whole selves to work. In return, we just
-            ask that they keep themselves there until at least 6:30pm.
-          </p>
-        </div>
+        <br />
+        <p>Previously at Spectrum TV, I developed and managed a sophisticated cross-platform design system, enhancing collaboration and consistency across all video platform teams.</p>
       </PageIntro>
-      <Container className="mt-16">
+      {/* <Container className="mt-16">
         <StatList>
           <StatListItem value="35" label="Underpaid employees" />
           <StatListItem value="52" label="Placated clients" />
           <StatListItem value="$25M" label="Invoices billed" />
         </StatList>
-      </Container>
+      </Container> */}
 
-      <Culture />
+      <Skills />
 
-      <Team />
+      <Employment />
 
-      <PageLinks
+      <Education />
+
+      <Interests />
+
+
+      {/* <PageLinks
         className="mt-24 sm:mt-32 lg:mt-40"
         title="From the blog"
         intro="Our team of experienced designers and developers has just one thing on their mind; working on your ideas to draw a smile on the face of your users worldwide. From conducting Brand Sprints to UX Design."
         pages={blogArticles}
-      />
+      /> */}
 
       <ContactSection />
     </>

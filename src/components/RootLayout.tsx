@@ -150,7 +150,7 @@ function Navigation() {
     <nav className="mt-px font-display text-5xl font-medium tracking-tight text-white">
       <NavigationRow>
         <NavigationItem href={`${pageInformation[Routes.Work]!.path}`}>My Work</NavigationItem>
-        {/* <NavigationItem href={`${pageInformation[Routes.About]!.path}`}>About Me</NavigationItem> */}
+        <NavigationItem href={`${pageInformation[Routes.About]!.path}`}>About Me</NavigationItem>
       </NavigationRow>
       {/* <NavigationRow>
         <NavigationItem href="/process">Our Process</NavigationItem>
