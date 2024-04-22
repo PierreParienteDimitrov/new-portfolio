@@ -1,13 +1,42 @@
+import Icon1 from '@/images/about/icon-01.png'
+import Icon2 from '@/images/about/icon-02.png'
+import Icon3 from '@/images/about/icon-03.png'
+import Icon4 from '@/images/about/icon-04.png'
+import Icon5 from '@/images/about/icon-05.png'
+
+
+
+
 export const profile = [{
     title: 'Profile',
     description: 'I am a seasoned Product Designer with a strong background in front-end engineering. As the third employee and Senior Product Designer at BlueCargo (YC S18, Series A), I spearheaded the design and launch of critical products for supply chain professionals, significantly boosting company revenue and facilitating growth from 3 to 40 team members. Previously at Spectrum TV, I developed and managed a sophisticated cross-platform design system, enhancing collaboration and consistency across all video platform teams.'
 }]
 
 export const skills = [
-    { category: 'User Research', description: 'Benchmarks, industry research, user interviews, usability studies, persona definition' },
-    { category: 'UX/UI', description: 'User flows, data architecture maps, wireframes, high-fidelity mockups' }, { category: 'Design system', description: 'Complex, cross-platform and cross-team component libraries' },
-    { category: 'Design tools', description: 'Figma, Sketch' },
-    { category: 'Engineering', description: 'HTML, CSS, Tailwind, JavaScript, Typescript, React.js, Next.js.' }
+    {
+        category: 'User Research',
+        description: 'Benchmarks, industry research, user interviews, usability studies, persona definition',
+        img: Icon1
+    },
+    {
+        category: 'UX/UI',
+        description: 'User flows, data architecture maps, wireframes, high-fidelity mockups',
+        img: Icon2
+    }, {
+        category: 'Design system',
+        description: 'Complex, cross-platform and cross-team component libraries',
+        img: Icon3
+    },
+    {
+        category: 'Design tools',
+        description: 'Figma, Sketch',
+        img: Icon4
+    },
+    {
+        category: 'Engineering',
+        description: 'HTML, CSS, Tailwind, JavaScript, Typescript, React.js, Next.js.',
+        img: Icon5
+    }
 ]
 
 export const employment = [

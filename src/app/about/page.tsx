@@ -25,6 +25,7 @@ import imageWhitneyFrancis from '@/images/team/whitney-francis.jpg'
 import { loadArticles } from '@/lib/mdx'
 import { skills, employment, education, interests } from '@/constant/resume'
 import { List, ListItem } from '@/components/List'
+import { GrayscaleTransitionImage } from '@/components/GrayscaleTransitionImage'
 
 
 
@@ -38,7 +39,18 @@ const Skills = () => {
           {skills.map((el, index) => {
             return (
               <ListItem title={el.category} key={index}>
-                <p>{el.description}</p>
+                <div className='flex space-x-8 w-full items-center'>
+                  <div className='w-[80px]'>
+                    <GrayscaleTransitionImage
+                      src={el.img}
+                      quality={90}
+                      className='w-16 h-16' priority
+                    />
+                  </div>
+                  <div className='w-full'>
+                    <p>{el.description}</p>
+                  </div>
+                </div>
               </ListItem>
             )
           })}
@@ -107,7 +119,7 @@ const Education = () => {
 const Interests = () => {
   return (
     <div>
-      <PageIntro title="Education">
+      <PageIntro title="Interests">
       </PageIntro>
       <Container>
         <List className='mt-16'>
