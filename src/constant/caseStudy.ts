@@ -118,7 +118,7 @@ export const caseStudies = [
             'Ads',
             'Tradeshow assets',
         ],
-        latest: true,
+        latest: false,
     },
 
     {
@@ -232,6 +232,6 @@ export const caseStudies = [
             'native IOS & android',
             'miro mindmapping, octopus sitemap, figma',
         ],
-        latest: false,
+        latest: true,
     },
 ]
