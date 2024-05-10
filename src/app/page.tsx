@@ -199,7 +199,7 @@ export default function Home() {
           <h1 className="font-display font-medium tracking-tight text-neutral-950">
             Hi, my name is Pierre Pariente Dimitrov.</h1>
           <h3 className="mt-6 text-neutral-600 font-light">
-            I am a product designer with a strong engineering background. For the last 10 years I have been helping startups and big corporations deliver better experience across iOS, Android, Web and TV.</h3>
+            I am a product designer with strong engineering skills and entrepreneurial mindset. For the last 10 years I have been helping startups and big corporations deliver better experience across iOS, Android, Web and TV.</h3>
         </FadeIn>
       </Container>
       <div className='mx-auto max-w-7xl px-6 lg:px-8 mt-16 sm:mt-16'>
