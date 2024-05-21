@@ -183,7 +183,7 @@ const Shipment = () => {
                             <div className='mt-24'>
                                 <Container className='flex items-center'>
                                     <SectionIntro smaller={true} title='Approach & Deliverables'>
-                                        <p>When I joined BlueCargo as the third employee and lead designer in February 2021, the company lacked a container tracking product. My role was to design the comprehensive experience of monitoring containers from their port of origin to their destination port.</p>
+                                        <p>When I joined BlueCargo as the first employee and founding designer in February 2021, the company lacked a container tracking product. My role was to design the comprehensive experience of monitoring containers from their port of origin to their destination port.</p>
                                         <br />
                                         <p>The BlueCargo Container Management Lifecycle product is the culmination of three years of customer-driven iterations aimed at enhancing the product, data quality, and refresh rates, ultimately making it indispensable for our customers.</p>
                                     </SectionIntro>
