@@ -17,34 +17,18 @@ import { TagList, TagListItem } from '@/components/TagList'
 import { StatList, StatListItem } from '@/components/StatList'
 import { EnterPassword } from '@/components/EnterPassword'
 import { ContactSection } from '@/components/ContactSection'
+import GE1 from '@/images/work/product-marketing/ge-1.png'
+import GE2 from '@/images/work/product-marketing/ge-2.png'
+import GE3 from '@/images/work/product-marketing/ge-3.png'
+import SLIDE01 from '@/images/work/product-marketing/slide-01.png'
+import SLIDE02 from '@/images/work/product-marketing/slide-02.png'
+import SLIDE03 from '@/images/work/product-marketing/slide-03.png'
+import SLIDE04 from '@/images/work/product-marketing/slide-04.png'
+import SLIDE05 from '@/images/work/product-marketing/slide-05.png'
+import SLIDE06 from '@/images/work/product-marketing/slide-06.png'
+import SLIDE07 from '@/images/work/product-marketing/slide-07.png'
 
 
-
-const process = [{
-    title: 'Research',
-    items: ['On site and qualitative interviews', 'User pain points', 'Competitive audit'],
-    gradient: 'from-indigo-50 to-sky-100'
-}, {
-    title: 'Analysis',
-    items: ['Problem statement', 'Use cases', 'Executive summary'],
-    gradient: 'from-indigo-50 to-sky-100'
-}, {
-    title: 'Ideation',
-    items: ['Feature narrative', 'Design principles', 'Journey map & UX flow'],
-    gradient: 'from-indigo-50 to-sky-100'
-}, {
-    title: 'Design',
-    items: ['Low-fidelity wireframes', 'High-fidelity wireframes', 'Interactive prototypes'],
-    gradient: 'from-indigo-50 to-sky-100'
-}, {
-    title: 'Feedback',
-    items: ['Stakeholder reviews', 'Field training', 'Designer critiques'],
-    gradient: 'from-indigo-50 to-sky-100'
-}, {
-    title: 'Iterations + handoff',
-    items: ['Iterations', 'Detail fixing / copywriting', 'Asset & documentation for eng'],
-    gradient: 'from-indigo-50 to-sky-100'
-}]
 
 const itemsTitleClass = 'font-medium mt-16 mb-4 text-[24px]'
 
@@ -81,6 +65,10 @@ const Stats = () => {
         </div>
     )
 }
+
+const geAppliances = [GE1, GE2, GE3]
+
+const slides = [SLIDE01, SLIDE02, SLIDE03, SLIDE04, SLIDE05, SLIDE06, SLIDE07]
 
 
 
@@ -151,15 +139,69 @@ const ProductMarketing = () => {
 
                         <div className='mt-24'>
                             <Container>
-                                <span
-                                    className=
-                                    'text-center block font-display tracking-tight [text-wrap:balance] text-4xl font-medium sm:text-5xl text-neutral-950'
-                                >
-                                    Coming soon</span>
                                 <Role />
                                 <Stats />
                             </Container>
                         </div>
+                        {/* Success Stories */}
+                        <Container className='flex items-center'>
+                            <SectionIntro smaller={false} title=''>
+                                <p className={itemsTitleClass}>Customer Success Stories</p>
+                                <p>
+                                    I authored and designed customer success stories for BlueCargo, including a success story featuring GE Appliances.
+                                </p>
+                                <br /><br />
+                            </SectionIntro>
+                        </Container>
+                        <Container>
+                            <div className='flex justify-center flex-col px-4 md:px-16 py-4'>
+                                {geAppliances.map((item, index) => {
+                                    return (
+                                        <div key={index}>
+                                            <article className="relative flex w-full flex-col rounded-3xl ring-1 ring-neutral-300 transition hover:bg-neutral-50 overflow-hidden mb-8">
+                                                <GrayscaleTransitionImage
+                                                    src={item}
+                                                    quality={90}
+                                                    sizes="(min-width: 1216px) 76rem, 100vw"
+                                                    priority
+                                                    className="rounded-md"
+                                                />
+                                            </article>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </Container>
+
+                        {/* Slides */}
+                        <Container className='flex items-center'>
+                            <SectionIntro smaller={false} title=''>
+                                <p className={itemsTitleClass}>Marketing & Sales Decks</p>
+                                <p>
+                                    I authored and designed sales & marketing decks to support sales and customer success teams.
+                                </p>
+                                <br /><br />
+                            </SectionIntro>
+                        </Container>
+                        <Container>
+                            <div className='flex justify-center flex-col px-4 md:px-16 py-4'>
+                                {slides.map((item, index) => {
+                                    return (
+                                        <div key={index}>
+                                            <article className="relative flex w-full flex-col rounded-3xl ring-1 ring-neutral-300 transition hover:bg-neutral-50 overflow-hidden mb-8">
+                                                <GrayscaleTransitionImage
+                                                    src={item}
+                                                    quality={90}
+                                                    sizes="(min-width: 1216px) 76rem, 100vw"
+                                                    priority
+                                                    className="rounded-md"
+                                                />
+                                            </article>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </Container>
                     </FadeIn>
                 </header>
                 <ContactSection />

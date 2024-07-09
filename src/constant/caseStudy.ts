@@ -8,7 +8,7 @@ import designSystemSpectrum from '@/images/case-study-spectrum.png'
 import kbwf from '@/images/case-study-KBWF.png'
 import uiChallenge from '@/images/case-study-UI-challenge.png'
 import tempsoLanding from '@/images/case-study-tempso-landing-page.png'
-import ProductMarketing from '@/images/case-study-product-marketing.png'
+import ProductMarketing from '@/images/work/product-marketing/case-study-product-marketing.png'
 
 
 
@@ -105,7 +105,7 @@ export const caseStudies = [
         platform: 'Web & Print',
         title: 'Product Marketing assets',
         description:
-            'Created product marketing assets for the sales & CS teams',
+            'Created product marketing assets for sales & CS teams',
         href: pageInformation[Routes.ProductMarketing]!.path,
         src: ProductMarketing,
         alt: 'Product Marketing',
@@ -118,7 +118,7 @@ export const caseStudies = [
             'Ads',
             'Tradeshow assets',
         ],
-        latest: false,
+        latest: true,
     },
 
     {
@@ -165,9 +165,6 @@ export const caseStudies = [
         ],
         latest: false,
     },
-
-
-
     {
         key: 'kbwf',
         client: 'Know Better World Foundation',
@@ -192,24 +189,21 @@ export const caseStudies = [
     },
     {
         key: 'ui_shots',
-        client: 'UI Shots',
-        year: '2020',
+        client: 'Training',
+        year: '2023',
         platform: 'desktop and mobile',
-        title: '100 days of UI Challenge',
-        description: 'Designed UI shots to explore different design universe.',
+        title: '7 days of UI Challenge',
+        description: 'Designed UI shots as a training exercise to explore different design universes.',
         href: pageInformation[Routes.UIShots]!.path,
         src: uiChallenge,
         alt: 'UI Shots',
         external: false,
         projectType: 'design',
         metrics: [
-            '2020',
-            'user research, user experience, user interface',
-            'user interviews, wireframing, usability studies',
-            'native IOS & android',
-            'miro mindmapping, octopus sitemap, figma',
+            '2023',
+            'Mobile & Desktop',
         ],
-        latest: false,
+        latest: true,
     },
 
     {
