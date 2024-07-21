@@ -28,7 +28,7 @@ const Carousel: React.FC<{ carouselItems: ICarousel[] }> = (props) => {
         }, 4000)
 
         return () => clearTimeout(timer)
-    }, [carouselItems.length])
+    },)
 
 
     return (
