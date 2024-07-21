@@ -28,7 +28,9 @@ const Carousel: React.FC<{ carouselItems: ICarousel[] }> = (props) => {
         }, 4000)
 
         return () => clearTimeout(timer)
-    }, [carouselIndex])
+    }, [carouselItems.length])
+
+
     return (
         <div className="w-full h-[360px] md:h-[768px]">
             <div className='relative flex h-4/6 w-full items-center md:h-full'>
