@@ -1,15 +1,13 @@
-import { type Metadata } from 'next'
+"use client"
+
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { Blockquote } from '@/components/Blockquote'
 import { Border } from '@/components/Border'
-import { Button } from '@/components/Button'
 import { ContactSection } from '@/components/ContactSection'
 import { Container } from '@/components/Container'
 import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 import { PageIntro } from '@/components/PageIntro'
-import { Testimonial } from '@/components/Testimonial'
 import logoTempso from '@/images/clients/tempso/tempso-logo-light.svg'
 import logoBluecargo from '@/images/clients/bluecargo/bluecargo-logo-light.svg'
 import logoSiemens from '@/images/clients/siemens/siemens-logo-light.svg'
@@ -17,68 +15,59 @@ import logoDelair from '@/images/clients/delair-labs/delair-logo-light.svg'
 import logoBnp from '@/images/clients/bnp/bnp-logo-light.svg'
 import logoBotw from '@/images/clients/bofw/bow-logo-light.svg'
 import logoSpectrum from '@/images/clients/spectrum/spectrum-logo-light.svg'
-import { formatDate } from '@/lib/formatDate'
 import { caseStudies } from '@/constant/caseStudy'
 import { ICaseStudy } from '@/types/ICaseStudy'
+import Tabs from '@/components/Tabs'
+import { useState } from 'react'
 
-function CaseStudies({
-    caseStudies,
-}: {
-    caseStudies: Array<ICaseStudy>
-}) {
+interface CaseStudiesProps {
+    caseStudies: Array<ICaseStudy>;
+}
+
+function CaseStudies({ caseStudies = [] }: CaseStudiesProps) {
     return (
-        <Container className="mt-40">
-            <FadeIn>
-                <h2 className="font-display text-2xl font-semibold text-neutral-950">
-                    Case studies
-                </h2>
-            </FadeIn>
-            <div className="mt-10 space-y-20 sm:space-y-24 lg:space-y-32">
+        <div className="py-16">
+            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-12">
                 {caseStudies.map((caseStudy) => (
-                    <FadeIn key={caseStudy.client}>
-                        <article>
-                            <Border className="grid grid-cols-3 gap-x-8 gap-y-8 pt-16">
-                                <div className="col-span-full sm:flex sm:items-center sm:justify-between sm:gap-x-8 lg:col-span-1 lg:block">
-                                    <div className="sm:flex sm:items-center sm:gap-x-6 lg:block">
-                                        <Image
-                                            src={caseStudy.src}
-                                            width={300}
-                                            height={100}
-                                            alt=""
-                                            unoptimized
-                                        />
-                                        <h3 className="mt-6 text-sm font-semibold text-neutral-950 sm:mt-0 lg:mt-8">
-                                            {caseStudy.client}
-                                        </h3>
-                                    </div>
-                                    <div className="mt-1 flex gap-x-4 sm:mt-0 lg:block">
-                                        <p className="text-sm text-neutral-950 lg:mt-2">
-                                            {caseStudy.year}
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="col-span-full lg:col-span-2 lg:max-w-2xl">
-                                    <p className="font-display text-4xl font-medium text-neutral-950">
-                                        <Link href={caseStudy.href}>{caseStudy.title}</Link>
+                    <FadeIn key={caseStudy.key}>
+                        <Link
+                            href={caseStudy.href}
+                            aria-label={`Read case study: ${caseStudy.client}`}
+                        >
+                            <div className="h-full px-8 py-4 rounded-4xl bg-gray-50 transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl hover:bg-gray-100">
+                                <h1 className="mt-6 text-4xl font-semibold text-neutral-950 pb-2">
+                                    {caseStudy.title}
+                                </h1>
+                                <div className="flex items-center space-x-6 border-b border-gray-200 mb-8">
+                                    <p className="text-2xl font-regular text-neutral-500">
+                                        {caseStudy.client}
                                     </p>
-                                    <div className="mt-6 space-y-6 text-base text-neutral-600">
-                                        {caseStudy.description}
-                                    </div>
-                                    <div className="mt-8 flex">
-                                        <Button
-                                            href={caseStudy.href}
-                                            aria-label={`Read case study: ${caseStudy.client}`}
-                                        >
-                                            Read case study
-                                        </Button>
+                                    <div className='py-4 flex space-x-4'>
+                                        {caseStudy.filters.map((item, index) => (
+                                            <span className="inline-flex items-center gap-x-1.5 rounded-full px-2 py-1 text-xs font-medium text-gray-900 ring-1 ring-inset ring-gray-200" key={index}>
+                                                <svg viewBox="0 0 6 6" aria-hidden="true" className="h-1.5 w-1.5 fill-red-500">
+                                                    <circle r={3} cx={3} cy={3} />
+                                                </svg>
+                                                {item}
+                                            </span>
+                                        ))}
+
                                     </div>
                                 </div>
-                            </Border>
-                        </article>
+                                <Image
+                                    src={caseStudy.src}
+                                    width={300}
+                                    height={100}
+                                    alt=""
+                                    className="w-full h-auto rounded-2xl object-cover shadow-lg"
+                                    unoptimized
+                                />
+                            </div>
+                        </Link>
                     </FadeIn>
                 ))}
             </div>
-        </Container>
+        </div>
     )
 }
 
@@ -90,6 +79,13 @@ const clients = [
     ['BlueCargo', logoBluecargo],
     ['Tempso', logoTempso],
     ['Bank of the West', logoBotw],
+]
+
+const initialTabs = [
+    { name: 'All', href: '#', current: true, key: 'all' },
+    { name: 'Desktop', href: '#', current: false, key: 'desktop' },
+    { name: 'Mobile', href: '#', current: false, key: 'mobile' },
+    { name: 'Marketing & Brand', href: '#', current: false, key: 'marketing' },
 ]
 
 function Clients() {
@@ -121,26 +117,40 @@ function Clients() {
     )
 }
 
-export const metadata: Metadata = {
-    title: 'Our Work',
-    description:
-        'We believe in efficiency and maximizing our resources to provide the best value to our clients.',
-}
+export default function Work() {
 
-export default async function Work() {
+    const [tabs, setTabs] = useState(initialTabs);
+
+    const [currentFilter, setCurrentFilter] = useState<string>('all');
+
+
+    const handleTabClick = (tabKey: string) => {
+        setTabs((prevTabs) =>
+            prevTabs.map((tab) =>
+                tab.key === tabKey
+                    ? { ...tab, current: true }
+                    : { ...tab, current: false }
+            )
+        );
+        setCurrentFilter(tabKey.toLowerCase());
+
+    };
+
+    const filteredCaseStudies = caseStudies.filter((caseStudy) =>
+        currentFilter === 'all'
+            ? true
+            : caseStudy.filters.includes(currentFilter)
+    );
+
 
     return (
-        <>
+        <Container>
             <PageIntro
-                eyebrow="My work"
-                title="Creative, swift problem-solver with profound empathy for users' needs."
             >
-                <p>
-                    As a lead product designer with expertise in front-end engineering, I bring a unique blend of technical and creative skills. Most recently, I have built and maintained a complex, cross-platform and cross-team component library for all video platforms at Spectrum. At BlueCargo (YC, series A startup), as a lead product designer, I conduct user research, create user flows, wireframes, prototypes, high-fidelity mockups, and engineering documentation, as well as build and manage the team roadmap and mentor junior designers. Additionally, I am a co-founder and product designer at Tempso, a classical music app for Spotify and Apple Music.
-                </p>
+                <Tabs tabs={tabs} onTabClick={handleTabClick} />
             </PageIntro >
 
-            <CaseStudies caseStudies={caseStudies} />
+            <CaseStudies caseStudies={filteredCaseStudies} />
 
             {/* <Testimonial
         className="mt-24 sm:mt-32 lg:mt-40"
@@ -153,6 +163,6 @@ export default async function Work() {
             <Clients />
 
             <ContactSection />
-        </>
+        </Container>
     )
 }
