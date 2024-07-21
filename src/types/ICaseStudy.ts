@@ -14,5 +14,6 @@ export interface ICaseStudy {
     external: boolean
     projectType: string
     metrics: string[]
+    filters: string[]
     latest: boolean
 }

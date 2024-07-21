@@ -23,6 +23,7 @@ import { GridPattern } from '@/components/GridPattern'
 import { Logo, Logomark } from '@/components/Logo'
 import { Offices } from '@/components/Offices'
 import { SocialMedia } from '@/components/SocialMedia'
+import { Footer } from './Footer'
 
 const RootLayoutContext = createContext<{
   logoHovered: boolean
@@ -66,14 +67,16 @@ function Header({
   return (
     <Container>
       <div className="flex items-center justify-between">
-        <Link
-          href={`${pageInformation[Routes.Home]!.path}`}
-          aria-label="Home"
-          onMouseEnter={() => setLogoHovered(true)}
-          onMouseLeave={() => setLogoHovered(false)}
+        <div className='flex space-x-8'>
+          <Link
+            href={`${pageInformation[Routes.Home]!.path}`}
+            aria-label="Home"
+            onMouseEnter={() => setLogoHovered(true)}
+            onMouseLeave={() => setLogoHovered(false)}
 
-        >
-          {/* <Logomark
+          >
+
+            {/* <Logomark
             className="h-8 sm:hidden"
             invert={invert}
             filled={logoHovered}
@@ -83,9 +86,17 @@ function Header({
             invert={invert}
             filled={logoHovered}
           /> */}
-          <TextLink invert={invert} className='font-semibold hover:text-neutral-950'>Home</TextLink>
+            <TextLink invert={invert} className='font-semibold hover:text-neutral-950'>Home</TextLink>
+          </Link>
+          <Link
+            href={`${pageInformation[Routes.Work]!.path}`}
+            aria-label="Work"
+            className='hidden md:block'
 
-        </Link>
+          >
+            <TextLink invert={invert} className='font-semibold hover:text-neutral-950'>Work</TextLink>
+          </Link>
+        </div>
         <div className="flex items-center gap-x-8">
           <Button href='https://www.linkedin.com/in/pierre-pariente-97835742/' target='blank' invert={invert}>
             Contact me
@@ -147,7 +158,7 @@ function NavigationItem({
 
 function Navigation() {
   return (
-    <nav className="mt-px font-display text-5xl font-medium tracking-tight text-white">
+    <nav className="px-4 font-display text-5xl font-medium tracking-tight text-white">
       <NavigationRow>
         <NavigationItem href={`${pageInformation[Routes.Work]!.path}`}>My Work</NavigationItem>
         <NavigationItem href={`${pageInformation[Routes.About]!.path}`}>About Me</NavigationItem>
@@ -275,7 +286,7 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
 
           <main className="w-full flex-auto mb-32">{children}</main>
 
-          {/* <Footer /> */}
+          <Footer />
         </motion.div>
       </motion.div>
     </MotionConfig>

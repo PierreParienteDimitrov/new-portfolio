@@ -22,13 +22,25 @@ export default {
         '4xl': '2.5rem',
       },
       fontFamily: {
-        sans: ['Archivo Sans', ...defaultTheme.fontFamily.sans],
+        sans: ['Rubik', ...defaultTheme.fontFamily.sans],
         display: [
-          ['Archivo Sans', ...defaultTheme.fontFamily.sans],
+          ['Rubik', ...defaultTheme.fontFamily.sans],
           { fontVariationSettings: '"wdth,wght" 125' },
         ],
       },
+      keyframes: {
+        colorChange: {
+          '0%, 100%': { color: '#22c55e' }, // Start and end with red
+          '33%': { color: '#0891b2' }, // Change to green
+          '66%': { color: '#7c3aed' }, // Change to blue
+        },
+      },
+      animation: {
+        'color-change': 'colorChange 5s infinite',
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 } satisfies Config

@@ -18,22 +18,25 @@ export const caseStudies = [
     {
         key: 'shipments',
         client: 'BlueCargo',
-        year: '2024',
+        year: '2023',
         platform: 'desktop',
-        title: 'Container Management Lifecycle',
+        title: 'Container management solution',
         description:
-            'Designed a container management lifecycle solution for Supply Chain professionals.',
+            'Designed a destination container management software for Supply Chain professionals.',
         href: pageInformation[Routes.ContainerManagement]!.path,
         src: containerManagement,
         alt: 'Container Tracking Case Study',
         external: false,
         projectType: 'design',
         metrics: [
-            '2020',
+            '2023',
             'user research, user experience, user interface',
             'user interviews, wireframing, usability studies',
             'native IOS & android',
             'miro mindmapping, octopus sitemap, figma',
+        ],
+        filters: [
+            'desktop',
         ],
         latest: true,
     },
@@ -42,7 +45,7 @@ export const caseStudies = [
         client: 'Tempso',
         year: '2022',
         platform: 'native (IOS & ANDROID)',
-        title: 'Classical Music Wrapper App For Spotify and Apple Music',
+        title: 'Classical music wrapper app',
         description:
             'Designed a classical music streaming application fully integrated with Apple Music and Spotify.',
         href: pageInformation[Routes.Tempso]!.path,
@@ -57,14 +60,17 @@ export const caseStudies = [
             'native IOS & android',
             'miro mindmapping, octopus sitemap, figma',
         ],
+        filters: [
+            'mobile',
+        ],
         latest: true,
     },
     {
         key: 'spectrum',
-        client: 'Spectrum TV (Charter Communications)',
+        client: 'Spectrum TV',
         year: '2022-2023',
         platform: 'TV, mobile, desktop',
-        title: 'Design Systems For TV Platforms',
+        title: 'Design systems for TV platforms',
         description:
             'Rebuilt the design system supporting all video platforms, including TV, Web and Mobile.',
         href: pageInformation[Routes.Spectrum]!.path,
@@ -78,23 +84,8 @@ export const caseStudies = [
             'component library',
             'design system',
         ],
-        latest: true,
-    },
-    {
-        key: 'portfolio_website',
-        client: 'Portfolio Website',
-        year: '2024',
-        platform: 'responsive web',
-        title: 'Design And Development Of Portfolio Website',
-        description:
-            'Designed and built the front-end and back-end of my portfolio website using Next.js, React.js, Node.js, Tailwind CSS, Vercel.',
-        href: 'https://github.com/PierreParienteDimitrov/new-portfolio',
-        src: Portfolio,
-        alt: 'Portfolio Website',
-        external: true,
-        projectType: 'design',
-        metrics: [
-            '2024',
+        filters: [
+            'desktop',
         ],
         latest: true,
     },
@@ -117,6 +108,31 @@ export const caseStudies = [
             'Sales decks',
             'Ads',
             'Tradeshow assets',
+        ],
+        filters: [
+            'marketing',
+        ],
+        latest: true,
+    },
+    {
+        key: 'portfolio_website',
+        client: 'Portfolio Website',
+        year: '2024',
+        platform: 'responsive web',
+        title: 'Design And Development Of Portfolio Website',
+        description:
+            'Designed and built the front-end and back-end of my portfolio website using Next.js, React.js, Node.js, Tailwind CSS, Vercel.',
+        href: 'https://github.com/PierreParienteDimitrov/new-portfolio',
+        src: Portfolio,
+        alt: 'Portfolio Website',
+        external: true,
+        projectType: 'design',
+        metrics: [
+            '2024',
+        ],
+        filters: [
+            'desktop',
+            'mobile'
         ],
         latest: true,
     },
@@ -141,6 +157,9 @@ export const caseStudies = [
             'desktop',
             'flow charts, figma',
         ],
+        filters: [
+            'desktop',
+        ],
         latest: false,
     },
     {
@@ -162,6 +181,9 @@ export const caseStudies = [
             'user interviews, wireframing, usability studies',
             'native IOS & android',
             'miro mindmapping, octopus sitemap, figma',
+        ],
+        filters: [
+            'desktop',
         ],
         latest: false,
     },
@@ -185,6 +207,8 @@ export const caseStudies = [
             'native IOS & android',
             'miro mindmapping, octopus sitemap, figma',
         ],
+        filters: [
+            'desktop',],
         latest: false,
     },
     {
@@ -202,6 +226,10 @@ export const caseStudies = [
         metrics: [
             '2023',
             'Mobile & Desktop',
+        ],
+        filters: [
+            'desktop',
+            'mobile'
         ],
         latest: true,
     },
@@ -225,6 +253,10 @@ export const caseStudies = [
             'user interviews, wireframing, usability studies',
             'native IOS & android',
             'miro mindmapping, octopus sitemap, figma',
+        ],
+        filters: [
+            'desktop',
+            'mobile'
         ],
         latest: true,
     },

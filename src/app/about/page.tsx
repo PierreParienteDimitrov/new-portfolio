@@ -7,9 +7,7 @@ import { Container } from '@/components/Container'
 import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 import { GridList, GridListItem } from '@/components/GridList'
 import { PageIntro } from '@/components/PageIntro'
-import { PageLinks } from '@/components/PageLinks'
 import { SectionIntro } from '@/components/SectionIntro'
-import { StatList, StatListItem } from '@/components/StatList'
 import imageAngelaFisher from '@/images/team/angela-fisher.jpg'
 import imageBenjaminRussel from '@/images/team/benjamin-russel.jpg'
 import imageBlakeReid from '@/images/team/blake-reid.jpg'
@@ -24,9 +22,105 @@ import imageMichaelFoster from '@/images/team/michael-foster.jpg'
 import imageWhitneyFrancis from '@/images/team/whitney-francis.jpg'
 import { loadArticles } from '@/lib/mdx'
 import { skills, employment, education, interests } from '@/constant/resume'
-import { List, ListItem } from '@/components/List'
 import { GrayscaleTransitionImage } from '@/components/GrayscaleTransitionImage'
+import { List, ListItem } from '@/components/List'
+import { StylizedImage } from '@/components/StylizedImage'
+import { Testimonial } from '@/components/Testimonial'
+import logoTempso from '@/images/clients/tempso/tempso-logo-light.svg'
+import logoBluecargo from '@/images/clients/bluecargo/bluecargo-logo-light.svg'
+import logoSiemens from '@/images/clients/siemens/siemens-logo-light.svg'
+import logoDelair from '@/images/clients/delair-labs/delair-logo-light.svg'
+import logoBnp from '@/images/clients/bnp/bnp-logo-light.svg'
+import logoSpectrum from '@/images/clients/spectrum/spectrum-logo-light.svg'
+import imageFlow from '@/images/flows.jpg'
 
+
+
+const clients = [
+  ['BlueCargo', logoBluecargo],
+  ['Spectrum', logoSpectrum],
+  ['Tempso', logoTempso],
+  ['Delair', logoDelair],
+  ['BNP Paribas', logoBnp],
+  ['Siemens', logoSiemens],
+]
+
+
+function Clients() {
+  return (
+    <div className="py-8">
+      <FadeIn className="flex items-center gap-x-8">
+        <p className="text-center font-display font-regular text-neutral-950">
+          For the last 10 years I have been helping startups and big corporations deliver better experience across iOS, Android, Web and TV.
+        </p>
+      </FadeIn >
+
+      <FadeInStagger faster>
+        <ul
+          role="list"
+          className="mt-10 grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-3"
+        >
+          {clients.map(([client, logo]) => (
+            <li key={client} className='w-full h-24 flex justify-center items-center border border-gray-200 rounded-sm hover:bg-neutral-50 hover:cursor-pointer'>
+              <FadeIn>
+                <Image src={logo} alt={client} unoptimized />
+              </FadeIn>
+            </li>
+          ))}
+        </ul>
+      </FadeInStagger>
+    </div >
+  )
+}
+
+
+function Services() {
+  return (
+    <>
+      <SectionIntro
+        eyebrow="My process"
+        title="I am a full stack product designer & engineer with extensive experience in user experience and interface."
+        className="mt-24 sm:mt-32 lg:mt-40"
+      >
+        <h4>
+          My skills covers user research, user flows, wireframes, high-fidelity mockups, design systems and developer documentation.
+        </h4>
+      </SectionIntro>
+      <Container className="mt-16">
+        <div className="lg:flex lg:items-center lg:justify-end">
+          <div className="flex justify-center lg:w-1/2 lg:justify-end lg:pr-12">
+            <FadeIn className="w-[33.75rem] flex-none lg:w-[45rem]">
+              <StylizedImage
+                src={imageFlow}
+                sizes="(min-width: 1024px) 41rem, 31rem"
+                className="justify-center lg:justify-end"
+              />
+            </FadeIn>
+          </div>
+          <List className="mt-16 lg:mt-0 lg:w-1/2 lg:min-w-[33rem] lg:pl-4">
+            <ListItem title="User research">
+              As a product designer, I prioritize understanding users by conducting qualitative interviews, immersive on-sites, and analyzing available data to uncover their needs, frustrations, and digital fluency.</ListItem>
+            <ListItem title="User flows and wireframes">
+              Through user flows & wireframes I test assumptions against real life and iterate closely with a few selected users to improve the experience and make sure to cover at least the essentials needs.
+            </ListItem>
+            {/* <ListItem title="Product roadmap">
+              I refine user experiences by testing assumptions with user flows and wireframes, iterating closely with select users to ensure essential needs are met.
+            </ListItem> */}
+            <ListItem title="High-fidelity mockups and prototypes">
+              When the user experience is solidified, I build high-fidelity mockups & prototypes of the product for a last round of internal and external validation.
+            </ListItem>
+            <ListItem title="Design systems and documentation">
+              After finalizing the high-fidelity designs, I develop comprehensive documentation to accelerate the engineering process and continuously build, maintain, and enhance the design system and component library.
+            </ListItem>
+            <ListItem title="Development">
+              My engineering skills in HTML, CSS, JavaScript/TypeScript, and libraries like React, along with frameworks such as Next.js, Express.js, and Tailwind.css, enable me to build live prototypes and MVPs to test product assumptions with end users.
+            </ListItem>
+          </List>
+        </div>
+      </Container>
+    </>
+  )
+}
 
 
 const Skills = () => {
@@ -137,9 +231,6 @@ const Interests = () => {
     </div >
   )
 }
-
-
-
 
 function Culture() {
   return (
@@ -320,6 +411,27 @@ export default async function About() {
           <StatListItem value="$25M" label="Invoices billed" />
         </StatList>
       </Container> */}
+
+      <div className='mx-auto max-w-7xl px-6 lg:px-8 mt-16 sm:mt-16'>
+        <Clients />
+      </div>
+
+
+      <Testimonial
+        className="mt-24 sm:mt-32 lg:mt-40"
+        client={{ name: 'Tempso User Feedback', logo: logoTempso }}
+      >
+        <h2>
+          Tempso is a very useful app with an excellent UI. A must have if you have Spotify and you like classical music. Thanks for making this.
+        </h2>
+        <br />
+
+        <h4>December 25, 2023 | Google Play</h4>
+      </Testimonial>
+
+      <Services />
+
+      <ContactSection />
 
       <Skills />
 
