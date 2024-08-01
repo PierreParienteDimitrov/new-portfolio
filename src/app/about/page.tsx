@@ -399,10 +399,12 @@ export default async function About() {
     <>
       <PageIntro eyebrow="About me" title="I am a seasoned Product Designer with a strong background in front-end engineering. ">
         <p>
-          As the third employee and Senior Product Designer at BlueCargo (YC S18, Series A), I spearheaded the design and launch of critical products for supply chain professionals, significantly boosting company revenue and facilitating growth from 3 to 40 team members.
+          As the first employee, Senior & Founding Product Designer at BlueCargo (YC S18, Series A), I spearheaded the design and launch of critical products for supply chain professionals, significantly boosting company revenue and facilitating growth from 3 to 40 team members.
         </p>
         <br />
         <p>Previously at Spectrum TV, I developed and managed a sophisticated cross-platform design system, enhancing collaboration and consistency across all video platform teams.</p>
+        <br />
+        <p>Finally I founded and designed Tempso, a classical music streaming wrapper app for Spotify and Apple Music.</p>
       </PageIntro>
       {/* <Container className="mt-16">
         <StatList>
