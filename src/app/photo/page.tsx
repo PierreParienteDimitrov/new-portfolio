@@ -20,7 +20,6 @@ export default async function PhotosPage() {
         <div>
             <h1>Photos</h1>
             {photos.map((photo) => {
-
                 return (
                     <div key={photo.name}>
                         <h2>{photo.name}</h2>
