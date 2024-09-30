@@ -14,6 +14,7 @@ export const client = createClient({
 })
 
 
+
 // Image URL builder
 const builder = imageUrlBuilder(client);
 
