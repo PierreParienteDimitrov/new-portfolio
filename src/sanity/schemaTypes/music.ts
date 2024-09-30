@@ -26,5 +26,10 @@ export const music = defineType({
             title: 'Meta Information',
             type: 'string',
         }),
+        defineField({
+            name: 'track number',
+            title: 'Meta numner',
+            type: 'integer',
+        }),
     ],
 });

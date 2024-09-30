@@ -22,4 +22,5 @@ export interface Music {
     description: string;
     musicUrl: string;
     meta: string;
+    trackNumber: number;
 }
