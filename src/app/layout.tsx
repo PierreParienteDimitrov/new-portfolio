@@ -24,6 +24,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body className="flex min-h-full flex-col">
         <Providers>
+          <div id="modal-root"></div> {/* This is where the modal will render */}
           <RootLayout>{children}
             <Analytics />
           </RootLayout>
