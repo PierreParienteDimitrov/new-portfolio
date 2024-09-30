@@ -84,15 +84,31 @@ function Header({
             invert={invert}
             filled={logoHovered}
           /> */}
-            <TextLink invert={invert} className='font-semibold hover:text-neutral-950'>Home</TextLink>
+            <TextLink invert={invert} className='font-medium hover:text-neutral-950'>Home</TextLink>
           </Link>
           <Link
             href={`${pageInformation[Routes.Work]!.path}`}
-            aria-label="Work"
+            aria-label="Design"
             className='hidden md:block'
 
           >
-            <TextLink invert={invert} className='font-semibold hover:text-neutral-950'>Work</TextLink>
+            <TextLink invert={invert} className='font-medium hover:text-neutral-950'>Design</TextLink>
+          </Link>
+          <Link
+            href={`${pageInformation[Routes.Photography]!.path}`}
+            aria-label="Photography"
+            className='hidden md:block'
+
+          >
+            <TextLink invert={invert} className='font-medium hover:text-neutral-950'>Photography</TextLink>
+          </Link>
+          <Link
+            href={`${pageInformation[Routes.Music]!.path}`}
+            aria-label="Music"
+            className='hidden md:block'
+
+          >
+            <TextLink invert={invert} className='font-medium hover:text-neutral-950'>Music</TextLink>
           </Link>
         </div>
         <div className="flex items-center gap-x-8">
@@ -158,7 +174,9 @@ function Navigation() {
   return (
     <nav className="px-4 font-display text-5xl font-medium tracking-tight text-white">
       <NavigationRow>
-        <NavigationItem href={`${pageInformation[Routes.Work]!.path}`}>My Work</NavigationItem>
+        <NavigationItem href={`${pageInformation[Routes.Work]!.path}`}>Product Design</NavigationItem>
+        <NavigationItem href={`${pageInformation[Routes.Work]!.path}`}>Photography</NavigationItem>
+        <NavigationItem href={`${pageInformation[Routes.Work]!.path}`}>Music</NavigationItem>
         <NavigationItem href={`${pageInformation[Routes.About]!.path}`}>About Me</NavigationItem>
       </NavigationRow>
       {/* <NavigationRow>
