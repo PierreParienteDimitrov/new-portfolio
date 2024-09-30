@@ -17,7 +17,7 @@ export interface Photo {
     meta: any; // Define the meta type if you know its structure
 }
 
-export interface Music {
+export interface MusicTrack {
     name: string;
     description: string;
     musicUrl: string;
