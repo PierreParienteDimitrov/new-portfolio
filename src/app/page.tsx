@@ -59,7 +59,7 @@ export default function Home() {
         <FadeIn>
           <div className='w-full'>
             <h2 className="text-neutral-900 font-medium md:text-6xl text-5xl">
-              Welcome to my <span className='font-bold text-fuchsia-800'>creative space!</span> Explore my work as a product designer, dive into my photography, and listen to my music. Each section reflects a passion for crafting unique experiences, whether it's through design, visuals, or sound.
+              Welcome to my <span className='font-bold text-fuchsia-800'>creative space!</span> Explore my work as a product designer, dive into my photography, and listen to my music. Each section reflects a passion for crafting unique experiences, whether it&apos;s through design, visuals, or sound.
             </h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-16">
