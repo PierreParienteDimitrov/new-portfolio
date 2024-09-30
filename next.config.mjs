@@ -14,6 +14,9 @@ import { unifiedConditional } from 'unified-conditional'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
+  images: {
+    domains: ['cdn.sanity.io'], // Add the Sanity image domain here
+  },
 }
 
 function remarkMDXLayout(source, metaName) {
@@ -81,3 +84,5 @@ export default async function config() {
 
   return withMDX(nextConfig)
 }
+
+

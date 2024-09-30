@@ -1,11 +1,20 @@
 export interface Photo {
-    photo(photo: any): unknown;
-    imageUrl: string | undefined;
     name: string;
     location: string;
     description: string;
-    photoUrl: string;
-    meta: string;
+    photo: {
+        asset: {
+            _id: string;
+            url: string;
+            metadata: {
+                dimensions: {
+                    width: number;
+                    height: number;
+                };
+            };
+        };
+    };
+    meta: any; // Define the meta type if you know its structure
 }
 
 export interface Music {

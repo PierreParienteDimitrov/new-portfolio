@@ -1,8 +1,7 @@
 'use client'
 
 import { pageInformation, Routes } from '../constant/allPages'
-
-
+import { usePathname } from 'next/navigation'; // Use usePathname for the current URL
 import {
   createContext,
   useContext,
@@ -12,7 +11,6 @@ import {
   useState,
 } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 import { motion, MotionConfig, useReducedMotion } from 'framer-motion'
 
@@ -179,6 +177,14 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
   let navRef = useRef<React.ElementRef<'div'>>(null)
   let shouldReduceMotion = useReducedMotion()
 
+  const pathname = usePathname(); // Get the current path
+
+  // Find the current page based on the path
+  const currentPage = Object.values(pageInformation).find(
+    (page) => page.path === pathname
+  );
+
+
   useEffect(() => {
     function onClick(event: MouseEvent) {
       if (
@@ -200,7 +206,7 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
     <MotionConfig transition={shouldReduceMotion ? { duration: 0 } : undefined}>
       <header>
         <div
-          className="absolute left-0 right-0 top-2 z-40 pt-14"
+          className="absolute left-0 right-0 top-2 z-10 pt-14"
           aria-hidden={expanded ? 'true' : undefined}
           // @ts-ignore (https://github.com/facebook/react/issues/17157)
           inert={expanded ? '' : undefined}
@@ -223,7 +229,7 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
           layout
           id={panelId}
           style={{ height: expanded ? 'auto' : '0.5rem' }}
-          className="relative z-50 overflow-hidden bg-neutral-950 pt-2"
+          className="relative z-0 overflow-hidden bg-neutral-950 pt-2"
           aria-hidden={expanded ? undefined : 'true'}
           // @ts-ignore (https://github.com/facebook/react/issues/17157)
           inert={expanded ? undefined : ''}
@@ -286,7 +292,10 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
 
           <main className="w-full flex-auto mb-32">{children}</main>
 
-          <Footer />
+
+          {/* Conditionally render the footer based on the current page's showFooter */}
+          {currentPage?.showFooter && <Footer />}
+
         </motion.div>
       </motion.div>
     </MotionConfig>
@@ -296,6 +305,8 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
 export function RootLayout({ children }: { children: React.ReactNode }) {
   let pathname = usePathname()
   let [logoHovered, setLogoHovered] = useState(false)
+
+
 
   return (
     <RootLayoutContext.Provider value={{ logoHovered, setLogoHovered }}>
