@@ -145,10 +145,16 @@ export default function Work() {
 
     return (
         <Container>
+            <div className='w-full mt-32'>
+                <h2 className="text-neutral-900 font-medium md:text-7xl text-5xl">
+                    Pierre Pariente is a  <span className='font-bold text-fuchsia-800'>product designer </span>who collaborates with founders and larger companies to build innovative products and develop scalable design systems and strategies across teams.
+                </h2>
+            </div>
             <PageIntro
             >
                 <Tabs tabs={tabs} onTabClick={handleTabClick} />
             </PageIntro >
+
 
             <CaseStudies caseStudies={filteredCaseStudies} />
 

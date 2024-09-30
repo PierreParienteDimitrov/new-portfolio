@@ -22,7 +22,9 @@ export enum Routes {
     UIShots = '/ui-shots',
     Work = '/work',
     ProductMarketing = '/product-marketing',
-    Photos = '/photos'
+    Photography = '/photography',
+    Music = '/music'
+
 }
 
 export const pageInformation: Record<string, IPage> = {
@@ -123,9 +125,15 @@ export const pageInformation: Record<string, IPage> = {
         isPublic: true,
         showFooter: true,
     },
-    [Routes.Photos]: {
+    [Routes.Photography]: {
         title: 'Pierre Pariente Dimitrov - Photos',
-        path: Routes.Photos,
+        path: Routes.Photography,
+        isPublic: true,
+        showFooter: false,
+    },
+    [Routes.Music]: {
+        title: 'Pierre Pariente Dimitrov - Photos',
+        path: Routes.Music,
         isPublic: true,
         showFooter: false,
     },
