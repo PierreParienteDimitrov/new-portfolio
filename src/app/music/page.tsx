@@ -1,12 +1,16 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
-import { PlayIcon, PauseIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'; // Updated import path
-import { MusicTrack } from '@/types/ISanity';
-import { client } from '@/sanity/lib/client';
-import { PageIntro } from '@/components/PageIntro';
-import { Container } from '@/components/Container';
-
+import { useState, useEffect, useRef } from "react";
+import {
+    PlayIcon,
+    PauseIcon,
+    ChevronLeftIcon,
+    ChevronRightIcon,
+} from "@heroicons/react/24/solid"; // Updated import path
+import { MusicTrack } from "@/types/ISanity";
+import { client } from "@/sanity/lib/client";
+import { PageIntro } from "@/components/PageIntro";
+import { Container } from "@/components/Container";
 
 // Fetch music tracks from Sanity (placeholder)
 const getMusicTracks = async (): Promise<MusicTrack[]> => {
@@ -46,7 +50,7 @@ export default function MusicPage() {
     const preloadTrackDurations = (tracks: MusicTrack[]) => {
         tracks.forEach((track, index) => {
             const audio = new Audio(track.musicUrl);
-            audio.addEventListener('loadedmetadata', () => {
+            audio.addEventListener("loadedmetadata", () => {
                 setDurations((prevDurations) => ({
                     ...prevDurations,
                     [index]: audio.duration,
@@ -118,16 +122,30 @@ export default function MusicPage() {
         }
     };
 
-    // Get the total duration of the track once it is loaded
-    const updateDuration = () => {
+    // Attach event listeners for updating progress
+    useEffect(() => {
         const audio = audioRef.current;
+
+        const handleTrackEnd = () => {
+            if (currentTrackIndex !== null && currentTrackIndex < tracks.length - 1) {
+                setCurrentTrackIndex(currentTrackIndex + 1); // Play next track
+            } else {
+                setIsPlaying(false); // Stop playing if no more tracks
+            }
+        };
+
         if (audio) {
-            setDurations((prevDurations) => ({
-                ...prevDurations,
-                [currentTrackIndex!]: audio.duration,
-            }));
+            audio.addEventListener("timeupdate", updateProgress);
+            audio.addEventListener("ended", handleTrackEnd);
         }
-    };
+
+        return () => {
+            if (audio) {
+                audio.removeEventListener("timeupdate", updateProgress);
+                audio.removeEventListener("ended", handleTrackEnd);
+            }
+        };
+    }, [currentTrackIndex, isPlaying, tracks.length]);
 
     // Seek to a specific point in the track
     const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -143,13 +161,19 @@ export default function MusicPage() {
     const formatTime = (time: number) => {
         const minutes = Math.floor(time / 60);
         const seconds = Math.floor(time % 60);
-        return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
     };
 
     return (
         <Container>
+            <PageIntro title="Les Carnets de l'Eveil" eyebrow="Work in progress">
+                <div className="flex flex-col space-y-4 mb-16">
+                    <p>“Les Carnets de l&apos;Éveil” is a work in progress for violin, cello, and piano. The tracks are audio exports from the music notation software Sibelius.</p>
+                    <p>Composer: Pierre Pariente Dimitrov</p>
+                </div>
 
-            <PageIntro title="Les Carnets de l'Eveil" />
+            </PageIntro>
+
 
             {/* Track List */}
             <div className="grid grid-cols-1 gap-4">
@@ -158,8 +182,8 @@ export default function MusicPage() {
                         key={track.trackNumber}
                         className={`p-4 border rounded-lg cursor-pointer flex items-center space-x-4 justify-between
               ${currentTrackIndex === index
-                                ? 'bg-blue-100 border-blue-500' // Active state
-                                : 'border-gray-300 hover:bg-gray-100'
+                                ? "bg-blue-100 border-blue-500" // Active state
+                                : "border-gray-300 hover:bg-gray-100"
                             }`}
                     >
                         <div className="flex items-center space-x-4">
@@ -179,47 +203,58 @@ export default function MusicPage() {
                         </div>
                         {/* Display Track Duration */}
                         <div className="text-sm text-gray-600">
-                            {durations[index] ? formatTime(durations[index]) : 'Loading...'}
+                            {durations[index] ? formatTime(durations[index]) : "Loading..."}
                         </div>
                     </div>
                 ))}
             </div>
 
-            {/* Audio Player */}
+            {/* Spotify-style Audio Player */}
             {currentTrackIndex !== null && (
                 <div className="fixed bottom-0 left-0 right-0 p-4 bg-gray-900 text-white">
-                    <h2 className="text-lg font-bold">
-                        Now Playing: {tracks[currentTrackIndex].name}
-                    </h2>
-                    <p>{tracks[currentTrackIndex].description}</p>
+                    <div className="flex items-center justify-between">
+                        {/* Track Information */}
+                        <div className="flex items-center space-x-4">
+                            <div>
+                                <h2 className="text-lg font-bold">
+                                    {tracks[currentTrackIndex].name}
+                                </h2>
+                                <p className="text-sm">{tracks[currentTrackIndex].description}</p>
+                            </div>
+                        </div>
 
-                    <div className="flex items-center space-x-4 mt-2">
-                        {/* Previous Button */}
-                        <button onClick={handlePrevTrack} disabled={currentTrackIndex === 0}>
-                            <ChevronLeftIcon className="w-8 h-8 text-white" />
-                        </button>
+                        {/* Player Controls */}
+                        <div className="flex items-center space-x-6">
+                            {/* Previous Button */}
+                            <button onClick={handlePrevTrack} disabled={currentTrackIndex === 0}>
+                                <ChevronLeftIcon className="w-8 h-8 text-white" />
+                            </button>
 
-                        {/* Play/Pause Button */}
-                        <button onClick={togglePlayPause}>
-                            {isPlaying ? (
-                                <PauseIcon className="w-8 h-8 text-white" />
-                            ) : (
-                                <PlayIcon className="w-8 h-8 text-white" />
-                            )}
-                        </button>
+                            {/* Play/Pause Button */}
+                            <button
+                                onClick={togglePlayPause}
+                                className="w-12 h-12 rounded-full bg-white text-gray-900 flex items-center justify-center"
+                            >
+                                {isPlaying ? (
+                                    <PauseIcon className="w-6 h-6" />
+                                ) : (
+                                    <PlayIcon className="w-6 h-6" />
+                                )}
+                            </button>
 
-                        {/* Next Button */}
-                        <button
-                            onClick={handleNextTrack}
-                            disabled={currentTrackIndex === tracks.length - 1}
-                        >
-                            <ChevronRightIcon className="w-8 h-8 text-white" />
-                        </button>
+                            {/* Next Button */}
+                            <button
+                                onClick={handleNextTrack}
+                                disabled={currentTrackIndex === tracks.length - 1}
+                            >
+                                <ChevronRightIcon className="w-8 h-8 text-white" />
+                            </button>
+                        </div>
                     </div>
 
-                    {/* Progress Bar with Time Display */}
+                    {/* Progress Bar */}
                     <div className="mt-4 flex items-center justify-between">
-                        <span>{formatTime(currentTime)}</span> {/* Current Time */}
+                        <span className="text-sm">{formatTime(currentTime)}</span>
                         <input
                             type="range"
                             min="0"
@@ -228,7 +263,9 @@ export default function MusicPage() {
                             onChange={handleSeek}
                             className="w-full mx-4"
                         />
-                        <span>{formatTime(durations[currentTrackIndex!] || 0)}</span> {/* Total Duration */}
+                        <span className="text-sm">
+                            {formatTime(durations[currentTrackIndex!] || 0)}
+                        </span>
                     </div>
 
                     {/* Audio element */}
