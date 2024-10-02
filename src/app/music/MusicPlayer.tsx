@@ -25,6 +25,37 @@ export default function MusicPlayer({ tracks }: MusicPlayerProps) {
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
     useEffect(() => {
+        if ('mediaSession' in navigator) {
+            navigator.mediaSession.metadata = new MediaMetadata({
+                title: currentTrackIndex !== null ? tracks[currentTrackIndex].name : "",
+                artist: "Pierre Pariente Dimitrov",
+                album: "Les Carnets de l'Éveil",
+                artwork: [
+                    {
+                        src: "/path/to/album-art.jpg", // Optional: Add album art
+                        sizes: "512x512",
+                        type: "image/jpg",
+                    },
+                ],
+            });
+
+            navigator.mediaSession.setActionHandler('play', () => {
+                audioRef.current?.play();
+                setIsPlaying(true);
+            });
+
+            navigator.mediaSession.setActionHandler('pause', () => {
+                audioRef.current?.pause();
+                setIsPlaying(false);
+            });
+
+            navigator.mediaSession.setActionHandler('previoustrack', handlePrevTrack);
+            navigator.mediaSession.setActionHandler('nexttrack', handleNextTrack);
+        }
+    }, [currentTrackIndex, tracks]);
+
+
+    useEffect(() => {
         preloadTrackDurations(tracks);
     }, [tracks]);
 
@@ -213,7 +244,7 @@ export default function MusicPlayer({ tracks }: MusicPlayerProps) {
                     </div>
 
                     {/* Audio element */}
-                    <audio ref={audioRef} src={tracks[currentTrackIndex].musicUrl} autoPlay />
+                    <audio ref={audioRef} src={tracks[currentTrackIndex].musicUrl} autoPlay controls />
                 </div>
             )}
         </div>
