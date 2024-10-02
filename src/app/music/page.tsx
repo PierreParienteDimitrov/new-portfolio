@@ -17,6 +17,7 @@ const getMusicTracks = async (): Promise<MusicTrack[]> => {
     }`;
 
     const musicTracks = await client.fetch(query);
+
     return musicTracks;
 }
 
@@ -38,3 +39,6 @@ export default async function MusicPage() {
         </Container>
     );
 }
+
+export const revalidate = 60; // Set a revalidation time (for ISR or fetch cache updates)
+
