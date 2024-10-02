@@ -17,14 +17,6 @@ export interface Photo {
     meta: any; // Define the meta type if you know its structure
 }
 
-export interface MusicTrack {
-    name: string;
-    description: string;
-    musicUrl: string;
-    meta: string;
-    trackNumber: number;
-}
-
 export interface Album {
     album: {
         name: string;          // Name of the album
@@ -38,4 +30,13 @@ export interface Album {
         };
     };
     tracks: MusicTrack[];     // List of tracks in the album
+}
+
+export interface MusicTrack {
+    name: string;
+    description: string;
+    musicUrl: string;
+    meta: string;
+    trackNumber: number;
+    album: Album;  // Reference to the Album type
 }

@@ -24,14 +24,6 @@ export const album = defineType({
             name: 'releaseDate',
             title: 'Release Date',
             type: 'date',
-            options: {
-                dateFormat: 'YYYY-MM-DD',
-            },
-        }),
-        defineField({
-            name: 'cover',
-            title: 'Album Cover',
-            type: 'image',
         }),
     ],
 });

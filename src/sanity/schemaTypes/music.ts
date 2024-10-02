@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity';
+import { defineType, defineField } from 'sanity';
 
 export const music = defineType({
     name: 'music',
@@ -34,9 +34,8 @@ export const music = defineType({
         defineField({
             name: 'album',
             title: 'Album',
-            type: 'reference',
-            // Explicitly cast the 'to' property using `as const`
-            to: [{ type: 'album' }] as const,
+            type: 'reference', // Ensure type is 'reference'
+            to: [{ type: 'album' }],  // Correctly define the 'to' field
             description: 'Select the album this track belongs to',
         }),
     ],
