@@ -34,8 +34,8 @@ export const music = defineType({
         defineField({
             name: 'album',
             title: 'Album',
-            type: 'reference', // Ensure type is 'reference'
-            to: [{ type: 'album' }],  // Correctly define the 'to' field
+            type: 'reference',
+            to: [{ type: 'album' }],
             description: 'Select the album this track belongs to',
         }),
     ],

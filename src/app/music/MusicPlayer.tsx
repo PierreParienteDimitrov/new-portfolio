@@ -3,10 +3,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { PlayIcon, PauseIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
-import { Album } from '@/types/ISanity'; // Ensure this is the correct path for Album interface
+import { GroupedAlbum } from '@/types/ISanity'; // Ensure this is the correct path for Album interface
 
 interface AlbumProps {
-    albums: Album[];
+    albums: GroupedAlbum[];
 }
 
 export default function MusicPlayer({ albums }: AlbumProps) {

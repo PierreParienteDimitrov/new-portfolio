@@ -47,11 +47,10 @@ export default function PhotosGallery({ photos }: PhotosGalleryProps) {
                         <Image
                             src={photo.photo.asset.url}
                             alt={photo.name}
-                            width={photo.photo.asset.metadata.dimensions.width}
-                            height={photo.photo.asset.metadata.dimensions.height}
+                            width={photo.photo.asset.metadata?.dimensions?.width ?? 500}
+                            height={photo.photo.asset.metadata?.dimensions?.height ?? 500}
                             objectFit="cover"
                             className="rounded-lg cursor-pointer"
-                            onClick={() => handlePhotoClick(index)}
                         />
                     </div>
                 ))}
