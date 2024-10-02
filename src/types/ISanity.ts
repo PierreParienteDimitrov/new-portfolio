@@ -24,3 +24,18 @@ export interface MusicTrack {
     meta: string;
     trackNumber: number;
 }
+
+export interface Album {
+    album: {
+        name: string;          // Name of the album
+        description?: string;  // Optional description of the album
+        composer: string;      // Composer of the album
+        releaseDate?: string;  // Optional release date of the album
+        cover?: {              // Optional cover image
+            asset: {
+                url: string;   // URL of the album cover image
+            };
+        };
+    };
+    tracks: MusicTrack[];     // List of tracks in the album
+}

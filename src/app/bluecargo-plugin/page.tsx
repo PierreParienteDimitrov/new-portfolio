@@ -312,18 +312,6 @@ const Plugin = () => {
 }
 
 
-// export async function getServerSideProps() {
-
-//     const cookieStore = cookies()
-//     const storedPassword = "Pacman";
-//     let password = cookieStore.get('password')
-//     console.log(password)
-
-//     return {
-//         props: {}, // will be passed to the page component as props
-//     }
-// }
-
 
 export default Plugin
 

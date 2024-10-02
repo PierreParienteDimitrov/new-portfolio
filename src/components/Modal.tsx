@@ -54,10 +54,13 @@ const Modal = ({
                     </div>
 
                     {/* Image Information */}
-                    <div className="mt-4 text-center text-white">
-                        <h2 className="text-3xl font-bold">{photos[selectedPhotoIndex].name}</h2>
-                        <p className="text-lg">{photos[selectedPhotoIndex].location}</p>
-                        <p className="text-lg">{photos[selectedPhotoIndex].description}</p>
+                    <div className='text-center'>
+                        <div className="mt-4 text-black flex space-x-2 justify-center w-full">
+                            <p className="text-m">{photos[selectedPhotoIndex].name} - </p>
+                            <p className="text-m">{photos[selectedPhotoIndex].location} </p>
+                        </div>
+
+                        <h5 className="text-m">{photos[selectedPhotoIndex].description}</h5>
                     </div>
 
                     {/* Navigation Buttons */}
