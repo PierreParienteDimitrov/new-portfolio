@@ -1,40 +1,42 @@
-// app/music/MusicPlayer.tsx (Client Component)
+"use client"
 
-"use client"; // Ensures this component runs only on the client
+import { useState, useEffect, useRef } from 'react';
+import { PlayIcon, PauseIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
+import Image from 'next/image';
+import { GroupedAlbum } from '@/types/ISanity'; // Ensure this is the correct path for Album interface
 
-import { useState, useEffect, useRef } from "react";
-import {
-    PlayIcon,
-    PauseIcon,
-    ChevronLeftIcon,
-    ChevronRightIcon,
-} from "@heroicons/react/24/solid";
-import { MusicTrack } from "@/types/ISanity";
-
-interface MusicPlayerProps {
-    tracks: MusicTrack[];
+interface AlbumProps {
+    albums: GroupedAlbum[];
 }
 
-// Client-side Music Player component
-export default function MusicPlayer({ tracks }: MusicPlayerProps) {
+export default function MusicPlayer({ albums }: AlbumProps) {
     const [currentTrackIndex, setCurrentTrackIndex] = useState<number | null>(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
     const [currentTime, setCurrentTime] = useState(0);
     const [durations, setDurations] = useState<Record<number, number>>({});
+    const [currentAlbumIndex, setCurrentAlbumIndex] = useState<number | null>(null);
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
+    // Helper function to check if the device is mobile
+    const isMobileDevice = () => {
+        return typeof window !== 'undefined' && /Mobi|Android/i.test(navigator.userAgent);
+    };
+
     useEffect(() => {
-        if ('mediaSession' in navigator) {
+        if (isMobileDevice() && currentAlbumIndex !== null && currentTrackIndex !== null && 'mediaSession' in navigator) {
+            const currentAlbum = albums[currentAlbumIndex];
+            const currentTrack = currentAlbum.tracks[currentTrackIndex];
+
             navigator.mediaSession.metadata = new MediaMetadata({
-                title: currentTrackIndex !== null ? tracks[currentTrackIndex].name : "",
-                artist: "Pierre Pariente Dimitrov",
-                album: "Les Carnets de l'Éveil",
+                title: currentTrack.name,
+                artist: currentAlbum.album.composer,
+                album: currentAlbum.album.name,
                 artwork: [
                     {
-                        src: "/path/to/album-art.jpg", // Optional: Add album art
-                        sizes: "512x512",
-                        type: "image/jpg",
+                        src: currentAlbum.album.cover ? currentAlbum.album.cover.asset.url : '/path/to/placeholder.jpg',
+                        sizes: '512x512',
+                        type: 'image/jpg',
                     },
                 ],
             });
@@ -52,26 +54,32 @@ export default function MusicPlayer({ tracks }: MusicPlayerProps) {
             navigator.mediaSession.setActionHandler('previoustrack', handlePrevTrack);
             navigator.mediaSession.setActionHandler('nexttrack', handleNextTrack);
         }
-    }, [currentTrackIndex, tracks]);
+    }, [currentAlbumIndex, currentTrackIndex]);
 
+    const preloadTrackDurations = (albumIndex: number) => {
+        const album = albums[albumIndex];
 
-    useEffect(() => {
-        preloadTrackDurations(tracks);
-    }, [tracks]);
-
-    const preloadTrackDurations = (tracks: MusicTrack[]) => {
-        tracks.forEach((track, index) => {
-            const audio = new Audio(track.musicUrl);
-            audio.addEventListener("loadedmetadata", () => {
-                setDurations((prevDurations) => ({
-                    ...prevDurations,
-                    [index]: audio.duration,
-                }));
+        // Check if album.tracks exists and is an array before looping through it
+        if (album.tracks && Array.isArray(album.tracks)) {
+            album.tracks.forEach((track, trackIndex) => {
+                const audio = new Audio(track.musicUrl);
+                audio.addEventListener('loadedmetadata', () => {
+                    const index = albumIndex * 100 + trackIndex; // Create unique index
+                    setDurations((prevDurations) => ({
+                        ...prevDurations,
+                        [index]: audio.duration,
+                    }));
+                });
             });
-        });
+        }
     };
 
-    const handlePlayPauseTrack = (index: number) => {
+    useEffect(() => {
+        albums.forEach((_, albumIndex) => preloadTrackDurations(albumIndex));
+    }, [albums]);
+
+    const handlePlayPauseTrack = (albumIndex: number, trackIndex: number) => {
+        const index = albumIndex * 100 + trackIndex;
         if (currentTrackIndex === index) {
             if (isPlaying) {
                 audioRef.current?.pause();
@@ -81,39 +89,41 @@ export default function MusicPlayer({ tracks }: MusicPlayerProps) {
                 setIsPlaying(true);
             }
         } else {
-            setCurrentTrackIndex(index);
+            setCurrentAlbumIndex(albumIndex);
+            setCurrentTrackIndex(trackIndex);
             setIsPlaying(true);
         }
     };
 
     const handleTrackEnd = () => {
-        if (currentTrackIndex !== null && currentTrackIndex < tracks.length - 1) {
-            setCurrentTrackIndex(currentTrackIndex + 1);
-        } else {
-            setIsPlaying(false);
+        if (currentAlbumIndex !== null && currentTrackIndex !== null) {
+            const album = albums[currentAlbumIndex];
+            if (currentTrackIndex < album.tracks.length - 1) {
+                setCurrentTrackIndex(currentTrackIndex + 1);
+            } else if (currentAlbumIndex < albums.length - 1) {
+                // Go to the next album's first track
+                setCurrentAlbumIndex(currentAlbumIndex + 1);
+                setCurrentTrackIndex(0);
+            } else {
+                setIsPlaying(false); // End of all albums
+            }
         }
-    };
-
-    const togglePlayPause = () => {
-        if (isPlaying) {
-            audioRef.current?.pause();
-        } else {
-            audioRef.current?.play();
-        }
-        setIsPlaying(!isPlaying);
     };
 
     const handleNextTrack = () => {
-        if (currentTrackIndex !== null && currentTrackIndex < tracks.length - 1) {
-            setCurrentTrackIndex(currentTrackIndex + 1);
-            setIsPlaying(true);
+        if (currentAlbumIndex !== null && currentTrackIndex !== null) {
+            const album = albums[currentAlbumIndex];
+            if (currentTrackIndex < album.tracks.length - 1) {
+                setCurrentTrackIndex(currentTrackIndex + 1);
+            }
         }
     };
 
     const handlePrevTrack = () => {
-        if (currentTrackIndex !== null && currentTrackIndex > 0) {
-            setCurrentTrackIndex(currentTrackIndex - 1);
-            setIsPlaying(true);
+        if (currentAlbumIndex !== null && currentTrackIndex !== null) {
+            if (currentTrackIndex > 0) {
+                setCurrentTrackIndex(currentTrackIndex - 1);
+            }
         }
     };
 
@@ -129,13 +139,13 @@ export default function MusicPlayer({ tracks }: MusicPlayerProps) {
     useEffect(() => {
         const audio = audioRef.current;
         if (audio) {
-            audio.addEventListener("timeupdate", updateProgress);
-            audio.addEventListener("ended", handleTrackEnd);
+            audio.addEventListener('timeupdate', updateProgress);
+            audio.addEventListener('ended', handleTrackEnd);
         }
         return () => {
             if (audio) {
-                audio.removeEventListener("timeupdate", updateProgress);
-                audio.removeEventListener("ended", handleTrackEnd);
+                audio.removeEventListener('timeupdate', updateProgress);
+                audio.removeEventListener('ended', handleTrackEnd);
             }
         };
     }, [currentTrackIndex, isPlaying]);
@@ -152,53 +162,97 @@ export default function MusicPlayer({ tracks }: MusicPlayerProps) {
     const formatTime = (time: number) => {
         const minutes = Math.floor(time / 60);
         const seconds = Math.floor(time % 60);
-        return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+        return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     };
+
+    function togglePlayPause(event: React.MouseEvent<HTMLButtonElement>): void {
+        throw new Error('Function not implemented.');
+    }
 
     return (
         <div>
-            {/* Track List */}
-            <div className="grid grid-cols-1 gap-4">
-                {tracks.map((track, index) => (
-                    <div
-                        key={track.trackNumber}
-                        className={`p-4 border rounded-lg cursor-pointer flex items-center space-x-4 justify-between
-                            ${currentTrackIndex === index
-                                ? "bg-blue-100 border-blue-500" // Active state
-                                : "border-gray-300 hover:bg-gray-100"
-                            }`}
-                    >
-                        <div className="flex items-center space-x-4">
-                            <button onClick={() => handlePlayPauseTrack(index)}>
-                                {currentTrackIndex === index && isPlaying ? (
-                                    <PauseIcon className="w-6 h-6 text-blue-500" />
+            <div className="space-y-8">
+                {albums.map((album, albumIndex) => {
+                    return (
+                        <div key={albumIndex} className="flex flex-col space-y-4 md:flex-row md:space-x-4 p-6 border rounded-lg">
+                            {/* Album Cover */}
+                            <div className="w-1/4 min-w-[150px] h-auto">
+                                {album.album.cover ? (
+                                    <Image
+                                        src={album.album.cover.asset.url}
+                                        alt={album.album.name}
+                                        width={150}
+                                        height={150}
+                                        className="rounded"
+                                    />
                                 ) : (
-                                    <PlayIcon className="w-6 h-6 text-gray-500" />
+                                    <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                                        <span className="text-gray-500">{album.album.name}</span>
+                                    </div>
                                 )}
-                            </button>
-                            <div>
-                                <h2 className="text-xl font-semibold">{track.name}</h2>
-                                <p className="text-sm text-gray-600">{track.description}</p>
-                                <p className="text-sm text-gray-400">{track.meta}</p>
+                            </div>
+
+                            {/* Album Details */}
+                            <div className="flex-grow space-y-2">
+                                <h2 className="text-2xl font-semibold">{album.album.name}</h2>
+                                <p className="text-gray-600">{album.album.description}</p>
+                                <p className="text-gray-500">Composer: {album.album.composer}</p>
+                                <p className="text-gray-400">Release Date: {album.album.releaseDate}</p>
+
+                                {/* Tracks */}
+                                <div className="space-y-4">
+                                    {album.tracks && album.tracks.length > 0 ? (
+                                        album.tracks.map((track, trackIndex) => {
+                                            const index = albumIndex * 100 + trackIndex;
+                                            return (
+                                                <div
+                                                    key={track.trackNumber}
+                                                    className={`p-4 border rounded-lg cursor-pointer flex items-center space-x-4 justify-between
+                        ${currentTrackIndex === trackIndex && currentAlbumIndex === albumIndex
+                                                            ? 'bg-blue-100 border-blue-500'
+                                                            : 'border-gray-300 hover:bg-gray-100'
+                                                        }`}
+                                                >
+                                                    <div className="flex items-center space-x-4">
+                                                        <button onClick={() => handlePlayPauseTrack(albumIndex, trackIndex)}>
+                                                            {currentTrackIndex === trackIndex && currentAlbumIndex === albumIndex && isPlaying ? (
+                                                                <PauseIcon className="w-6 h-6 text-blue-500" />
+                                                            ) : (
+                                                                <PlayIcon className="w-6 h-6 text-gray-500" />
+                                                            )}
+                                                        </button>
+                                                        <div>
+                                                            <h3 className="text-xl font-semibold">{track.name}</h3>
+                                                            <p className="text-sm text-gray-600">{track.description}</p>
+                                                            <p className="text-sm text-gray-400">{track.meta}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="text-sm text-gray-600">
+                                                        {durations[index] ? formatTime(durations[index]) : 'Loading...'}
+                                                    </div>
+                                                </div>
+                                            );
+                                        })
+                                    ) : (
+                                        <p className="text-gray-500">No tracks available for this album.</p>
+                                    )}
+                                </div>
                             </div>
                         </div>
-                        <div className="text-sm text-gray-600">
-                            {durations[index] ? formatTime(durations[index]) : "Loading..."}
-                        </div>
-                    </div>
-                ))}
+                    )
+                })}
             </div>
 
             {/* Spotify-style Audio Player */}
-            {currentTrackIndex !== null && (
+            {currentTrackIndex !== null && currentAlbumIndex !== null && (
                 <div className="fixed bottom-0 left-0 right-0 p-4 bg-gray-900 text-white">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-4">
                             <div>
                                 <h2 className="text-lg font-bold">
-                                    {tracks[currentTrackIndex].name}
+                                    {albums[currentAlbumIndex].tracks[currentTrackIndex].name}
                                 </h2>
-                                <p className="text-sm">{tracks[currentTrackIndex].description}</p>
+                                <p className="text-sm">{albums[currentAlbumIndex].tracks[currentTrackIndex].description}</p>
                             </div>
                         </div>
 
@@ -221,7 +275,7 @@ export default function MusicPlayer({ tracks }: MusicPlayerProps) {
 
                             <button
                                 onClick={handleNextTrack}
-                                disabled={currentTrackIndex === tracks.length - 1}
+                                disabled={currentTrackIndex === albums[currentAlbumIndex].tracks.length - 1}
                             >
                                 <ChevronRightIcon className="w-8 h-8 text-white" />
                             </button>
@@ -239,12 +293,16 @@ export default function MusicPlayer({ tracks }: MusicPlayerProps) {
                             className="w-full mx-4"
                         />
                         <span className="text-sm">
-                            {formatTime(durations[currentTrackIndex!] || 0)}
+                            {formatTime(durations[currentAlbumIndex * 100 + currentTrackIndex] || 0)}
                         </span>
                     </div>
 
                     {/* Audio element */}
-                    <audio ref={audioRef} src={tracks[currentTrackIndex].musicUrl} autoPlay controls />
+                    <audio
+                        ref={audioRef}
+                        src={albums[currentAlbumIndex].tracks[currentTrackIndex].musicUrl}
+                        autoPlay
+                    />
                 </div>
             )}
         </div>

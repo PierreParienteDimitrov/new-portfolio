@@ -41,20 +41,16 @@ export default function PhotosGallery({ photos }: PhotosGalleryProps) {
     return (
         <>
             {/* Photo Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
                 {photos.map((photo, index) => (
-                    <div
-                        key={photo.name}
-                        className="relative w-full cursor-pointer"
-                        onClick={() => handlePhotoClick(index)}
-                    >
+                    <div key={index} className="w-full mb-4">
                         <Image
-                            src={photo.photo.asset.url} // Use the URL directly
+                            src={photo.photo.asset.url}
                             alt={photo.name}
-                            width={photo.photo.asset.metadata.dimensions.width}
-                            height={photo.photo.asset.metadata.dimensions.height}
-                            quality={100}
-                            priority
+                            width={photo.photo.asset.metadata?.dimensions?.width ?? 500}
+                            height={photo.photo.asset.metadata?.dimensions?.height ?? 500}
+                            objectFit="cover"
+                            className="rounded-lg cursor-pointer"
                         />
                     </div>
                 ))}

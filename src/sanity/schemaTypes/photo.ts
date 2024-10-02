@@ -33,5 +33,14 @@ export const photo = defineType({
             title: 'Meta Information',
             type: 'string',
         }),
+        defineField({
+            name: 'uploadTime',
+            title: 'Upload Time',
+            type: 'datetime',  // You can store the upload time as a datetime field
+            options: {
+                dateFormat: 'YYYY-MM-DD',
+                timeFormat: 'HH:mm',
+            },
+        }),
     ],
 });
