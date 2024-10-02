@@ -51,6 +51,7 @@ export default function PhotosGallery({ photos }: PhotosGalleryProps) {
                             height={photo.photo.asset.metadata?.dimensions?.height ?? 500}
                             objectFit="cover"
                             className="rounded-lg cursor-pointer"
+                            onClick={() => handlePhotoClick(index)}
                         />
                     </div>
                 ))}
