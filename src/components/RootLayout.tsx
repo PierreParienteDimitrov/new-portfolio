@@ -175,8 +175,8 @@ function Navigation() {
     <nav className="px-4 font-display text-5xl font-medium tracking-tight text-white">
       <NavigationRow>
         <NavigationItem href={`${pageInformation[Routes.Work]!.path}`}>Product Design</NavigationItem>
-        <NavigationItem href={`${pageInformation[Routes.Work]!.path}`}>Photography</NavigationItem>
-        <NavigationItem href={`${pageInformation[Routes.Work]!.path}`}>Music</NavigationItem>
+        <NavigationItem href={`${pageInformation[Routes.Photography]!.path}`}>Photography</NavigationItem>
+        <NavigationItem href={`${pageInformation[Routes.Music]!.path}`}>Music</NavigationItem>
         <NavigationItem href={`${pageInformation[Routes.About]!.path}`}>About Me</NavigationItem>
       </NavigationRow>
       {/* <NavigationRow>
