@@ -35,7 +35,8 @@ export const music = defineType({
             name: 'album',
             title: 'Album',
             type: 'reference',
-            to: [{ type: 'album' }],
+            // Explicitly cast the 'to' property using `as const`
+            to: [{ type: 'album' }] as const,
             description: 'Select the album this track belongs to',
         }),
     ],
