@@ -3,8 +3,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
 
-// Named export for the GET method
-export async function GET(req: NextRequest) {
+export async function POST(req: NextRequest) {
     const secret = req.nextUrl.searchParams.get('secret');
 
     // Validate the secret token to ensure the request is legitimate
@@ -18,10 +17,11 @@ export async function GET(req: NextRequest) {
 
         return NextResponse.json({ revalidated: true });
     } catch (err) {
+        // Error handling
         if (err instanceof Error) {
             return NextResponse.json({ message: 'Error revalidating', error: err.message }, { status: 500 });
         } else {
-            return NextResponse.json({ message: 'An unknown error occurred during revalidation' }, { status: 500 });
+            return NextResponse.json({ message: 'An unknown error occurred' }, { status: 500 });
         }
     }
 }

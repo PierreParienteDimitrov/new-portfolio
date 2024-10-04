@@ -10,6 +10,7 @@ import { Container } from "@/components/Container";
 
 // Server-side function to fetch music tracks with typing
 
+export const revalidate = 60; // Optional revalidation time (ISR)
 
 
 const getMusicTracks = async (): Promise<GroupedAlbum[]> => {

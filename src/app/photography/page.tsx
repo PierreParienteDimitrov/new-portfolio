@@ -6,6 +6,8 @@ import { Container } from "@/components/Container";
 import { PageIntro } from "@/components/PageIntro";
 import PhotosGallery from "./PhotoGallery";
 
+export const revalidate = 60; // Optional revalidation time (ISR)
+
 // Server-side function to fetch photo data
 const getPhotos = async (): Promise<Photo[]> => {
   const query = `*[_type == "photo"] | order(uploadTime desc) {
