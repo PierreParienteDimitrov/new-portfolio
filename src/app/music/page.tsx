@@ -90,8 +90,6 @@ export default async function MusicPage() {
     );
 }
 
-export const revalidate = 60; // Set a revalidation time (for ISR or fetch cache updates)
-
 
 
 
