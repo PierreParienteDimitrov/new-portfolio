@@ -41,21 +41,32 @@ export default function PhotosGallery({ photos }: PhotosGalleryProps) {
     return (
         <>
             {/* Photo Grid */}
-            <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
-                {photos.map((photo, index) => (
-                    <div key={index} className="w-full mb-4">
-                        <Image
-                            src={photo.photo.asset.url}
-                            alt={photo.name}
-                            width={photo.photo.asset.metadata?.dimensions?.width ?? 500}
-                            height={photo.photo.asset.metadata?.dimensions?.height ?? 500}
-                            objectFit="cover"
-                            className="rounded-lg cursor-pointer"
-                            onClick={() => handlePhotoClick(index)}
-                        />
-                    </div>
-                ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {photos.map((photo, index) => {
+                    // Extract the dimensions of the image to determine if it's vertical or horizontal
+                    const { width, height } = photo.photo.asset.metadata?.dimensions ?? { width: 500, height: 500 };
+                    const aspectRatio = width / height; // Calculate the aspect ratio
+
+                    return (
+                        <div
+                            key={index}
+                            className={`relative overflow-hidden cursor-pointer ${aspectRatio > 1 ? 'w-full h-[300px]' : 'w-auto h-[300px]'}`}
+                        >
+                            <Image
+                                src={photo.photo.asset.url}
+                                alt={photo.name}
+                                layout="fill"
+                                objectFit="cover"
+                                className="absolute inset-0 w-full h-full object-cover"
+                                onClick={() => handlePhotoClick(index)}
+                            />
+                        </div>
+                    );
+                })}
             </div>
+
+
+
 
             {/* Full-Screen Modal */}
             {selectedPhotoIndex !== null && (
