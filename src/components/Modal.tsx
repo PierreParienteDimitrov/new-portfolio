@@ -17,18 +17,28 @@ const Modal = ({
     handleNextPhoto: () => void;
     handlePrevPhoto: () => void;
 }) => {
-    // Create portal to attach the modal to
-    const [mounted, setMounted] = useState(false);
+    const [mounted, setMounted] = useState(false); // State to check if the modal is mounted
+    const [isLoading, setIsLoading] = useState(true); // State to track loading
     const modalRoot = document.getElementById('modal-root'); // The root div for the modal
 
+    // Mark as mounted
     useEffect(() => {
         setMounted(true);
         return () => setMounted(false);
     }, []);
 
+    // Set loading to true when the selected photo index changes
+    useEffect(() => {
+        setIsLoading(true);
+    }, [selectedPhotoIndex]);
+
     if (!mounted || selectedPhotoIndex === null || !modalRoot) return null;
 
-    // Render the modal via a portal to the modal-root
+    // Handle image load
+    const handleImageLoad = () => {
+        setIsLoading(false);
+    };
+
     return createPortal(
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-white ">
             {/* Outer Container for Modal Content */}
@@ -43,23 +53,28 @@ const Modal = ({
                 <div className="relative w-full h-full max-w-6xl p-8">
                     {/* Full-screen Image */}
                     <div className="relative w-full h-4/5">
+                        {isLoading && (
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="w-12 h-12 border-4 border-gray-300 border-t-4 border-t-blue-500 rounded-full animate-spin"></div>
+                            </div>
+                        )}
                         <Image
                             src={urlFor(photos[selectedPhotoIndex].photo).url()}
                             alt={photos[selectedPhotoIndex].name}
                             fill
                             quality={100}
                             priority
-                            className="object-contain" // Ensures the image fits nicely within the modal
+                            className={`object-contain transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`} // Smooth fade-in transition
+                            onLoad={handleImageLoad} // Handle image load
                         />
                     </div>
 
                     {/* Image Information */}
-                    <div className='text-center'>
+                    <div className="text-center">
                         <div className="mt-4 text-black flex space-x-2 justify-center w-full">
                             <p className="text-m">{photos[selectedPhotoIndex].name} - </p>
                             <p className="text-m">{photos[selectedPhotoIndex].location} </p>
                         </div>
-
                         <h5 className="text-m">{photos[selectedPhotoIndex].description}</h5>
                     </div>
 
