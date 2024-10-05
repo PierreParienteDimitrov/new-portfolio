@@ -212,16 +212,20 @@ export default function MusicPlayer({ albums }: AlbumProps) {
                                 {/* Album Details */}
                                 <div className="flex flex-col space-y-2 mt-4 md:mt-0">
                                     <h2 className="text-4xl font-bold">{album.album.name}</h2>
-                                    <p className="text-lg text-gray-600">{album.album.composer}</p>
+                                    <p className="text-sm text-gray-600">{album.album.composer}</p>
+
                                     <p className="text-sm text-gray-500">
                                         {totalTracks} tracks • {formatTime(totalDuration)}
                                     </p>
                                     <p className="text-gray-400">{album.album.releaseDate}</p>
+
                                 </div>
                             </div>
 
                             {/* Track List */}
                             <div className="p-6">
+                                <p className="text-md text-gray-600 mb-12">{album.album.description}</p>
+
                                 {/* Table Header */}
                                 <div className="grid grid-cols-[40px_auto_80px] text-gray-500 mb-4 border-b p-2 font-thin text-sm">
                                     <span>#</span>
