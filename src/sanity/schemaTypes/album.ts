@@ -25,5 +25,14 @@ export const album = defineType({
             title: 'Release Date',
             type: 'date',
         }),
+        defineField({
+            name: 'cover',
+            title: 'Album Cover',
+            type: 'image',  // Image type for the album cover
+            options: {
+                hotspot: true,  // Allows for better control over cropping
+            },
+        }),
     ],
 });
+

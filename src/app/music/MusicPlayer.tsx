@@ -186,6 +186,7 @@ export default function MusicPlayer({ albums }: AlbumProps) {
                     );
                     const totalTracks = album.tracks.length;
 
+
                     return (
                         <div key={albumIndex}>
                             {/* Album Header */}
