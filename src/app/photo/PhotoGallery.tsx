@@ -50,14 +50,14 @@ export default function PhotosGallery({ photos }: PhotosGalleryProps) {
                     return (
                         <div
                             key={index}
-                            className={`relative overflow-hidden cursor-pointer ${aspectRatio > 1 ? 'w-full h-[300px]' : 'w-auto h-[300px]'}`}
+                            className={`relative overflow-hidden cursor-pointer transition-transform duration-300 hover:scale-105 ${aspectRatio > 1 ? 'w-full h-[300px]' : 'w-auto h-[300px]'}`}
                         >
                             <Image
                                 src={photo.photo.asset.url}
                                 alt={photo.name}
                                 layout="fill"
                                 objectFit="cover"
-                                className="absolute inset-0 w-full h-full object-cover"
+                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                                 onClick={() => handlePhotoClick(index)}
                             />
                         </div>
