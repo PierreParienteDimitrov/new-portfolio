@@ -35,7 +35,8 @@ export default function MusicPlayer({ albums }: AlbumProps) {
                 album: currentAlbum.album.name,
                 artwork: [
                     {
-                        src: currentAlbum.album.cover ? currentAlbum.album.cover.asset.url : '/path/to/placeholder.jpg',
+                        src: currentAlbum.album.cover ? urlFor(currentAlbum.album.cover).url()
+                            : '/path/to/placeholder.jpg',
                         sizes: '512x512',
                         type: 'image/jpg',
                     },
