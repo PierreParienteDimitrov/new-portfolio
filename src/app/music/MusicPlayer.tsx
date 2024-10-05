@@ -221,7 +221,7 @@ export default function MusicPlayer({ albums }: AlbumProps) {
                             {/* Track List */}
                             <div className="p-6">
                                 {/* Table Header */}
-                                <div className="grid grid-cols-[40px_auto_80px] text-gray-500 mb-4 border-b p-2 font-semibold">
+                                <div className="grid grid-cols-[40px_auto_80px] text-gray-500 mb-4 border-b p-2 font-thin text-sm">
                                     <span>#</span>
                                     <span>Title</span>
                                     <span className="text-right">Time</span>
@@ -235,19 +235,22 @@ export default function MusicPlayer({ albums }: AlbumProps) {
                                             <div
                                                 key={track.trackNumber}
                                                 className={`grid grid-cols-[40px_auto_80px] items-center p-2 hover:bg-gray-100 ${currentTrackIndex === trackIndex && currentAlbumIndex === albumIndex
-                                                        ? 'bg-blue-100'
-                                                        : ''
+                                                    ? 'bg-blue-100'
+                                                    : ''
                                                     }`}
                                             >
                                                 {/* Track Number / Play-Pause Icon */}
                                                 <div className="flex items-center">
                                                     <button onClick={() => handlePlayPauseTrack(albumIndex, trackIndex)}>
-                                                        {currentTrackIndex === trackIndex &&
-                                                            currentAlbumIndex === albumIndex &&
-                                                            isPlaying ? (
+                                                        {/* Show Pause icon if the track is playing */}
+                                                        {currentTrackIndex === trackIndex && currentAlbumIndex === albumIndex && isPlaying ? (
                                                             <PauseIcon className="w-6 h-6 text-blue-500" />
+                                                        ) : currentTrackIndex === trackIndex && currentAlbumIndex === albumIndex && !isPlaying ? (
+                                                            // Show Play icon if the track is paused
+                                                            <PlayIcon className="w-6 h-6 text-blue-500" />
                                                         ) : (
-                                                            <PlayIcon className="w-6 h-6 text-gray-500" />
+                                                            // Show Track number if the track is neither playing nor paused
+                                                            <span className="text-sm font-thin">{trackIndex + 1}</span>
                                                         )}
                                                     </button>
                                                 </div>
@@ -256,8 +259,8 @@ export default function MusicPlayer({ albums }: AlbumProps) {
                                                 <div className="flex flex-col">
                                                     <span
                                                         className={`text-md ${currentTrackIndex === trackIndex && currentAlbumIndex === albumIndex
-                                                                ? 'text-blue-500'
-                                                                : ''
+                                                            ? 'text-blue-500'
+                                                            : ''
                                                             }`}
                                                     >
                                                         {track.name}

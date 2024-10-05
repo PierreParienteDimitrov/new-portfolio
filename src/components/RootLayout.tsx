@@ -95,7 +95,7 @@ function Header({
             <TextLink invert={invert} className='font-medium hover:text-neutral-950'>Design</TextLink>
           </Link>
           <Link
-            href={`${pageInformation[Routes.Photography]!.path}`}
+            href={`${pageInformation[Routes.Photo]!.path}`}
             aria-label="Photography"
             className='hidden md:block'
 
@@ -175,7 +175,7 @@ function Navigation() {
     <nav className="px-4 font-display text-5xl font-medium tracking-tight text-white">
       <NavigationRow>
         <NavigationItem href={`${pageInformation[Routes.Work]!.path}`}>Product Design</NavigationItem>
-        <NavigationItem href={`${pageInformation[Routes.Photography]!.path}`}>Photography</NavigationItem>
+        <NavigationItem href={`${pageInformation[Routes.Photo]!.path}`}>Photography</NavigationItem>
         <NavigationItem href={`${pageInformation[Routes.Music]!.path}`}>Music</NavigationItem>
         <NavigationItem href={`${pageInformation[Routes.About]!.path}`}>About Me</NavigationItem>
       </NavigationRow>
