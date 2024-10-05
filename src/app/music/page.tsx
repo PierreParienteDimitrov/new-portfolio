@@ -24,6 +24,7 @@ const getMusicTracks = async (): Promise<GroupedAlbum[]> => {
         album->{
           name,
           description,
+          cover,
           composer,
           releaseDate
         }
@@ -63,6 +64,7 @@ const getMusicTracks = async (): Promise<GroupedAlbum[]> => {
                     description: track.album.description,
                     composer: track.album.composer,
                     releaseDate: track.album.releaseDate,
+                    cover: track.album.cover
                 },
                 tracks: [trackData],  // Add the current track to a new track array
             });

@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { PlayIcon, PauseIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import { GroupedAlbum } from '@/types/ISanity'; // Ensure this is the correct path for Album interface
+import { urlFor } from '@/sanity/lib/client';
 
 interface AlbumProps {
     albums: GroupedAlbum[];
@@ -192,13 +193,13 @@ export default function MusicPlayer({ albums }: AlbumProps) {
                             {/* Album Header */}
                             <div className="flex flex-col md:flex-row items-center md:space-x-8 p-6">
                                 {/* Album Cover */}
-                                <div className="w-48 h-48 min-w-[150px]">
+                                <div className="min-w-[150px]">
                                     {album.album.cover ? (
                                         <Image
-                                            src={album.album.cover.asset.url}
+                                            src={urlFor(album.album.cover.asset).url()}
                                             alt={album.album.name}
-                                            width={200}
-                                            height={200}
+                                            width={224}
+                                            height={224}
                                             className="rounded"
                                         />
                                     ) : (
@@ -239,6 +240,7 @@ export default function MusicPlayer({ albums }: AlbumProps) {
                                                     ? 'bg-blue-100'
                                                     : ''
                                                     }`}
+                                                onClick={() => handlePlayPauseTrack(albumIndex, trackIndex)}
                                             >
                                                 {/* Track Number / Play-Pause Icon */}
                                                 <div className="flex items-center">
