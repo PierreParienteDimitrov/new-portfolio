@@ -9,25 +9,21 @@ import { pageInformation, Routes } from '../constant/allPages'
 import { ArrowLongRightIcon } from '@heroicons/react/24/outline'
 
 
-import { caseStudies } from '@/constant/caseStudy'
 
 const links = [
   {
-    title: 'Product Design',
+    title: 'Design',
     href: pageInformation[Routes.Work]!.path,
   },
   {
-    title: 'Photography',
-    href: pageInformation[Routes.Photography]!.path,
+    title: 'Photo',
+    href: pageInformation[Routes.Photo]!.path,
   },
   {
     title: 'Music',
     href: pageInformation[Routes.Music]!.path,
   },
 ]
-
-
-
 
 
 export const metadata: Metadata = {
@@ -37,7 +33,6 @@ export const metadata: Metadata = {
 
 export default function Home() {
 
-  const introCaseStudies = caseStudies.filter(caseStudy => caseStudy.latest)
 
 
   return (
