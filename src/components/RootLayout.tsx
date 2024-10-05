@@ -96,11 +96,11 @@ function Header({
           </Link>
           <Link
             href={`${pageInformation[Routes.Photo]!.path}`}
-            aria-label="Photography"
+            aria-label="Photo"
             className='hidden md:block'
 
           >
-            <TextLink invert={invert} className='font-medium hover:text-neutral-950'>Photography</TextLink>
+            <TextLink invert={invert} className='font-medium hover:text-neutral-950'>Photo</TextLink>
           </Link>
           <Link
             href={`${pageInformation[Routes.Music]!.path}`}
