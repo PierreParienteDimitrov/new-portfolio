@@ -6,11 +6,12 @@ import { Container } from "@/components/Container";
 import { PageIntro } from "@/components/PageIntro";
 import PhotosGallery from "./PhotoGallery";
 
-export const revalidate = 60; // Optional revalidation time (ISR)
+// Set the revalidation time (ISR)
+export const revalidate = 60;
 
-// Server-side function to fetch photo data
-const getPhotos = async (): Promise<Photo[]> => {
-  const query = `*[_type == "photo"] | order(uploadTime desc) {
+// Server-side function to fetch photo data with pagination
+const getPhotos = async (start = 0, limit = 12): Promise<Photo[]> => {
+  const query = `*[_type == "photo"] | order(uploadTime desc) [${start}...${start + limit}] {
     name,
     location,
     description,
@@ -27,23 +28,21 @@ const getPhotos = async (): Promise<Photo[]> => {
       }
     },
     meta,
-    uploadTime  // Make sure to include the uploadTime field
-}`;
+    uploadTime
+  }`;
 
   const photos = await client.fetch(query);
   return photos;
-}
+};
 
 // Server Component
 export default async function PhotosPage() {
-  const photos = await getPhotos(); // Fetch photo data on the server
+  const initialPhotos = await getPhotos(); // Fetch the first set of photos on the server
 
   return (
     <Container>
       <PageIntro title="Photos" centered />
-
-      {/* Pass the fetched photos to the client-side component */}
-      <PhotosGallery photos={photos} />
+      <PhotosGallery initialPhotos={initialPhotos} /> {/* Pass initialPhotos */}
     </Container>
   );
 }

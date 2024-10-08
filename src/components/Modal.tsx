@@ -55,7 +55,8 @@ const Modal = ({
                     <div className="relative w-full h-4/5">
                         {isLoading && (
                             <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="w-12 h-12 border-4 border-gray-300 border-t-4 border-t-blue-500 rounded-full animate-spin"></div>
+                                {/* <div className="w-12 h-12 border-4 border-gray-300 border-t-4 border-t-blue-500 rounded-full animate-spin"></div> */}
+                                <iframe src="https://lottie.host/embed/ef093856-51ce-488c-b0f5-3f1a2ac3c2c4/zvzKfBfedv.json" className='w-full h-96'></iframe>
                             </div>
                         )}
                         <Image

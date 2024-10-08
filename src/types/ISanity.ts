@@ -59,3 +59,11 @@ export interface Photo {
     meta: string;
     uploadTime: string; // datetime field, represented as an ISO 8601 string
 }
+
+export interface PhotosGalleryProps {
+
+    initialPhotos: Photo[];
+
+    // Add other props here if necessary
+
+}
