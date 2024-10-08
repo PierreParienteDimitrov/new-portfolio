@@ -1,19 +1,58 @@
-// app/photos/PhotosGallery.tsx (Client Component)
-
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Photo } from '@/types/ISanity';
 import Modal from '@/components/Modal';
 
 interface PhotosGalleryProps {
-    photos: Photo[];
+    initialPhotos: Photo[];  // Use initialPhotos instead of photos
 }
 
 // Client-side Photo Gallery component
-export default function PhotosGallery({ photos }: PhotosGalleryProps) {
+export default function PhotosGallery({ initialPhotos }: PhotosGalleryProps) {
+    const [photos, setPhotos] = useState<Photo[]>(initialPhotos); // Store fetched photos
     const [selectedPhotoIndex, setSelectedPhotoIndex] = useState<number | null>(null);
+    const [isLoading, setIsLoading] = useState(false); // Loading state for fetching more photos
+    const [page, setPage] = useState(1); // Track the current page number
+    const [hasMore, setHasMore] = useState(true); // Track if there are more photos to load
+
+    // Fetch more photos when the user scrolls to the bottom
+    const fetchMorePhotos = async () => {
+        if (isLoading || !hasMore) return;
+
+        setIsLoading(true);
+        try {
+            const res = await fetch(`/api/photos?page=${page}`); // Call an API route to fetch more photos
+            const newPhotos: Photo[] = await res.json();
+
+            if (newPhotos.length > 0) {
+                setPhotos((prevPhotos) => [...prevPhotos, ...newPhotos]);
+                setPage(page + 1); // Increment page number
+            } else {
+                setHasMore(false); // If no more photos, stop fetching
+            }
+        } catch (error) {
+            console.error('Error fetching more photos:', error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    // Handle scrolling to detect when to load more photos
+    const handleScroll = () => {
+        if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 500) {
+            fetchMorePhotos(); // Fetch more photos when near the bottom of the page
+        }
+    };
+
+    // Attach the scroll event listener
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [page, hasMore]);
 
     // Handle opening full-screen modal
     const handlePhotoClick = (index: number) => {
@@ -43,9 +82,8 @@ export default function PhotosGallery({ photos }: PhotosGalleryProps) {
             {/* Photo Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {photos.map((photo, index) => {
-                    // Extract the dimensions of the image to determine if it's vertical or horizontal
                     const { width, height } = photo.photo.asset.metadata?.dimensions ?? { width: 500, height: 500 };
-                    const aspectRatio = width / height; // Calculate the aspect ratio
+                    const aspectRatio = width / height;
 
                     return (
                         <div
@@ -65,14 +103,14 @@ export default function PhotosGallery({ photos }: PhotosGalleryProps) {
                 })}
             </div>
 
-
-
+            {/* Loading Indicator */}
+            {isLoading && <p className="text-center mt-4">Loading more photos...</p>}
 
             {/* Full-Screen Modal */}
             {selectedPhotoIndex !== null && (
                 <Modal
                     photos={photos}
-                    selectedPhotoIndex={selectedPhotoIndex!}
+                    selectedPhotoIndex={selectedPhotoIndex}
                     handleClose={handleClose}
                     handleNextPhoto={handleNextPhoto}
                     handlePrevPhoto={handlePrevPhoto}
