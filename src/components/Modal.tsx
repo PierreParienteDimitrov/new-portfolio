@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/client';
 import { Photo } from '@/types/ISanity';
+import { ArrowLongLeftIcon, ArrowLongRightIcon, XMarkIcon } from '@heroicons/react/20/solid';
 
 const Modal = ({
     photos,
@@ -17,89 +18,101 @@ const Modal = ({
     handleNextPhoto: () => void;
     handlePrevPhoto: () => void;
 }) => {
-    const [mounted, setMounted] = useState(false); // State to check if the modal is mounted
-    const [isLoading, setIsLoading] = useState(true); // State to track loading
-    const modalRoot = document.getElementById('modal-root'); // The root div for the modal
+    const [mounted, setMounted] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const modalRoot = document.getElementById('modal-root');
 
-    // Mark as mounted
     useEffect(() => {
         setMounted(true);
         return () => setMounted(false);
     }, []);
 
-    // Set loading to true when the selected photo index changes
     useEffect(() => {
         setIsLoading(true);
     }, [selectedPhotoIndex]);
 
-    if (!mounted || selectedPhotoIndex === null || !modalRoot) return null;
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'ArrowRight') {
+                handleNextPhoto();
+            } else if (e.key === 'ArrowLeft') {
+                handlePrevPhoto();
+            } else if (e.key === 'Escape') {
+                handleClose();
+            }
+        };
 
-    // Handle image load
+        if (mounted) {
+            window.addEventListener('keydown', handleKeyDown);
+        }
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [mounted, handleNextPhoto, handlePrevPhoto, handleClose]);
+
     const handleImageLoad = () => {
         setIsLoading(false);
     };
 
+    if (!mounted || selectedPhotoIndex === null || !modalRoot) return null;
+
     return createPortal(
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white ">
-            {/* Outer Container for Modal Content */}
-            <div className="relative w-full h-full flex items-center justify-center">
-                <button
-                    className="absolute top-4 right-4 text-black hover:text-gray-300 text-2xl"
-                    onClick={handleClose}
-                >
-                    ✕
-                </button>
-
-                <div className="relative w-full h-full max-w-6xl p-8">
-                    {/* Full-screen Image */}
-                    <div className="relative w-full h-4/5">
-                        {isLoading && (
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                {/* <div className="w-12 h-12 border-4 border-gray-300 border-t-4 border-t-blue-500 rounded-full animate-spin"></div> */}
-                                <iframe src="https://lottie.host/embed/ef093856-51ce-488c-b0f5-3f1a2ac3c2c4/zvzKfBfedv.json" className='w-full h-96'></iframe>
-                            </div>
-                        )}
-                        <Image
-                            src={urlFor(photos[selectedPhotoIndex].photo).url()}
-                            alt={photos[selectedPhotoIndex].name}
-                            fill
-                            quality={100}
-                            priority
-                            className={`object-contain transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`} // Smooth fade-in transition
-                            onLoad={handleImageLoad} // Handle image load
-                        />
-                    </div>
-
-                    {/* Image Information */}
-                    <div className="text-center">
-                        <div className="mt-4 text-black flex space-x-2 justify-center w-full">
-                            <p className="text-m">{photos[selectedPhotoIndex].name} - </p>
-                            <p className="text-m">{photos[selectedPhotoIndex].location} </p>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-white">
+            <div className="relative w-full h-full max-w-6xl p-8 bg-white flex flex-col items-center">
+                <div className="flex space-x-0 items-center absolute top-4 right-4 text-black hover:text-gray-300 text-3xl p-2 cursor-pointer" onClick={handleClose}>
+                    <XMarkIcon className="w-6 h-6" />
+                </div>
+                <div className="relative w-full h-4/5 mb-8">
+                    {isLoading && (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                            <iframe
+                                src="https://lottie.host/embed/ef093856-51ce-488c-b0f5-3f1a2ac3c2c4/zvzKfBfedv.json"
+                                className="w-20 h-20"
+                                title="Loading animation"
+                            />
                         </div>
-                        <h5 className="text-m">{photos[selectedPhotoIndex].description}</h5>
-                    </div>
+                    )}
+                    <Image
+                        src={urlFor(photos[selectedPhotoIndex].photo).url()}
+                        alt={photos[selectedPhotoIndex].name}
+                        fill
+                        quality={100}
+                        priority
+                        className={`object-contain transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
+                        onLoadingComplete={handleImageLoad}
+                    />
+                </div>
 
-                    {/* Navigation Buttons */}
-                    <div className="flex justify-between mt-4">
-                        <button
-                            className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg"
-                            onClick={handlePrevPhoto}
-                            disabled={selectedPhotoIndex === 0}
-                        >
-                            Previous
-                        </button>
-                        <button
-                            className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg"
-                            onClick={handleNextPhoto}
-                            disabled={selectedPhotoIndex === photos.length - 1}
-                        >
-                            Next
-                        </button>
-                    </div>
+                {/* Image Information */}
+                <div className="w-full text-center text-black">
+                    <h4 className="">{photos[selectedPhotoIndex].name}</h4>
+                    <p className="text-s text-gray-700 mb-4">{photos[selectedPhotoIndex].location}</p>
+                    <p className="text-xs text-gray-700">{photos[selectedPhotoIndex].description}</p>
+                </div>
+
+                {/* Navigation Buttons */}
+                <div className="absolute bottom-32 left-32 right-32 flex justify-between">
+                    <button
+                        className="text-gray-700 disabled:text-gray-400"
+                        onClick={handlePrevPhoto}
+                        disabled={selectedPhotoIndex === 0}
+                        aria-label="Previous"
+                    >
+                        <ArrowLongLeftIcon className="w-8 h-8" />
+                    </button>
+                    <button
+                        className="text-gray-700 disabled:text-gray-400"
+                        onClick={handleNextPhoto}
+                        disabled={selectedPhotoIndex === photos.length - 1}
+                        aria-label="Next"
+                    >
+                        <ArrowLongRightIcon className="w-8 h-8" />
+                    </button>
                 </div>
             </div>
         </div>,
-        modalRoot // Attach the modal to the root div
+        modalRoot
     );
 };
 
