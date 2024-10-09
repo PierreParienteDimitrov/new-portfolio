@@ -6,16 +6,15 @@ import { Photo } from '@/types/ISanity';
 import Modal from '@/components/Modal';
 
 interface PhotosGalleryProps {
-    initialPhotos: Photo[];  // Use initialPhotos instead of photos
+    initialPhotos: Photo[];
 }
 
-// Client-side Photo Gallery component
 export default function PhotosGallery({ initialPhotos }: PhotosGalleryProps) {
-    const [photos, setPhotos] = useState<Photo[]>(initialPhotos); // Store fetched photos
+    const [photos, setPhotos] = useState<Photo[]>(initialPhotos);
     const [selectedPhotoIndex, setSelectedPhotoIndex] = useState<number | null>(null);
-    const [isLoading, setIsLoading] = useState(false); // Loading state for fetching more photos
-    const [page, setPage] = useState(1); // Track the current page number
-    const [hasMore, setHasMore] = useState(true); // Track if there are more photos to load
+    const [isLoading, setIsLoading] = useState(false);
+    const [page, setPage] = useState(1);
+    const [hasMore, setHasMore] = useState(true);
 
     // Fetch more photos when the user scrolls to the bottom
     const fetchMorePhotos = async () => {
@@ -23,11 +22,18 @@ export default function PhotosGallery({ initialPhotos }: PhotosGalleryProps) {
 
         setIsLoading(true);
         try {
-            const res = await fetch(`/api/photos?page=${page}`); // Call an API route to fetch more photos
+            const res = await fetch(`/api/photos?page=${page}`); // Call the API route to fetch more photos
             const newPhotos: Photo[] = await res.json();
 
             if (newPhotos.length > 0) {
-                setPhotos((prevPhotos) => [...prevPhotos, ...newPhotos]);
+                setPhotos((prevPhotos) => {
+                    const existingIds = new Set(prevPhotos.map((photo) => photo.photo.asset._id));
+                    const filteredPhotos = newPhotos.filter(
+                        (photo) => !existingIds.has(photo.photo.asset._id)
+                    );
+
+                    return [...prevPhotos, ...filteredPhotos];
+                });
                 setPage(page + 1); // Increment page number
             } else {
                 setHasMore(false); // If no more photos, stop fetching
@@ -87,7 +93,7 @@ export default function PhotosGallery({ initialPhotos }: PhotosGalleryProps) {
 
                     return (
                         <div
-                            key={index}
+                            key={photo.photo.asset._id}
                             className={`relative overflow-hidden cursor-pointer transition-transform duration-300 hover:scale-105 ${aspectRatio > 1 ? 'w-full h-[300px]' : 'w-auto h-[300px]'}`}
                         >
                             <Image
