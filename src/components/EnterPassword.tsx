@@ -42,7 +42,7 @@ export function EnterPassword() {
         <>
             <article className="mt-24 sm:mt-32 lg:mt-40">
                 <header>
-                    <PageIntro eyebrow='This use case is protected' title='Enter password' centered>
+                    <PageIntro eyebrow='This page is protected' title='Enter password' centered>
                     </PageIntro>
                     <FadeIn className="lg:order-last">
                         <Container>

@@ -5,6 +5,8 @@ import { PlayIcon, PauseIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroico
 import Image from 'next/image';
 import { GroupedAlbum } from '@/types/ISanity'; // Ensure this is the correct path for Album interface
 import { urlFor } from '@/sanity/lib/client';
+import { Loading } from '@/components/Loading';
+import { EnterPassword } from '@/components/EnterPassword';
 
 interface AlbumProps {
     albums: GroupedAlbum[];
@@ -18,6 +20,32 @@ export default function MusicPlayer({ albums }: AlbumProps) {
     const [durations, setDurations] = useState<Record<number, number>>({});
     const [currentAlbumIndex, setCurrentAlbumIndex] = useState<number | null>(null);
     const audioRef = useRef<HTMLAudioElement | null>(null);
+    const [showForm, setShowForm] = useState(true)
+    const [loading, setLoading] = useState(false)
+
+    // Login form
+    useEffect(() => {
+        setLoading(true);
+
+        fetch('/api/password', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }).then((response) => response.json())
+            .then((data) => {
+                setLoading(false);
+                if (!data.isValidated) {
+                    setShowForm(false);
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+                setLoading(false);
+            });
+
+    }, []);
+
 
     // Helper function to check if the device is mobile
     const isMobileDevice = () => {
@@ -179,183 +207,185 @@ export default function MusicPlayer({ albums }: AlbumProps) {
 
     return (
         <div>
-            <div className="space-y-8">
-                {albums.map((album, albumIndex) => {
-                    // Calculate total duration and number of tracks
-                    const totalDuration = album.tracks.reduce(
-                        (acc, track) => acc + (durations[albumIndex * 100 + track.trackNumber] || 0),
-                        0
-                    );
-                    const totalTracks = album.tracks.length;
+            {showForm ? <EnterPassword /> :
+                <>
+                    <div className="space-y-8">
+                        {albums.map((album, albumIndex) => {
+                            // Calculate total duration and number of tracks
+                            const totalDuration = album.tracks.reduce(
+                                (acc, track) => acc + (durations[albumIndex * 100 + track.trackNumber] || 0),
+                                0
+                            );
+                            const totalTracks = album.tracks.length;
 
 
-                    return (
-                        <div key={albumIndex}>
-                            {/* Album Header */}
-                            <div className="flex flex-col md:flex-row items-center md:space-x-8 p-6">
-                                {/* Album Cover */}
-                                <div className="min-w-[150px]">
-                                    {album.album.cover ? (
-                                        <Image
-                                            src={urlFor(album.album.cover.asset).url()}
-                                            alt={album.album.name}
-                                            width={224}
-                                            height={224}
-                                            className="rounded"
-                                        />
-                                    ) : (
-                                        <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                                            <span className="text-gray-500">{album.album.name}</span>
-                                        </div>
-                                    )}
-                                </div>
-
-                                {/* Album Details */}
-                                <div className="flex flex-col space-y-2 mt-4 md:mt-0">
-                                    <h2 className="text-4xl font-bold">{album.album.name}</h2>
-                                    <p className="text-sm text-gray-600">{album.album.composer}</p>
-
-                                    <p className="text-sm text-gray-500">
-                                        {totalTracks} tracks • {formatTime(totalDuration)}
-                                    </p>
-                                    <p className="text-gray-400">{album.album.releaseDate}</p>
-
-                                </div>
-                            </div>
-
-                            {/* Track List */}
-                            <div className="p-6">
-                                <p className="text-md text-gray-600 mb-12">{album.album.description}</p>
-
-                                {/* Table Header */}
-                                <div className="grid grid-cols-[40px_auto_80px] text-gray-500 mb-4 border-b p-2 font-thin text-sm">
-                                    <span>#</span>
-                                    <span>Title</span>
-                                    <span className="text-right">Time</span>
-                                </div>
-
-                                {album.tracks && album.tracks.length > 0 ? (
-                                    album.tracks.map((track, trackIndex) => {
-                                        const index = albumIndex * 100 + trackIndex;
-
-                                        return (
-                                            <div
-                                                key={track.trackNumber}
-                                                className={`grid grid-cols-[40px_auto_80px] items-center p-2 hover:bg-gray-100 ${currentTrackIndex === trackIndex && currentAlbumIndex === albumIndex
-                                                    ? 'bg-blue-100'
-                                                    : ''
-                                                    }`}
-                                                onClick={() => handlePlayPauseTrack(albumIndex, trackIndex)}
-                                            >
-                                                {/* Track Number / Play-Pause Icon */}
-                                                <div className="flex items-center">
-                                                    <button onClick={() => handlePlayPauseTrack(albumIndex, trackIndex)}>
-                                                        {/* Show Pause icon if the track is playing */}
-                                                        {currentTrackIndex === trackIndex && currentAlbumIndex === albumIndex && isPlaying ? (
-                                                            <PauseIcon className="w-6 h-6 text-blue-500" />
-                                                        ) : currentTrackIndex === trackIndex && currentAlbumIndex === albumIndex && !isPlaying ? (
-                                                            // Show Play icon if the track is paused
-                                                            <PlayIcon className="w-6 h-6 text-blue-500" />
-                                                        ) : (
-                                                            // Show Track number if the track is neither playing nor paused
-                                                            <span className="text-sm font-thin">{trackIndex + 1}</span>
-                                                        )}
-                                                    </button>
+                            return (
+                                <div key={albumIndex}>
+                                    {/* Album Header */}
+                                    <div className="flex flex-col md:flex-row items-center md:space-x-8 p-6">
+                                        {/* Album Cover */}
+                                        <div className="min-w-[150px]">
+                                            {album.album.cover ? (
+                                                <Image
+                                                    src={urlFor(album.album.cover.asset).url()}
+                                                    alt={album.album.name}
+                                                    width={224}
+                                                    height={224}
+                                                    className="rounded"
+                                                />
+                                            ) : (
+                                                <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                                                    <span className="text-gray-500">{album.album.name}</span>
                                                 </div>
+                                            )}
+                                        </div>
 
-                                                {/* Track Title and Composer */}
-                                                <div className="flex flex-col">
-                                                    <span
-                                                        className={`text-md ${currentTrackIndex === trackIndex && currentAlbumIndex === albumIndex
-                                                            ? 'text-blue-500'
+                                        {/* Album Details */}
+                                        <div className="flex flex-col space-y-2 mt-4 md:mt-0">
+                                            <h2 className="text-4xl font-bold">{album.album.name}</h2>
+                                            <p className="text-sm text-gray-600">{album.album.composer}</p>
+
+                                            <p className="text-sm text-gray-500">
+                                                {totalTracks} tracks • {formatTime(totalDuration)}
+                                            </p>
+                                            <p className="text-gray-400">{album.album.releaseDate}</p>
+
+                                        </div>
+                                    </div>
+
+                                    {/* Track List */}
+                                    <div className="p-6">
+                                        <p className="text-md text-gray-600 mb-12">{album.album.description}</p>
+
+                                        {/* Table Header */}
+                                        <div className="grid grid-cols-[40px_auto_80px] text-gray-500 mb-4 border-b p-2 font-thin text-sm">
+                                            <span>#</span>
+                                            <span>Title</span>
+                                            <span className="text-right">Time</span>
+                                        </div>
+
+                                        {album.tracks && album.tracks.length > 0 ? (
+                                            album.tracks.map((track, trackIndex) => {
+                                                const index = albumIndex * 100 + trackIndex;
+
+                                                return (
+                                                    <div
+                                                        key={track.trackNumber}
+                                                        className={`grid grid-cols-[40px_auto_80px] items-center p-2 hover:bg-gray-100 ${currentTrackIndex === trackIndex && currentAlbumIndex === albumIndex
+                                                            ? 'bg-blue-100'
                                                             : ''
                                                             }`}
+                                                        onClick={() => handlePlayPauseTrack(albumIndex, trackIndex)}
                                                     >
-                                                        {track.name}
-                                                    </span>
-                                                    <span className="text-xs text-gray-600">{album.album.composer}</span>
-                                                </div>
+                                                        {/* Track Number / Play-Pause Icon */}
+                                                        <div className="flex items-center">
+                                                            <button onClick={() => handlePlayPauseTrack(albumIndex, trackIndex)}>
+                                                                {/* Show Pause icon if the track is playing */}
+                                                                {currentTrackIndex === trackIndex && currentAlbumIndex === albumIndex && isPlaying ? (
+                                                                    <PauseIcon className="w-6 h-6 text-blue-500" />
+                                                                ) : currentTrackIndex === trackIndex && currentAlbumIndex === albumIndex && !isPlaying ? (
+                                                                    // Show Play icon if the track is paused
+                                                                    <PlayIcon className="w-6 h-6 text-blue-500" />
+                                                                ) : (
+                                                                    // Show Track number if the track is neither playing nor paused
+                                                                    <span className="text-sm font-thin">{trackIndex + 1}</span>
+                                                                )}
+                                                            </button>
+                                                        </div>
 
-                                                {/* Track Duration */}
-                                                <div className="text-right text-sm text-gray-600">
-                                                    {durations[index] ? formatTime(durations[index]) : 'Loading...'}
-                                                </div>
-                                            </div>
-                                        );
-                                    })
-                                ) : (
-                                    <p className="text-gray-500">No tracks available for this album.</p>
-                                )}
-                            </div>
-                        </div>
-                    );
-                })}
-            </div>
+                                                        {/* Track Title and Composer */}
+                                                        <div className="flex flex-col">
+                                                            <span
+                                                                className={`text-md ${currentTrackIndex === trackIndex && currentAlbumIndex === albumIndex
+                                                                    ? 'text-blue-500'
+                                                                    : ''
+                                                                    }`}
+                                                            >
+                                                                {track.name}
+                                                            </span>
+                                                            <span className="text-xs text-gray-600">{album.album.composer}</span>
+                                                        </div>
 
-
-
-            {/* Spotify-style Audio Player */}
-            {currentTrackIndex !== null && currentAlbumIndex !== null && (
-                <div className="fixed bottom-0 left-0 right-0 p-4 bg-gray-900 text-white">
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-4">
-                            <div>
-                                <h2 className="text-lg font-bold">
-                                    {albums[currentAlbumIndex].tracks[currentTrackIndex].name}
-                                </h2>
-                                <p className="text-sm">{albums[currentAlbumIndex].tracks[currentTrackIndex].description}</p>
-                            </div>
-                        </div>
-
-                        {/* Player Controls */}
-                        <div className="flex items-center space-x-6">
-                            <button onClick={handlePrevTrack} disabled={currentTrackIndex === 0}>
-                                <ChevronLeftIcon className="w-8 h-8 text-white" />
-                            </button>
-
-                            <button
-                                onClick={togglePlayPause}
-                                className="w-12 h-12 rounded-full bg-white text-gray-900 flex items-center justify-center"
-                            >
-                                {isPlaying ? (
-                                    <PauseIcon className="w-6 h-6" />
-                                ) : (
-                                    <PlayIcon className="w-6 h-6" />
-                                )}
-                            </button>
-
-                            <button
-                                onClick={handleNextTrack}
-                                disabled={currentTrackIndex === albums[currentAlbumIndex].tracks.length - 1}
-                            >
-                                <ChevronRightIcon className="w-8 h-8 text-white" />
-                            </button>
-                        </div>
+                                                        {/* Track Duration */}
+                                                        <div className="text-right text-sm text-gray-600">
+                                                            {durations[index] ? formatTime(durations[index]) : 'Loading...'}
+                                                        </div>
+                                                    </div>
+                                                );
+                                            })
+                                        ) : (
+                                            <p className="text-gray-500">No tracks available for this album.</p>
+                                        )}
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </div>
+                    {/* Spotify-style Audio Player */}
+                    {currentTrackIndex !== null && currentAlbumIndex !== null && (
+                        <div className="fixed bottom-0 left-0 right-0 p-4 bg-gray-900 text-white">
+                            <div className="flex items-center justify-between">
+                                <div className="flex items-center space-x-4">
+                                    <div>
+                                        <h2 className="text-lg font-bold">
+                                            {albums[currentAlbumIndex].tracks[currentTrackIndex].name}
+                                        </h2>
+                                        <p className="text-sm">{albums[currentAlbumIndex].tracks[currentTrackIndex].description}</p>
+                                    </div>
+                                </div>
 
-                    <div className="mt-4 flex items-center justify-between">
-                        <span className="text-sm">{formatTime(currentTime)}</span>
-                        <input
-                            type="range"
-                            min="0"
-                            max="100"
-                            value={progress}
-                            onChange={handleSeek}
-                            className="w-full mx-4"
-                        />
-                        <span className="text-sm">
-                            {formatTime(durations[currentAlbumIndex * 100 + currentTrackIndex] || 0)}
-                        </span>
-                    </div>
+                                {/* Player Controls */}
+                                <div className="flex items-center space-x-6">
+                                    <button onClick={handlePrevTrack} disabled={currentTrackIndex === 0}>
+                                        <ChevronLeftIcon className="w-8 h-8 text-white" />
+                                    </button>
 
-                    {/* Audio element */}
-                    <audio
-                        ref={audioRef}
-                        src={albums[currentAlbumIndex].tracks[currentTrackIndex].musicUrl}
-                        autoPlay
-                    />
-                </div>
-            )}
+                                    <button
+                                        onClick={togglePlayPause}
+                                        className="w-12 h-12 rounded-full bg-white text-gray-900 flex items-center justify-center"
+                                    >
+                                        {isPlaying ? (
+                                            <PauseIcon className="w-6 h-6" />
+                                        ) : (
+                                            <PlayIcon className="w-6 h-6" />
+                                        )}
+                                    </button>
+
+                                    <button
+                                        onClick={handleNextTrack}
+                                        disabled={currentTrackIndex === albums[currentAlbumIndex].tracks.length - 1}
+                                    >
+                                        <ChevronRightIcon className="w-8 h-8 text-white" />
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div className="mt-4 flex items-center justify-between">
+                                <span className="text-sm">{formatTime(currentTime)}</span>
+                                <input
+                                    type="range"
+                                    min="0"
+                                    max="100"
+                                    value={progress}
+                                    onChange={handleSeek}
+                                    className="w-full mx-4"
+                                />
+                                <span className="text-sm">
+                                    {formatTime(durations[currentAlbumIndex * 100 + currentTrackIndex] || 0)}
+                                </span>
+                            </div>
+
+                            {/* Audio element */}
+                            <audio
+                                ref={audioRef}
+                                src={albums[currentAlbumIndex].tracks[currentTrackIndex].musicUrl}
+                                autoPlay
+                            />
+                        </div>
+                    )}
+                </>
+            }
         </div>
+
     );
 }
