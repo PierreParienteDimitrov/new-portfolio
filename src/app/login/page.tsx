@@ -1,16 +1,20 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-
-export const dynamic = 'force-dynamic'; // Force dynamic rendering to avoid prerendering issues
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [redirectUrl, setRedirectUrl] = useState('/');
     const router = useRouter();
-    const searchParams = useSearchParams();
-    const redirectUrl = searchParams.get('redirect') || '/'; // Default to '/' if no redirect param
+
+    useEffect(() => {
+        // Extract the redirect URL from the window.location directly
+        const params = new URLSearchParams(window.location.search);
+        const redirect = params.get('redirect') || '/'; // Default to '/' if no redirect param
+        setRedirectUrl(redirect);
+    }, []);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
