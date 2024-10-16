@@ -31,6 +31,7 @@ export default function Login() {
         if (response.ok) {
             // If successful, redirect to the original URL
             router.push(redirectUrl);
+            router.refresh();  // Ensures the page is fully refreshed after the redirect
         } else {
             setError('Invalid password');
         }
