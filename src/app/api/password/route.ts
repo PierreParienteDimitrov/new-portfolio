@@ -1,30 +1,23 @@
-import { cookies } from 'next/headers'
+import { NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
 
-const setPassword = process.env.PASSWORD;
+const PASSWORD = process.env.PASSWORD;
 
+export async function POST(request: Request) {
+    const { password } = await request.json();
 
-export async function POST(req: Request) {
+    if (password === PASSWORD) {
+        const response = NextResponse.json({ success: true });
 
-    const { password } = await req.json()
+        // Set the password cookie
+        response.cookies.set('password', password, {
+            httpOnly: true,
+            path: '/',
+            maxAge: 60 * 60 * 24 * 365, // 10 years
+        });
 
-    const isValidated = password === setPassword
-
-    if (isValidated) {
-        cookies().set('password', password)
+        return response;
     }
 
-    return Response.json({ isValidated })
-
-}
-
-export async function GET() {
-
-    const cookieStore = cookies()
-
-    const password = cookieStore.get('password')
-
-    const isValidated = password?.value !== setPassword
-
-    return Response.json({ isValidated })
-
+    return NextResponse.json({ success: false }, { status: 401 });
 }
