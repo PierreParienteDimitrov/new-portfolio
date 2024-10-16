@@ -1,10 +1,9 @@
 'use client';
 
-import { PageIntro } from '@/components/PageIntro';
 import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-export default function LoginPage() {
+export default function Login() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const router = useRouter();
@@ -49,7 +48,6 @@ export default function LoginPage() {
 
                     <button
                         type="submit"
-                        onClick={handleSubmit}
                         className="w-full mt-10 text-xl px-16 py-4 inline-flex justify-center items-center rounded-full font-semibold transition bg-neutral-950 text-white hover:bg-neutral-800"
                     >
                         Submit

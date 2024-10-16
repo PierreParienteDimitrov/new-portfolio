@@ -60,12 +60,6 @@ const Shipment = () => {
 
     const caseStudy: ICaseStudy = caseStudies.find((study) => study.key === 'shipments') as ICaseStudy;
 
-
-
-
-
-
-
     return (
         <>
             <Head>
