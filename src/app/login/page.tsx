@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
+export const dynamic = 'force-dynamic'; // Force dynamic rendering to avoid prerendering issues
+
 export default function Login() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -30,7 +32,6 @@ export default function Login() {
         }
     };
 
-
     return (
         <div className="flex flex-col items-center justify-center w-full md:mt-32">
             <h5>This page is protected</h5>
@@ -55,6 +56,5 @@ export default function Login() {
                 </form>
             </div>
         </div>
-
     );
 }
