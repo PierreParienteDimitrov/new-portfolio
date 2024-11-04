@@ -32,6 +32,18 @@ const getPhotos = async (start = 0, limit = 12): Promise<Photo[]> => {
   }`;
 
   const photos = await client.fetch(query);
+
+  // Sort by name alphabetically within the same day (uploadTime)
+  photos.sort((a: { uploadTime: string | number | Date; name: string; }, b: { uploadTime: string | number | Date; name: any; }) => {
+    const dateA = new Date(a.uploadTime).toDateString();
+    const dateB = new Date(b.uploadTime).toDateString();
+
+    if (dateA === dateB) {
+      return a.name.localeCompare(b.name);
+    }
+    return new Date(b.uploadTime).getTime() - new Date(a.uploadTime).getTime(); // Descending order by uploadTime
+  });
+
   return photos;
 };
 
