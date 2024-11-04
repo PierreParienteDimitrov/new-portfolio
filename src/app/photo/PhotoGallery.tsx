@@ -9,6 +9,7 @@ interface PhotosGalleryProps {
     initialPhotos: Photo[];
 }
 
+// Client-side Photo Gallery component
 export default function PhotosGallery({ initialPhotos }: PhotosGalleryProps) {
     const [photos, setPhotos] = useState<Photo[]>(initialPhotos);
     const [selectedPhotoIndex, setSelectedPhotoIndex] = useState<number | null>(null);
@@ -16,7 +17,7 @@ export default function PhotosGallery({ initialPhotos }: PhotosGalleryProps) {
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
 
-    // Fetch more photos when the user scrolls to the bottom
+    // Fetch more photos when needed
     const fetchMorePhotos = async () => {
         if (isLoading || !hasMore) return;
 
@@ -71,9 +72,14 @@ export default function PhotosGallery({ initialPhotos }: PhotosGalleryProps) {
     };
 
     // Handle navigation in the full-screen view (next and previous)
-    const handleNextPhoto = () => {
-        if (selectedPhotoIndex !== null && selectedPhotoIndex < photos.length - 1) {
-            setSelectedPhotoIndex(selectedPhotoIndex + 1);
+    const handleNextPhoto = async () => {
+        if (selectedPhotoIndex !== null) {
+            if (selectedPhotoIndex < photos.length - 1) {
+                setSelectedPhotoIndex(selectedPhotoIndex + 1);
+            } else if (hasMore) {
+                await fetchMorePhotos();
+                setSelectedPhotoIndex(selectedPhotoIndex + 1);
+            }
         }
     };
 
