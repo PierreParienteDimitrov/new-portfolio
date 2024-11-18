@@ -3,7 +3,15 @@ import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/client';
 import { Photo } from '@/types/ISanity';
-import { ArrowLongLeftIcon, ArrowLongRightIcon, XMarkIcon } from '@heroicons/react/20/solid';
+import { ArrowLeftIcon, ArrowRightIcon, XMarkIcon } from '@heroicons/react/24/solid';
+
+interface ModalProps {
+    photos: Photo[];
+    selectedPhotoIndex: number;
+    handleClose: () => void;
+    handleNextPhoto: () => void;
+    handlePrevPhoto: () => void;
+}
 
 const Modal = ({
     photos,
@@ -11,13 +19,7 @@ const Modal = ({
     handleClose,
     handleNextPhoto,
     handlePrevPhoto,
-}: {
-    photos: Photo[];
-    selectedPhotoIndex: number;
-    handleClose: () => void;
-    handleNextPhoto: () => void;
-    handlePrevPhoto: () => void;
-}) => {
+}: ModalProps) => {
     const [mounted, setMounted] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const modalRoot = document.getElementById('modal-root');
@@ -29,7 +31,23 @@ const Modal = ({
 
     useEffect(() => {
         setIsLoading(true);
+        preloadPhotos();
     }, [selectedPhotoIndex]);
+
+    // Preload images for smoother navigation
+    const preloadPhotos = () => {
+        const preloadIndexes = [selectedPhotoIndex - 1, selectedPhotoIndex + 1];
+        preloadIndexes.forEach((index) => {
+            if (index >= 0 && index < photos.length) {
+                const img = document.createElement('img');
+                img.src = photos[index]?.photo.asset.url;
+            }
+        });
+    };
+
+    const handleImageLoad = () => {
+        setIsLoading(false);
+    };
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -42,28 +60,35 @@ const Modal = ({
             }
         };
 
-        if (mounted) {
-            window.addEventListener('keydown', handleKeyDown);
-        }
-
+        document.addEventListener('keydown', handleKeyDown);
         return () => {
-            window.removeEventListener('keydown', handleKeyDown);
+            document.removeEventListener('keydown', handleKeyDown);
         };
-    }, [mounted, handleNextPhoto, handlePrevPhoto, handleClose]);
+    }, [handleNextPhoto, handlePrevPhoto, handleClose]);
 
-    const handleImageLoad = () => {
-        setIsLoading(false);
-    };
-
-    if (!mounted || selectedPhotoIndex === null || !modalRoot) return null;
+    // Ensure selectedPhotoIndex is valid
+    if (
+        !mounted ||
+        selectedPhotoIndex === null ||
+        selectedPhotoIndex < 0 ||
+        selectedPhotoIndex >= photos.length ||
+        !modalRoot
+    )
+        return null;
 
     return createPortal(
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-white">
             <div className="relative w-full h-full max-w-6xl p-8 bg-white flex flex-col items-center">
-                <div className="flex space-x-0 items-center absolute top-4 right-4 text-black hover:text-gray-300 text-3xl p-2 cursor-pointer" onClick={handleClose}>
+                {/* Close Button */}
+                <button
+                    className="absolute top-4 right-4 text-black hover:text-gray-300 text-2xl p-2 cursor-pointer"
+                    onClick={handleClose}
+                >
                     <XMarkIcon className="w-6 h-6" />
-                </div>
-                <div className="relative w-full h-4/5 mb-8">
+                </button>
+
+                {/* Image Display */}
+                <div className="relative w-full h-4/5 mb-4">
                     {isLoading && (
                         <div className="absolute inset-0 flex items-center justify-center">
                             <iframe
@@ -74,7 +99,7 @@ const Modal = ({
                         </div>
                     )}
                     <Image
-                        src={urlFor(photos[selectedPhotoIndex].photo).url()}
+                        src={photos[selectedPhotoIndex].photo.asset.url}
                         alt={photos[selectedPhotoIndex].name}
                         fill
                         quality={100}
@@ -84,30 +109,32 @@ const Modal = ({
                     />
                 </div>
 
-                {/* Image Information */}
-                <div className="w-full text-center text-black">
-                    <h4 className="">{photos[selectedPhotoIndex].name}</h4>
-                    <p className="text-s text-gray-700 mb-4">{photos[selectedPhotoIndex].location}</p>
-                    <p className="text-xs text-gray-700">{photos[selectedPhotoIndex].description}</p>
-                </div>
-
-                {/* Navigation Buttons */}
-                <div className="absolute bottom-32 left-32 right-32 flex justify-between">
+                {/* Photo Information */}
+                <div className="relative w-full flex justify-between items-center">
+                    {/* Left Arrow */}
                     <button
-                        className="text-gray-700 disabled:text-gray-400"
+                        className="absolute left-0 text-gray-700 disabled:text-gray-400 p-4"
                         onClick={handlePrevPhoto}
                         disabled={selectedPhotoIndex === 0}
                         aria-label="Previous"
                     >
-                        <ArrowLongLeftIcon className="w-8 h-8" />
+                        <ArrowLeftIcon className="w-8 h-8" />
                     </button>
+
+                    <div className="text-center text-black mx-auto">
+                        <h2 className="text-lg font-bold">{photos[selectedPhotoIndex]?.name}</h2>
+                        <p className="text-sm text-gray-600">{photos[selectedPhotoIndex]?.location}</p>
+                        <p className="text-xs text-gray-500">{photos[selectedPhotoIndex]?.description}</p>
+                    </div>
+
+                    {/* Right Arrow */}
                     <button
-                        className="text-gray-700 disabled:text-gray-400"
+                        className="absolute right-0 text-gray-700 disabled:text-gray-400 p-4"
                         onClick={handleNextPhoto}
                         disabled={selectedPhotoIndex === photos.length - 1}
                         aria-label="Next"
                     >
-                        <ArrowLongRightIcon className="w-8 h-8" />
+                        <ArrowRightIcon className="w-8 h-8" />
                     </button>
                 </div>
             </div>
