@@ -1,13 +1,6 @@
 @tailwind base;
 
-@font-face {
-  font-family: 'Archivo Sans';
-  font-weight: 200 900;
-  font-display: block;
-  font-style: normal;
-  font-stretch: 75% 125%;
-  src: url('../fonts/Archivo-VariableFont_wdth,wght.ttf') format('ttf');
-}
+
 
 h1 {
   font-size: 4rem;

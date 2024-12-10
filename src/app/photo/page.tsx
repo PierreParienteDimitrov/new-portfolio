@@ -10,8 +10,8 @@ import AlbumIndex from "./AlbumIndex";
 export const revalidate = 60;
 
 // Server-side function to fetch photo album data with pagination
-const getPhotoAlbums = async (start = 0, limit = 12): Promise<PhotoAlbum[]> => {
-  const query = `*[_type == "photoAlbum"] | order(releaseDate desc) [${start}...${start + limit}] {
+const getPhotoAlbums = async (): Promise<PhotoAlbum[]> => {
+  const query = `*[_type == "photoAlbum"] {
     title,
     description,
     releaseDate,
@@ -33,10 +33,11 @@ const getPhotoAlbums = async (start = 0, limit = 12): Promise<PhotoAlbum[]> => {
     }
   }`;
 
+  // Fetch data directly
   const albums = await client.fetch(query);
 
-  const { result } = await albums.json();
-  return result;
+  // Return the data as is (no need for .json())
+  return albums;
 };
 
 

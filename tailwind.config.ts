@@ -22,9 +22,9 @@ export default {
         '4xl': '2.5rem',
       },
       fontFamily: {
-        sans: ['Rubik', ...defaultTheme.fontFamily.sans],
+        sans: ['Montserrat', ...defaultTheme.fontFamily.sans],
         display: [
-          ['Rubik', ...defaultTheme.fontFamily.sans],
+          ['Montserrat', ...defaultTheme.fontFamily.sans],
           { fontVariationSettings: '"wdth,wght" 125' },
         ],
       },
