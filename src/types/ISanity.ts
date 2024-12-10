@@ -67,3 +67,26 @@ export interface PhotosGalleryProps {
     // Add other props here if necessary
 
 }
+
+
+export interface PhotoAlbum {
+    title: string; // The album's title
+    description: string; // The album's description
+    releaseDate: string; // ISO date string for the album's release
+    cover: {
+        asset: {
+            _id: string; // The unique ID of the image asset
+            url: string; // The URL of the image
+            metadata: {
+                dimensions: {
+                    width: number; // The width of the image in pixels
+                    height: number; // The height of the image in pixels
+                };
+            };
+        };
+    };
+    link?: {
+        url: string; // URL to the album
+        text?: string; // Optional display text for the link
+    };
+}

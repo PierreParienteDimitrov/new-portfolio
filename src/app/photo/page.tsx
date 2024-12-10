@@ -1,21 +1,21 @@
 // app/photos/page.tsx (Server Component)
 
 import { client } from "@/sanity/lib/client";
-import { Photo } from "@/types/ISanity";
+import { PhotoAlbum } from "@/types/ISanity";
 import { Container } from "@/components/Container";
 import { PageIntro } from "@/components/PageIntro";
-import PhotosGallery from "./PhotoGallery";
+import AlbumIndex from "./AlbumIndex";
 
 // Set the revalidation time (ISR)
 export const revalidate = 60;
 
-// Server-side function to fetch photo data with pagination
-const getPhotos = async (start = 0, limit = 12): Promise<Photo[]> => {
-  const query = `*[_type == "photo"] | order(uploadTime desc) [${start}...${start + limit}] {
-    name,
-    location,
+// Server-side function to fetch photo album data with pagination
+const getPhotoAlbums = async (): Promise<PhotoAlbum[]> => {
+  const query = `*[_type == "photoAlbum"] {
+    title,
     description,
-    photo {
+    releaseDate,
+    cover {
       asset -> {
         _id,
         url,
@@ -27,34 +27,29 @@ const getPhotos = async (start = 0, limit = 12): Promise<Photo[]> => {
         }
       }
     },
-    meta,
-    uploadTime
+    link {
+      url,
+      text
+    }
   }`;
 
-  const photos = await client.fetch(query);
+  // Fetch data directly
+  const albums = await client.fetch(query);
 
-  // Sort by name alphabetically within the same day (uploadTime)
-  photos.sort((a: { uploadTime: string | number | Date; name: string; }, b: { uploadTime: string | number | Date; name: any; }) => {
-    const dateA = new Date(a.uploadTime).toDateString();
-    const dateB = new Date(b.uploadTime).toDateString();
-
-    if (dateA === dateB) {
-      return a.name.localeCompare(b.name);
-    }
-    return new Date(b.uploadTime).getTime() - new Date(a.uploadTime).getTime(); // Descending order by uploadTime
-  });
-
-  return photos;
+  // Return the data as is (no need for .json())
+  return albums;
 };
+
+
 
 // Server Component
 export default async function PhotosPage() {
-  const initialPhotos = await getPhotos(); // Fetch the first set of photos on the server
+  const albums = await getPhotoAlbums(); // Fetch the first set of photos on the server
 
   return (
     <Container>
-      <PageIntro title="Photos" centered />
-      <PhotosGallery initialPhotos={initialPhotos} /> {/* Pass initialPhotos */}
+      <PageIntro title="Photo Albums" centered />
+      <AlbumIndex albums={albums} /> {/* Pass initialPhotos */}
     </Container>
   );
 }
