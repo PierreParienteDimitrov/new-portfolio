@@ -33,6 +33,11 @@ export const album = defineType({
                 hotspot: true,  // Allows for better control over cropping
             },
         }),
+        defineField({
+            name: 'externalLink',
+            title: 'External Link',
+            type: 'url', // The type for URLs in Sanity
+            description: 'A link to the album on an external site (e.g., Spotify, Apple Music)',
+        }),
     ],
 });
-
