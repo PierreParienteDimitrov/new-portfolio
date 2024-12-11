@@ -29,14 +29,15 @@ export interface MusicTrack {
 
 // Define GroupedAlbum interface for the reduced output
 export interface GroupedAlbum {
-    album: Album;
-    tracks: {
-        name: string;
-        description?: string;
-        musicUrl: string;
-        meta?: string;
-        trackNumber: number;
-    }[];
+    name: string;
+    description: string;
+    composer?: string;
+    releaseDate?: string;
+    coverUrl?: string;
+    link?: {
+        url: string; // URL to the album
+        text?: string; // Optional display text for the link
+    };
 }
 
 export interface Photo {
