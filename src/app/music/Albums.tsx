@@ -18,7 +18,7 @@ export default function Albums({ albums }: AlbumsProps) {
 
                 return (
                     <Link
-                        className='flex space-x-4'
+                        className='md:flex md:space-x-4'
                         key={index}
                         href={album.link?.url || "#"} passHref target="_blank">
                         {album.coverUrl && (
