@@ -34,10 +34,24 @@ export const album = defineType({
             },
         }),
         defineField({
-            name: 'externalLink',
-            title: 'External Link',
-            type: 'url', // The type for URLs in Sanity
-            description: 'A link to the album on an external site (e.g., Spotify, Apple Music)',
+            name: 'link',
+            title: 'Album Link',
+            type: 'object',  // Define it as an object for flexibility
+            fields: [
+                defineField({
+                    name: 'url',
+                    title: 'URL',
+                    type: 'url',  // URL type ensures proper formatting
+                    validation: (Rule) => Rule.uri({
+                        scheme: ['http', 'https'],  // Limit to http/https
+                    }),
+                }),
+                defineField({
+                    name: 'text',
+                    title: 'Link Text',
+                    type: 'string',  // Optional display text for the link
+                }),
+            ],
         }),
     ],
 });
