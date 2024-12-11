@@ -44,7 +44,7 @@ export const pageInformation: Record<string, IPage> = {
         title: 'Pierre Pariente Dimitrov',
         path: Routes.Home,
         isPublic: true,
-        showFooter: true,
+        showFooter: false,
     },
     [Routes.RequestAccess]: {
         title: 'Pierre Pariente Dimitrov - Request Access',
