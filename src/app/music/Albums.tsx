@@ -15,8 +15,11 @@ export default function Albums({ albums }: AlbumsProps) {
     return (
         <div className="grid grid-cols-1 gap-8">
             {albums.map((album, index) => {
+
                 return (
-                    <Link key={index}
+                    <Link
+                        className='flex space-x-4'
+                        key={index}
                         href={album.link?.url || "#"} passHref target="_blank">
                         {album.coverUrl && (
                             <Image
@@ -26,6 +29,7 @@ export default function Albums({ albums }: AlbumsProps) {
                                 height={300}
                                 className="rounded-md object-cover"
                             />
+
                         )}
                         <div className="mt-4">
                             <h3 className="text-lg font-bold">{album.name}</h3>

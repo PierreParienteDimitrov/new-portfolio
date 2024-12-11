@@ -19,7 +19,10 @@ const getAlbums = async (): Promise<GroupedAlbum[]> => {
         "coverUrl": cover.asset->url,
         composer,
         releaseDate,
-        externalLink
+        link {
+            url,
+            text
+            }
     }`;
 
     // Fetch the album data from Sanity
