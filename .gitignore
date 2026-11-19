@@ -33,3 +33,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# photos rendered by scripts/photos.mjs (uploaded to R2, not committed)
+/public/photo-files

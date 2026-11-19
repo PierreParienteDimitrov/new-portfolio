@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "photos:init": "node scripts/photos.mjs init",
+    "photos:publish": "node scripts/photos.mjs publish"
   },
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {
@@ -39,6 +41,7 @@
     "next-sanity": "^9.5.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-photo-album": "^3.6.2",
     "recma-import-images": "0.0.3",
     "remark-gfm": "^3.0.1",
     "remark-rehype-wrap": "0.0.3",
@@ -48,15 +51,17 @@
     "styled-components": "^6.1.13",
     "tailwindcss": "^3.3.2",
     "unified-conditional": "0.0.2",
-    "universal-cookie": "^6.1.1"
+    "universal-cookie": "^6.1.1",
+    "yet-another-react-lightbox": "^3.33.1"
   },
   "devDependencies": {
+    "@aws-sdk/client-s3": "^3.1173.0",
     "@tailwindcss/typography": "^0.5.12",
     "eslint": "8.26.0",
     "eslint-config-next": "13.4.16",
     "prettier": "^3.0.1",
     "prettier-plugin-tailwindcss": "^0.5.2",
-    "sharp": "^0.32.0",
+    "sharp": "^0.35.5",
     "typescript": "^5.6.2"
   }
 }

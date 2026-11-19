@@ -1,0 +1,132 @@
+{
+  "library": "~/Pictures/LightCraft Photos",
+  "widths": [
+    640,
+    1280,
+    1920,
+    2560
+  ],
+  "quality": 82,
+  "albums": [
+    {
+      "name": "Istres",
+      "public": true
+    },
+    {
+      "name": "JAMP - Camp Lakota - June 2026",
+      "public": true
+    },
+    {
+      "name": "Los Angeles - April 2026",
+      "public": true
+    },
+    {
+      "name": "New York - January 2026",
+      "public": true
+    },
+    {
+      "name": "Sedona & Joshua Tree - April 2026",
+      "public": true
+    },
+    {
+      "name": "Paris - December 2025",
+      "public": true
+    },
+    {
+      "name": "Sofia, Bulgaria - December 2025",
+      "public": true
+    },
+    {
+      "name": "NYC - Summer 2025",
+      "public": true
+    },
+    {
+      "name": "Brooklyn - Fall 2025",
+      "public": true
+    },
+    {
+      "name": "Sandy Hook - Summer 2025",
+      "public": true
+    },
+    {
+      "name": "Fire Island - Summer 2025",
+      "public": true
+    },
+    {
+      "name": "Prospect Park - Summer 2025",
+      "public": true
+    },
+    {
+      "name": "Montreal - Fall 2025",
+      "public": true
+    },
+    {
+      "name": "Fall 2024",
+      "public": true
+    },
+    {
+      "name": "Supermoon - Fall 2025",
+      "public": true
+    },
+    {
+      "name": "Thanksgiving 2025",
+      "public": true
+    },
+    {
+      "name": "The Secret Spot Sunset - Fall 2025",
+      "public": true
+    },
+    {
+      "name": "Bushwick in B&W",
+      "public": true
+    },
+    {
+      "name": "Anna&Rob",
+      "public": true
+    },
+    {
+      "name": "Coney Island",
+      "public": true
+    },
+    {
+      "name": "Prospect Park - Frozen",
+      "public": true
+    },
+    {
+      "name": "Prospect Park By Night - Jan 18 2025",
+      "public": true
+    },
+    {
+      "name": "Greenwood Cemetery",
+      "public": true
+    },
+    {
+      "name": "City Jungle",
+      "public": true
+    },
+    {
+      "name": "Dumbo - November 2024",
+      "public": true
+    },
+    {
+      "name": "Parks",
+      "public": true
+    },
+    {
+      "name": "Alex's Series",
+      "public": true
+    },
+    {
+      "name": "Claire's Series",
+      "public": true
+    },
+    {
+      "name": "Black & White - Summer 2024",
+      "public": true
+    },
+    {
+      "name": "Walls",
+      "public": true
+    }
+  ]
+}
