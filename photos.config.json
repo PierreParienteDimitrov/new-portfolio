@@ -1,5 +1,8 @@
 {
-  "library": "~/Pictures/LightCraft Photos",
+  "libraries": [
+    "~/Pictures/LightCraft Photos",
+    "~/Pictures/LightCraft Library"
+  ],
   "widths": [
     640,
     1280,
@@ -9,124 +12,169 @@
   "quality": 82,
   "albums": [
     {
-      "name": "Istres",
+      "name": "Paris - October 2026",
+      "library": "~/Pictures/LightCraft Library",
       "public": true
+    },
+    {
+      "name": "NYC - October 2026",
+      "library": "~/Pictures/LightCraft Library",
+      "public": true
+    },
+    {
+      "name": "Istres",
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "JAMP - Camp Lakota - June 2026",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "Los Angeles - April 2026",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "New York - January 2026",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "Sedona & Joshua Tree - April 2026",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "Paris - December 2025",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "Sofia, Bulgaria - December 2025",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "NYC - Summer 2025",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "Brooklyn - Fall 2025",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "Sandy Hook - Summer 2025",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "Fire Island - Summer 2025",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "Prospect Park - Summer 2025",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "Montreal - Fall 2025",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "Fall 2024",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "Supermoon - Fall 2025",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "Thanksgiving 2025",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "The Secret Spot Sunset - Fall 2025",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "Bushwick in B&W",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "Anna&Rob",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "Coney Island",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "Prospect Park - Frozen",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "Prospect Park By Night - Jan 18 2025",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "Greenwood Cemetery",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "City Jungle",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "Dumbo - November 2024",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "Parks",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "Alex's Series",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "Claire's Series",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "Black & White - Summer 2024",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
     },
     {
       "name": "Walls",
-      "public": true
+      "public": true,
+      "library": "~/Pictures/LightCraft Photos"
+    },
+    {
+      "name": "France - October 2026",
+      "library": "~/Pictures/LightCraft Library",
+      "public": false
     }
   ]
 }

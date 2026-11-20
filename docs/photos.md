@@ -29,12 +29,15 @@ LightCraft library  ──(scripts/photos.mjs)──►  WebP files  ──►  
 
 ## Publish
 
-1. **List your albums:** run `npm run photos:init`. It writes your LightCraft albums into
-   `photos.config.json`. New albums start private, and your existing settings are kept.
+1. **List your albums:** run `npm run photos:init`. It writes the albums of every library listed in
+   `"libraries"` in `photos.config.json` (today `~/Pictures/LightCraft Photos` and
+   `~/Pictures/LightCraft Library`) into that file. Each album records its `"library"`. New albums start
+   private, and your existing settings are kept. To read another library, add its path to `"libraries"`.
 2. **Pick albums:** in `photos.config.json`, set `"public": true` on the albums to show and put them in the
    order they should appear. You can also set `"title"` (the name shown on the site) and `"slug"` (the URL).
-3. **Quit LightCraft:** the script opens the library itself. Alternatively, run the app with
-   `--control 7980` and add `--connect` to the command.
+3. **Quit LightCraft:** the script opens the libraries itself. Alternatively, run the app with
+   `--control 7980` and add `--connect` to the command; that only works when every public album is in the
+   library the app has open.
 4. **Try it locally:** run `npm run photos:publish -- --local`, then `npm run dev` and open
    <http://localhost:3000/photo>.
 5. **Publish:** run `npm run photos:publish`. Only new or edited photos are rendered and uploaded.

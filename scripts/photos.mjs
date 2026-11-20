@@ -8,7 +8,11 @@
  *   npm run photos:publish              render, then upload new files to Cloudflare R2
  *   add --prune                         also delete files no photo uses any more (cache and R2)
  *   add --connect                       talk to the running LightCraft app (started with --control 7980)
- *                                       instead of opening the library headless (needs LightCraft closed)
+ *                                       instead of opening the library headless (needs LightCraft closed;
+ *                                       only when every public album is in the library the app has open)
+ *
+ * photos.config.json lists one or more LightCraft libraries in "libraries"; each album records the
+ * library it comes from in "library" (photo ids are only unique within one library).
  *
  * What it does, per public album photo:
  *   1. asks LightCraft for the photo's develop settings; the photo's key is a hash of the source file,
@@ -61,11 +65,11 @@ function expandHome(p) {
   return p.startsWith("~/") ? path.join(os.homedir(), p.slice(2)) : p;
 }
 
-/** Runs LightCraft commands in one process; resolves with one {ok, result, error} per command. */
-function runLightCraft(config, commands, onLine) {
+/** Runs LightCraft commands on one library in one process; resolves with one {ok, result, error} per command. */
+function runLightCraft(library, commands, onLine) {
   const scriptFile = path.join(os.tmpdir(), `lightcraft-${process.pid}-${Date.now()}.jsonl`);
   fs.writeFileSync(scriptFile, commands.map((c) => JSON.stringify(c)).join("\n") + "\n");
-  const target = flag("connect") ? ["--connect"] : ["--library", expandHome(config.library)];
+  const target = flag("connect") ? ["--connect"] : ["--library", expandHome(library)];
   return new Promise((resolve, reject) => {
     const child = spawn(lightcraftCli(), ["run", ...target, "--keep-going", "--script", scriptFile], {
       stdio: ["ignore", "pipe", "pipe"],
@@ -112,7 +116,28 @@ function readConfig() {
   if (!fs.existsSync(CONFIG_PATH)) {
     throw new Error("photos.config.json is missing: run `npm run photos:init` first.");
   }
-  return JSON.parse(fs.readFileSync(CONFIG_PATH, "utf8"));
+  return normalizeConfig(JSON.parse(fs.readFileSync(CONFIG_PATH, "utf8")));
+}
+
+/** Older configs had a single "library"; albums without one belong to the first library. */
+function normalizeConfig(config) {
+  const { library, ...rest } = config;
+  const libraries = rest.libraries ?? (library ? [library] : []);
+  if (!libraries.length) throw new Error('photos.config.json lists no "libraries".');
+  return { libraries, ...rest, albums: rest.albums.map((a) => ({ ...a, library: a.library ?? libraries[0] })) };
+}
+
+/** Where an album entry was found: its library and name. */
+const albumRef = (library, name) => JSON.stringify([library, name]);
+
+/** Every album with photos, in every library: [{library, id, name, count, cover, …}]. */
+async function listAlbums(config) {
+  const out = [];
+  for (const library of config.libraries) {
+    const [reply] = await runLightCraft(library, [{ command: "albums.list", params: {} }]);
+    for (const a of flattenAlbums(must(reply, `albums.list in ${library}`))) out.push({ ...a, library });
+  }
+  return out;
 }
 
 function slugify(name) {
@@ -134,12 +159,28 @@ function flattenAlbums(nodes, out = []) {
   return out;
 }
 
-async function albumPhotos(config, albums) {
-  const replies = await runLightCraft(
-    config,
-    albums.map((a) => ({ command: "catalog.query", params: { filter: { album: a.id }, limit: 5000 } })),
+/** Runs one command per item, each on its item's library; replies come back in item order. */
+async function runPerLibrary(items, toCommand) {
+  const replies = new Array(items.length);
+  for (const library of new Set(items.map((x) => x.library))) {
+    const idx = items.flatMap((x, i) => (x.library === library ? [i] : []));
+    const got = await runLightCraft(library, idx.map((i) => toCommand(items[i])));
+    idx.forEach((i, j) => (replies[i] = got[j]));
+  }
+  return replies;
+}
+
+/** The photos of each album; each photo carries its library. */
+async function albumPhotos(albums) {
+  const replies = await runPerLibrary(albums, (a) => ({
+    command: "catalog.query",
+    params: { filter: { album: a.id }, limit: 5000 },
+  }));
+  return replies.map((r, i) =>
+    must(r, `query of "${albums[i].name}"`)
+      .photos.filter((p) => !p.deleted && p.kind === "image")
+      .map((p) => ({ ...p, library: albums[i].library })),
   );
-  return replies.map((r, i) => must(r, `query of "${albums[i].name}"`).photos.filter((p) => !p.deleted && p.kind === "image"));
 }
 
 function progress(label, done, total) {
@@ -160,27 +201,32 @@ async function mapLimit(items, limit, fn) {
 // ---------------------------------------------------------------- init
 
 async function init() {
-  const existing = fs.existsSync(CONFIG_PATH) ? JSON.parse(fs.readFileSync(CONFIG_PATH, "utf8")) : null;
+  const existing = fs.existsSync(CONFIG_PATH) ? readConfig() : null;
   const config = existing ?? {
-    library: "~/Pictures/LightCraft Photos",
+    libraries: ["~/Pictures/LightCraft Photos"],
     widths: [640, 1280, 1920, 2560],
     quality: 82,
     albums: [],
   };
-  const [listReply] = await runLightCraft(config, [{ command: "albums.list", params: {} }]);
-  const albums = flattenAlbums(must(listReply, "albums.list")).filter((a) => a.count > 0);
-  const photos = await albumPhotos(config, albums);
-  const latest = new Map(albums.map((a, i) => [a.name, photos[i].map((p) => p.captured ?? "").sort().at(-1) ?? ""]));
+  const albums = (await listAlbums(config)).filter((a) => a.count > 0);
+  const photos = await albumPhotos(albums);
+  const latest = new Map(
+    albums.map((a, i) => [albumRef(a.library, a.name), photos[i].map((p) => p.captured ?? "").sort().at(-1) ?? ""]),
+  );
 
-  const known = new Map(config.albums.map((a) => [a.name, a]));
-  const added = albums.filter((a) => !known.has(a.name));
-  for (const a of added) config.albums.push({ name: a.name, public: false });
-  const missing = config.albums.filter((a) => !albums.some((x) => x.name === a.name));
-  if (!existing) config.albums.sort((a, b) => latest.get(b.name).localeCompare(latest.get(a.name)));
+  const known = new Set(config.albums.map((a) => albumRef(a.library, a.name)));
+  const added = albums.filter((a) => !known.has(albumRef(a.library, a.name)));
+  for (const a of added) config.albums.push({ name: a.name, library: a.library, public: false });
+  const missing = config.albums.filter((a) => !latest.has(albumRef(a.library, a.name)));
+  if (!existing) {
+    config.albums.sort((a, b) =>
+      latest.get(albumRef(b.library, b.name)).localeCompare(latest.get(albumRef(a.library, a.name))),
+    );
+  }
 
   fs.writeFileSync(CONFIG_PATH, JSON.stringify(config, null, 2) + "\n");
   console.log(`photos.config.json: ${config.albums.length} albums, ${added.length} new (added as private).`);
-  if (missing.length) console.log(`Not in LightCraft any more: ${missing.map((a) => a.name).join(", ")}`);
+  if (missing.length) console.log(`Not in LightCraft any more: ${missing.map((a) => `${a.name} (${a.library})`).join(", ")}`);
   console.log('Set "public": true on the albums to show, and order them as they should appear.');
 }
 
@@ -227,7 +273,7 @@ async function renderBatch(config, batch, tmp, sharp) {
       conflict: "overwrite",
     },
   }));
-  const replies = await runLightCraft(config, commands);
+  const replies = await runPerLibrary(batch, (p) => commands[batch.indexOf(p)]);
   for (const [i, p] of batch.entries()) {
     must(replies[i], `export of ${p.fileName}`);
     const png = path.join(tmp, `${p.key}.png`);
@@ -254,27 +300,35 @@ async function publish() {
   const chosen = config.albums.filter((a) => a.public);
   if (!chosen.length) throw new Error('No album has "public": true in photos.config.json.');
 
-  const [listReply] = await runLightCraft(config, [{ command: "albums.list", params: {} }]);
-  const byName = new Map(flattenAlbums(must(listReply, "albums.list")).map((a) => [a.name, a]));
-  const absent = chosen.filter((a) => !byName.has(a.name));
-  if (absent.length) throw new Error(`Not found in LightCraft: ${absent.map((a) => a.name).join(", ")}`);
-  const lcAlbums = chosen.map((a) => byName.get(a.name));
-  const photosByAlbum = await albumPhotos(config, lcAlbums);
+  if (flag("connect") && new Set(chosen.map((a) => a.library)).size > 1) {
+    throw new Error("--connect reaches only the library open in LightCraft, but the public albums span several: quit LightCraft and run without --connect.");
+  }
+  const found = new Map(
+    (await listAlbums({ ...config, libraries: [...new Set(chosen.map((a) => a.library))] })).map((a) => [
+      albumRef(a.library, a.name),
+      a,
+    ]),
+  );
+  const absent = chosen.filter((a) => !found.has(albumRef(a.library, a.name)));
+  if (absent.length) {
+    throw new Error(`Not found in LightCraft: ${absent.map((a) => `${a.name} (${a.library})`).join(", ")}`);
+  }
+  const lcAlbums = chosen.map((a) => found.get(albumRef(a.library, a.name)));
+  const photosByAlbum = await albumPhotos(lcAlbums);
 
   // develop settings → keys
-  // A photo in several albums comes back once per album: keep one object per photo id, shared by all.
+  // A photo in several albums comes back once per album: keep one object per photo, shared by all.
+  // Photo ids are only unique within a library.
+  const photoRef = (p) => `${p.library}\u0000${p.id}`;
   const unique = new Map();
   for (const list of photosByAlbum) {
     list.forEach((p, i) => {
-      if (!unique.has(p.id)) unique.set(p.id, p);
-      list[i] = unique.get(p.id);
+      if (!unique.has(photoRef(p))) unique.set(photoRef(p), p);
+      list[i] = unique.get(photoRef(p));
     });
   }
   const all = [...unique.values()];
-  const devReplies = await runLightCraft(
-    config,
-    all.map((p) => ({ command: "develop.get", params: { id: p.id } })),
-  );
+  const devReplies = await runPerLibrary(all, (p) => ({ command: "develop.get", params: { id: p.id } }));
   all.forEach((p, i) => (p.key = photoKey(p, must(devReplies[i], `develop.get ${p.fileName}`), config)));
 
   // render what is new or edited
@@ -306,7 +360,7 @@ async function publish() {
         const meta = JSON.parse(fs.readFileSync(path.join(CACHE_DIR, PREFIX, p.key, "meta.json"), "utf8"));
         return { key: p.key, ...meta };
       });
-    const coverPhoto = unique.get(lc.cover);
+    const coverPhoto = unique.get(photoRef({ library: lc.library, id: lc.cover }));
     const dates = photosByAlbum[i].map((p) => p.captured).filter(Boolean).sort();
     return {
       slug,
